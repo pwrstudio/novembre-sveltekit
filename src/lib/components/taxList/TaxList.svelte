@@ -53,12 +53,12 @@
       display: inline-block;
       text-decoration: none;
       margin-right: 10px;
-      color: black;
+      color: $black;
       transition: border 0.3s $transition;
       border-bottom: 1px solid transparent;
 
       &:hover {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $black;
       }
 
       &.date {

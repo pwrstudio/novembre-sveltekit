@@ -1,10 +1,8 @@
 <script lang="ts">
   import type { Meta } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
-  import { navigationColor } from "$lib/modules/stores"
   import { renderBlockText } from "$lib/modules/sanity"
   import { get, has } from "lodash-es"
-  import { NavigationColor } from "$lib/enums"
 
   import Image from "$lib/components/modules/Image.svelte"
   import ImageGroup from "$lib/components/modules/ImageGroup.svelte"
@@ -13,8 +11,6 @@
   import Slideshow from "$lib/components/modules/Slideshow.svelte"
 
   export let globalConfig: Meta
-
-  navigationColor.set(NavigationColor.Black)
 
   onMount(async () => {
     window.scrollTo(0, 0)
@@ -124,7 +120,7 @@
         &:hover {
           border-bottom: 3px solid $black;
           @include screen-size("small") {
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid $black;
           }
         }
       }

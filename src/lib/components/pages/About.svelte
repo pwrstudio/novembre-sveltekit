@@ -3,8 +3,6 @@
   import { onMount } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { get } from "lodash-es"
-  import { NavigationColor } from "$lib/enums"
-  import { navigationColor } from "$lib/modules/stores"
 
   import Image from "$lib/components/modules/Image.svelte"
   import ImageGroup from "$lib/components/modules/ImageGroup.svelte"
@@ -13,8 +11,6 @@
   import Slideshow from "$lib/components/modules/Slideshow.svelte"
 
   export let globalConfig: Meta
-
-  navigationColor.set(NavigationColor.Black)
 
   onMount(async () => {
     window.scrollTo(0, 0)

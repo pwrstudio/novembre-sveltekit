@@ -8,8 +8,3 @@ export enum ListingType {
     Tag = "tag",
     Search = "search"
 }
-
-export enum NavigationColor {
-    White = 'white',
-    Black = 'black'
-}

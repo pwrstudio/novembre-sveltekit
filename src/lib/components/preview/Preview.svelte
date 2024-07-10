@@ -15,6 +15,8 @@
   let active = true
   let loaded = true
 
+  $: console.log(post)
+
   const backgroundColor = post.previewColors?.backgroundColor
     ? "background-color:" + post.previewColors.backgroundColor.hex + ";"
     : ""
@@ -104,7 +106,7 @@
   .preview {
     position: relative;
     user-select: none;
-    color: black;
+    color: $black;
     opacity: 0;
     overflow: hidden;
     background: $white;

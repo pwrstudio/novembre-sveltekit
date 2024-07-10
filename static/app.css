@@ -91,7 +91,7 @@
   }
   
   .body-text a {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $black;
     transition: border 0.3s ease-out;
   }
   
@@ -348,13 +348,13 @@
   
   .about-text a,
   .contact a {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid $black;
   }
   
   @media screen and (max-width: 800px) {
     .about-text a,
     .contact a {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid $black;
     }
   }
   

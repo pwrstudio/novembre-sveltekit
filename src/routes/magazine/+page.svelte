@@ -15,6 +15,6 @@
 </script>
 
 <MetaData />
-<ScrollList tagArray={magazineTags} />
+<ScrollList tagArray={magazineTags} category="magazine" />
 <Listing listingType={ListingType.Magazine} {posts} {globalConfig} />
 <Footer active />

@@ -27,12 +27,14 @@
   })
 </script>
 
-<!-- style={"background-color:" +
-get(post, "background.backgroundColor.hex", "#ffffff") +
-"; background-image: url(" +
-urlFor(get(post, "background.backgroundImage.asset", "")) +
-");"} -->
-<div class="satellite">
+<div
+  class="satellite"
+  style={"background-color:" +
+    get(post, "background.backgroundColor.hex", "#ffffff") +
+    "; background-image: url(" +
+    urlFor(get(post, "background.backgroundImage.asset", "")) +
+    ");"}
+>
   {#if get(post, "landing.enabled", false) && !landingHidden}
     <div
       class="landing"

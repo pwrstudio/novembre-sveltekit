@@ -1,12 +1,16 @@
 <script lang="ts">
   import { onMount } from "svelte"
+  import { fade } from "svelte/transition"
   import EmblaCarousel from "embla-carousel"
   import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel"
   import Autoscroll from "embla-carousel-auto-scroll"
-
-  import { activeQuery } from "$lib/modules/stores"
+  import type { AutoScrollOptionsType } from "embla-carousel-auto-scroll"
 
   export let tagArray: { title: string; slug: string }[]
+  export let category: "magazine" | "bureau"
+  export let activeItem: string = ""
+
+  $: console.log("activeItem", activeItem)
 
   let scrollListEl: HTMLElement
   let loaded = true
@@ -14,30 +18,21 @@
 
   // *** ON MOUNT
   onMount(async () => {
-    // let tickerSpeed = 0.7
-
-    // scrollListEl.addEventListener("mouseenter", pause, false)
-    // scrollListEl.addEventListener("focusin", pause, false)
-    // scrollListEl.addEventListener("mouseleave", play, false)
-    // scrollListEl.addEventListener("focusout", play, false)
-
-    // flickity.on("dragStart", () => {
-    //   isPaused = true
-    // })
-
-    // flickity.on(
-    //   "staticClick",
-    //   function (event, pointer, cellElement, cellIndex) {
-    //     // navigate("/" + $activeCategory + "/category/" + cellElement.dataset.tag)
-    //   },
-    // )
-
-    let options: EmblaOptionsType = {}
-    emblaApi = EmblaCarousel(scrollListEl, options, [Autoscroll()])
+    let options: EmblaOptionsType = { loop: true, watchDrag: false }
+    let autoscrollOptions: AutoScrollOptionsType = {
+      startDelay: 0,
+      speed: 1,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      stopOnFocusIn: true,
+    }
+    emblaApi = EmblaCarousel(scrollListEl, options, [
+      Autoscroll(autoscrollOptions),
+    ])
   })
 </script>
 
-<div class="taxonomy-scroller">
+<div class="taxonomy-scroller" in:fade>
   <div
     class:loaded
     class="main-carousel taxonomy-scroller__slideshow
@@ -46,16 +41,14 @@
     <div class="embla" bind:this={scrollListEl}>
       <div class="embla__container">
         {#each tagArray as t}
-          <div
-            data-tag={t.slug}
-            class="embla__slide carousel-cell taxonomy-scroller__slide"
-          >
-            <span
-              class:active={t.slug === $activeQuery}
+          <div class="embla__slide carousel-cell taxonomy-scroller__slide">
+            <a
+              href={`/${category}/category/${t.slug}`}
+              class:active={t.slug === activeItem}
               class="taxonomy__item taxonomy-scroller__link"
             >
               {t.title}
-            </span>
+            </a>
           </div>
         {/each}
       </div>
@@ -82,6 +75,11 @@
     overflow: hidden;
     z-index: 99;
 
+    .embla__slide {
+      flex: unset;
+      min-width: unset;
+    }
+
     @include screen-size("small") {
       font-size: $mobile_large;
       padding-bottom: $small-margin;
@@ -90,7 +88,7 @@
     }
 
     width: 100%;
-    background: black;
+    background: $black;
     color: $white;
     opacity: 1;
     transition:
@@ -105,14 +103,17 @@
       overflow: visible;
       padding-top: 3px;
 
-      span {
+      a {
         cursor: pointer;
         border-bottom: 2px solid transparent;
       }
 
-      span:hover,
-      span:active,
-      span.active {
+      a:hover,
+      a:active {
+        border-bottom: 2px solid $grey;
+      }
+
+      a.active {
         border-bottom: 2px solid white;
       }
 

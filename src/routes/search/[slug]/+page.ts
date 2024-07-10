@@ -16,9 +16,11 @@ export async function load({ params }) {
 
     const posts: Article[] = await loadData(queries.search, sanityParams)
     const globalConfig: Meta = await loadData(queries.globalConfig, {})
+    const text: string = params.slug
 
     return {
         posts,
-        globalConfig
+        globalConfig,
+        text
     };
 }

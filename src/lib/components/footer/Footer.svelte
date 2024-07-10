@@ -80,7 +80,7 @@
     &__link {
       position: relative;
       width: auto;
-      color: black;
+      color: $black;
       line-height: 1em;
       height: 100%;
       display: inline-block;

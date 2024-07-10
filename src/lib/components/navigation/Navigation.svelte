@@ -123,7 +123,7 @@
     color: $white;
 
     &--black {
-      color: black;
+      color: $black;
     }
 
     button {

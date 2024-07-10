@@ -35,7 +35,7 @@
     }
 
     width: 100%;
-    background: black;
+    background: $black;
     color: $white;
     opacity: 1;
     transition:

@@ -1,19 +1,12 @@
 <script lang="ts">
-  import { onMount } from "svelte"
   import type { Article, Meta, Banner } from "$lib/types/sanity.types"
   import { isArray, isEmpty } from "lodash-es"
-  import { ListingType, NavigationColor } from "$lib/enums"
+  import { ListingType } from "$lib/enums"
   import { urlFor } from "$lib/modules/sanity"
 
   import Preview from "$lib/components/preview/Preview.svelte"
   import SplashText from "$lib/components/splashText/SplashText.svelte"
   import Ellipse from "$lib/components/ellipse/Ellipse.svelte"
-
-  import {
-    navigationColor,
-    activeQuery,
-    activeCategory,
-  } from "$lib/modules/stores"
 
   export let listingType: ListingType
   export let posts: Article[]
@@ -23,22 +16,11 @@
   export let title = ""
   export let query = ""
 
+  $: console.log("posts", posts)
+
   let sentinel = {}
   let postsContainerEl: HTMLDivElement
   let loadingCompleted = false
-
-  // Switch active category
-  $: if (
-    [ListingType.Bureau, ListingType.BureauCategory].includes(listingType)
-  ) {
-    activeCategory.set("bureau")
-  } else {
-    activeCategory.set("magazine")
-  }
-
-  $: activeQuery.set(query)
-
-  navigationColor.set(NavigationColor.White)
 
   // const observer = new IntersectionObserver(
   //   entries => {
@@ -62,10 +44,6 @@
   //       postsContainerEl.insertBefore(sentinel, fourthElementFromEnd)
   //   }
   // }
-
-  onMount(async () => {
-    window.scrollTo(0, 0)
-  })
 </script>
 
 {#if isArray(posts)}
@@ -75,7 +53,7 @@
         <div class="no-results">No results for “{query}”</div>
       {/if}
 
-      {#each posts as post, i}
+      {#each posts as post, i (post._id)}
         {#if i === 0 && (listingType === ListingType.Magazine || listingType === ListingType.Bureau || listingType === ListingType.Landing)}
           <SplashText {listingType} {globalConfig} />
         {/if}
@@ -166,8 +144,8 @@
     padding-left: $small-margin;
     font-size: $large;
     font-family: $sans-stack;
-    color: black;
-    background: #f6f6f6;
+    color: $black;
+    background: $grey;
     height: 100vh;
     width: 100vw;
     padding-top: 200px;

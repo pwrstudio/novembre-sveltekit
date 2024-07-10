@@ -54,7 +54,7 @@
 
     div {
       user-select: none;
-      color: black;
+      color: $black;
       font-size: $intro;
       font-weight: 300;
       line-height: 1em;

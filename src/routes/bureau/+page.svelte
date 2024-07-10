@@ -14,7 +14,7 @@
   const { posts, globalConfig } = data
 </script>
 
-<ScrollList tagArray={bureauTags} />
+<ScrollList tagArray={bureauTags} category="bureau" />
 <MetaData />
 <Listing listingType={ListingType.Bureau} {posts} {globalConfig} />
 <Footer active />

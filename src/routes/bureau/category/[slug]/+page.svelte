@@ -10,14 +10,18 @@
   export let data: {
     posts: Article[]
     globalConfig: Meta
+    activeItem: string
   }
 
   const globalConfig = data.globalConfig
   // Reactive, to reload on page navigation
   $: posts = data.posts
+  $: activeItem = data.activeItem
+
+  $: console.log("activeItem", activeItem)
 </script>
 
-<ScrollList tagArray={bureauTags} />
+<ScrollList tagArray={bureauTags} category="bureau" {activeItem} />
 <MetaData />
 <Listing listingType={ListingType.BureauCategory} {posts} {globalConfig} />
 <Footer active />

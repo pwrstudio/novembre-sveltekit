@@ -5,9 +5,6 @@
   import { get, isEmpty } from "lodash-es"
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
 
-  import { navigationColor } from "$lib/modules/stores"
-  import { NavigationColor } from "$lib/enums"
-
   import TaxList from "$lib/components/taxList/TaxList.svelte"
   import Preview from "$lib/components/preview/Preview.svelte"
 
@@ -22,8 +19,6 @@
   export let post: Article
 
   let bannerActive = false
-
-  navigationColor.set(NavigationColor.Black)
 
   onMount(async () => {
     window.scrollTo(0, 0)

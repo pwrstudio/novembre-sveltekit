@@ -166,11 +166,11 @@
 
       height: 1em;
       width: 95%;
-      border-bottom: 3px solid black;
+      border-bottom: 3px solid $black;
 
       @include screen-size("small") {
         font-size: $mobile-large;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid $black;
       }
     }
 
@@ -220,11 +220,11 @@
 
       input {
         font-size: $intro;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $black;
 
         @include screen-size("small") {
           font-size: $mobile-intro;
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid $black;
         }
       }
 
