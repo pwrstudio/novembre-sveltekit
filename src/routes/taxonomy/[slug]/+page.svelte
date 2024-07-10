@@ -9,7 +9,9 @@
     posts: Article[]
     globalConfig: Meta
   }
-  const { posts, globalConfig } = data
+  const globalConfig = data.globalConfig
+  // Reactive, to reload on page navigation
+  $: posts = data.posts
 </script>
 
 <MetaData />

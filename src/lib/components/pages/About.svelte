@@ -4,7 +4,7 @@
   import { renderBlockText } from "$lib/modules/sanity"
   import { get } from "lodash-es"
   import { NavigationColor } from "$lib/enums"
-  import { navigationColor, scrollListActive } from "$lib/modules/stores"
+  import { navigationColor } from "$lib/modules/stores"
 
   import Image from "$lib/components/modules/Image.svelte"
   import ImageGroup from "$lib/components/modules/ImageGroup.svelte"
@@ -15,7 +15,6 @@
   export let globalConfig: Meta
 
   navigationColor.set(NavigationColor.Black)
-  scrollListActive.set(false)
 
   onMount(async () => {
     window.scrollTo(0, 0)

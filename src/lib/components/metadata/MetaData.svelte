@@ -4,15 +4,17 @@
   import { toPlainText, urlFor } from "$lib/modules/sanity"
   import { stripHtml } from "$lib/modules/utils"
 
-  export let post: Article | Product | SatelliteSite | undefined
+  export let post: Article | Product | SatelliteSite | undefined = undefined
 
   const defaultDescription =
     "Novembre Global is a platform for expression, guiding individuals and professionals in search of inspiration, new styles and emergent cultural trends."
 
-  const title =
+  const defaultImage = "https://novembre.global/images/logo.png"
+
+  $: title =
     (post?.title ? stripHtml(post.title) + " / " : "") + "NOVEMBRE GLOBAL"
 
-  const description =
+  $: description =
     post?.content && isArray(post.content) && !isEmpty(post.content)
       ? truncate(toPlainText(post.content), {
           length: 160,
@@ -20,9 +22,9 @@
         })
       : defaultDescription
 
-  const image = post?.mainImage
+  $: image = post?.mainImage
     ? urlFor(post.mainImage).quality(80).height(1200).width(1200).url()
-    : "https://novembre.global/images/logo.png"
+    : defaultImage
 </script>
 
 <svelte:head>

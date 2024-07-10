@@ -247,6 +247,17 @@ export type SatelliteSite = {
     _rev: string;
     editorialState?: "preview" | "live";
     title?: string;
+    mainImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
     customFont?: boolean;
     landing?: {
         enabled?: boolean;

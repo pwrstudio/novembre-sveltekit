@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Meta } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
-  import { navigationColor, scrollListActive } from "$lib/modules/stores"
+  import { navigationColor } from "$lib/modules/stores"
   import { renderBlockText } from "$lib/modules/sanity"
   import { get, has } from "lodash-es"
   import { NavigationColor } from "$lib/enums"
@@ -15,7 +15,6 @@
   export let globalConfig: Meta
 
   navigationColor.set(NavigationColor.Black)
-  scrollListActive.set(false)
 
   onMount(async () => {
     window.scrollTo(0, 0)

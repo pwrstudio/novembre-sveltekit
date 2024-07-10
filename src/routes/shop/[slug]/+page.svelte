@@ -7,7 +7,9 @@
   export let data: {
     post: Product
   }
-  const { post } = data
+
+  // Reactive, to reload on page navigation
+  $: post = data.post
 </script>
 
 <MetaData {post} />

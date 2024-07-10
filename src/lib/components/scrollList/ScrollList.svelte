@@ -4,9 +4,9 @@
   import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel"
   import Autoscroll from "embla-carousel-auto-scroll"
 
-  import { activeQuery, activeCategory } from "$lib/modules/stores"
+  import { activeQuery } from "$lib/modules/stores"
 
-  export let tagArray: any[] = []
+  export let tagArray: { title: string; slug: string }[]
 
   let scrollListEl: HTMLElement
   let loaded = true

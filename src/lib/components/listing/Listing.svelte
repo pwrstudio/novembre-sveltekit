@@ -13,7 +13,6 @@
     navigationColor,
     activeQuery,
     activeCategory,
-    scrollListActive,
   } from "$lib/modules/stores"
 
   export let listingType: ListingType
@@ -27,20 +26,6 @@
   let sentinel = {}
   let postsContainerEl: HTMLDivElement
   let loadingCompleted = false
-
-  // Show scroll list
-  $: if (
-    [
-      ListingType.Magazine,
-      ListingType.Bureau,
-      ListingType.MagazineCategory,
-      ListingType.BureauCategory,
-    ].includes(listingType)
-  ) {
-    scrollListActive.set(true)
-  } else {
-    scrollListActive.set(false)
-  }
 
   // Switch active category
   $: if (
