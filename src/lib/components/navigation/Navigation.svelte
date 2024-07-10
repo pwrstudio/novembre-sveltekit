@@ -134,7 +134,7 @@
       left: 0;
       height: 100px;
       margin-top: -2px;
-      z-index: 101;
+      z-index: 10001;
       cursor: pointer;
 
       svg {
@@ -158,7 +158,7 @@
       padding-right: $small-margin;
       cursor: pointer;
       position: relative;
-      z-index: 1000;
+      z-index: 10001;
       color: $white;
       font-family: $sans-stack;
 
@@ -271,6 +271,10 @@
         @include screen-size("small") {
           height: $full-height;
         }
+      }
+
+      #{$block}__toggle {
+        color: $black;
       }
     }
 

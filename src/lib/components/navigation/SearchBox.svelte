@@ -138,11 +138,16 @@
       transform: none;
     }
 
-    &__submit {
+    &__open {
       display: inline;
       position: relative;
       line-height: 1em;
+      background: transparent;
+      font-family: var(--sans-stack);
+      font-size: $large;
+      border: none;
       cursor: pointer;
+      padding: 0;
 
       @include screen-size("small") {
         font-size: 45px;
@@ -164,10 +169,15 @@
       }
     }
 
-    &__open {
+    &__submit {
       display: inline;
       position: relative;
       line-height: 1em;
+      background: transparent;
+      font-family: var(--sans-stack);
+      font-size: $large;
+      border: none;
+      cursor: pointer;
 
       @include screen-size("small") {
         font-size: 45px;
