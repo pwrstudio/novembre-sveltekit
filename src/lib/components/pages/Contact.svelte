@@ -38,16 +38,13 @@
           />
         {/if}
         {#if c._type == "imageGroup"}
-          <ImageGroup
-            imageArray={c.images}
-            caption={get(c, "caption", false)}
-          />
+          <ImageGroup slides={c.images} caption={get(c, "caption", false)} />
         {/if}
         {#if c._type == "video"}
           <VideoEmbed url={c.video} caption={get(c, "caption", false)} />
         {/if}
         {#if c._type == "slideshow"}
-          <Slideshow imageArray={c.images} />
+          <Slideshow slides={c.images} />
         {/if}
         {#if c._type == "arbitraryEmbed"}
           <ArbitraryEmbed code={c.arbitraryEmbed} />
@@ -71,16 +68,13 @@
           />
         {/if}
         {#if c._type == "imageGroup"}
-          <ImageGroup
-            imageArray={c.images}
-            caption={get(c, "caption", false)}
-          />
+          <ImageGroup slides={c.images} caption={get(c, "caption", false)} />
         {/if}
         {#if c._type == "video"}
           <VideoEmbed url={c.video} caption={get(c, "caption", false)} />
         {/if}
         {#if c._type == "slideshow"}
-          <Slideshow imageArray={c.images} />
+          <Slideshow slides={c.images} />
         {/if}
       {/each}
     {/if}

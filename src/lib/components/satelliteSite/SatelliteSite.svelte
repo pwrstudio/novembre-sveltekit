@@ -36,6 +36,7 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
   {#if get(post, "landing.enabled", false) && !landingHidden}
     <div
       class="landing"
+      role="presentation"
       in:fade
       on:click={() => {
         landingHidden = true
@@ -44,6 +45,7 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
       <!-- IMAGE -->
       {#if get(post, "landing.landingImage.asset", false)}
         <img
+          alt={post.title}
           src={urlFor(post.landing.landingImage.asset)
             .quality(80)
             .height(800)
@@ -60,9 +62,10 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
     <div class="header" in:fade>
       {#if get(post, "header.showExternalLogo", false)}
         <!-- __ 1. Showcase external logo -->
-        {#if get(post, "header.externalLogo.asset", false)}
+        {#if post.header?.externalLogo?.asset}
           <div class="novembre-logo external">
             <img
+              alt={post.title}
               src={urlFor(post.header.externalLogo.asset)
                 .quality(100)
                 .height(260)
@@ -120,7 +123,7 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
           <!-- IMAGE GROUP -->
           {#if c._type == "imageGroup"}
             <ImageGroup
-              imageArray={c.images}
+              slides={c.images}
               linkUrl={c.linkUrl}
               inlineDisplay={c.noBottomMargin ? false : true}
               maxHeight={get(c, "maxHeight", false)}
@@ -133,7 +136,7 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
           <!-- THUMBNAIL GROUP -->
           {#if c._type == "thumbnailGroup"}
             <ThumbnailGroup
-              imageArray={c.images}
+              slides={c.images}
               fullwidth={get(c, "fullwidth", "")}
             />
           {/if}
@@ -165,11 +168,11 @@ urlFor(get(post, "background.backgroundImage.asset", "")) +
           {/if}
           <!-- SLIDESHOW -->
           {#if c._type == "slideshow"}
-            <Slideshow autoplay={c.autoplay} imageArray={c.images} />
+            <Slideshow autoplay={c.autoplay} slides={c.images} />
           {/if}
           <!-- FLIPSHOW -->
           {#if c._type == "flipshow"}
-            <Flipshow imageArray={c.images} />
+            <Flipshow slides={c.images} />
           {/if}
           <!-- AUDIO -->
           {#if c._type == "audio"}

@@ -239,7 +239,7 @@
     margin: 0;
   }
   
-  .carousel {
+  /* .carousel {
     opacity: 0;
     transition: opacity 0.4s;
   }
@@ -252,7 +252,6 @@
     opacity: 1;
   }
   
-  /* Flickity styles */
   .flickity-enabled {
     position: relative;
   }
@@ -288,7 +287,7 @@
     cursor: -webkit-grabbing;
     cursor: grabbing;
   }
-  
+   */
   .overlay-banner {
     position: fixed;
     top: 0;
@@ -368,5 +367,20 @@
     .contact a:hover {
       border-bottom: 1px solid transparent;
     }
+  }
+
+  /* EMBLA */
+  
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
   }
   

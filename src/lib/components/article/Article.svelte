@@ -99,7 +99,7 @@
       {/if}
       {#if c._type == "imageGroup"}
         <ImageGroup
-          imageArray={c.images}
+          slides={c.images}
           linkUrl={c.linkUrl}
           inlineDisplay={c.noBottomMargin ? false : true}
           maxHeight={get(c, "maxHeight", false)}
@@ -134,7 +134,7 @@
         />
       {/if}
       {#if c._type == "slideshow"}
-        <Slideshow autoplay={c.autoplay} imageArray={c.images} />
+        <Slideshow autoplay={c.autoplay} slides={c.images} />
       {/if}
       {#if c._type == "audio"}
         <Audio
@@ -157,7 +157,7 @@
   <!-- RELATED -->
   {#if post.related && !isEmpty(post.related)}
     <div class="related-header">RELATED ARTICLES</div>
-    <Slideshow imageArray={post.related} isRelated={true} />
+    <Slideshow slides={post.related} isRelated={true} />
   {:else}
     <div class="bottom-space" />
   {/if}

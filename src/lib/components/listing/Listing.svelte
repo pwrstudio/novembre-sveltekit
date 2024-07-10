@@ -78,7 +78,6 @@
   //   }
   // }
 
-  // *** ON MOUNT
   onMount(async () => {
     window.scrollTo(0, 0)
   })

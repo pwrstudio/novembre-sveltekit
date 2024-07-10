@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition"
 
   // *** PROPS
-  export let imageArray = []
+  export let slides = []
   export let backgroundColor = false
   export let fullwidth = false
 
@@ -22,7 +22,7 @@
 </script>
 
 <div class="thumbnail-group" style={customStyles}>
-  {#each imageArray as image}
+  {#each slides as image}
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <img

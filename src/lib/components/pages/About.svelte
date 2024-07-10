@@ -41,7 +41,7 @@
       {/if}
       {#if c._type == "imageGroup"}
         <ImageGroup
-          imageArray={c.images}
+          slides={c.images}
           inlineDisplay={true}
           maxHeight={get(c, "maxHeight", false)}
           backgroundColor={get(c, "backgroundColor", false)}
@@ -58,7 +58,7 @@
         />
       {/if}
       {#if c._type == "slideshow"}
-        <Slideshow imageArray={c.images} />
+        <Slideshow slides={c.images} />
       {/if}
       {#if c._type == "arbitraryEmbed"}
         <ArbitraryEmbed code={c.arbitraryEmbed} />

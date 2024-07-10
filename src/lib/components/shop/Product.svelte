@@ -1,9 +1,9 @@
 <script lang="ts">
   import { PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN } from "$env/static/public"
   import type { Product } from "$lib/types/sanity.types"
-  import emblaCarouselSvelte from "embla-carousel-svelte"
-  import { renderBlockText, urlFor } from "$lib/modules/sanity"
+  import { renderBlockText } from "$lib/modules/sanity"
   import { createStorefrontApiClient } from "@shopify/storefront-api-client"
+  import Slideshow from "$lib/components/modules/Slideshow.svelte"
 
   const shopifyClient = createStorefrontApiClient({
     storeDomain: "http://your-shop-name.myshopify.com",
@@ -24,18 +24,7 @@
   <div class="column left" {style}>
     <!-- SLIDESHOW -->
     <div class="slideshow">
-      <div class="embla" use:emblaCarouselSvelte>
-        <div class="embla__container">
-          {#each post?.Slideshow ?? [] as slide}
-            <div class="embla__slide">
-              <img
-                src={urlFor(slide).width(600).quality(80).auto("format").url()}
-                alt={post.title}
-              />
-            </div>
-          {/each}
-        </div>
-      </div>
+      <Slideshow slides={post.Slideshow} />
     </div>
   </div>
   <div class="column right">
@@ -109,20 +98,5 @@
     h1 {
       font-weight: 300;
     }
-  }
-
-  .embla {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  }
-
-  .embla__container {
-    display: flex;
-  }
-
-  .embla__slide {
-    flex: 0 0 100%;
-    min-width: 0;
   }
 </style>

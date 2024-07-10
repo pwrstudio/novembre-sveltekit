@@ -60,11 +60,7 @@
 
   {#if get(post, "preview._type", "") === "imageGroup"}
     <a href="/{post.taxonomy.category}/{post.slug}">
-      <ImageGroup
-        isListing={true}
-        {isHeader}
-        imageArray={post.preview.images}
-      />
+      <ImageGroup isListing={true} {isHeader} slides={post.preview.images} />
     </a>
   {/if}
 
@@ -73,7 +69,7 @@
       <Slideshow
         autoplay={post.preview.autoplay}
         isListing={true}
-        imageArray={post.preview.images}
+        slides={post.preview.images}
       />
     </a>
   {/if}

@@ -2,7 +2,7 @@
   import MediaQuery from "svelte-media-query"
   import { urlFor } from "$lib/modules/sanity"
 
-  export let imageArray = []
+  export let slides = []
   export let caption = false
   export let isListing = false
   export let isHeader = false
@@ -33,14 +33,14 @@
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
-      class:group-size-1={imageArray.length === 1}
-      class:group-size-2={imageArray.length === 2}
-      class:group-size-3={imageArray.length === 3}
-      class:group-size-4={imageArray.length === 4}
+      class:group-size-1={slides.length === 1}
+      class:group-size-2={slides.length === 2}
+      class:group-size-3={slides.length === 3}
+      class:group-size-4={slides.length === 4}
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
     >
-      {#each imageArray as image}
+      {#each slides as image}
         <img
           class:loaded
           src={fullwidth
@@ -51,7 +51,7 @@
                 .auto("format")
                 .url()
             : urlFor(image)
-                .width(1200 / imageArray.length)
+                .width(1200 / slides.length)
                 .quality(100)
                 .auto("format")
                 .url()}
@@ -66,14 +66,14 @@
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
-      class:group-size-1={imageArray.length === 1}
-      class:group-size-2={imageArray.length === 2}
-      class:group-size-3={imageArray.length === 3}
-      class:group-size-4={imageArray.length === 4}
+      class:group-size-1={slides.length === 1}
+      class:group-size-2={slides.length === 2}
+      class:group-size-3={slides.length === 3}
+      class:group-size-4={slides.length === 4}
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
     >
-      {#each imageArray as image}
+      {#each slides as image}
         <img
           class:loaded
           src={fullwidth
@@ -84,7 +84,7 @@
                 .auto("format")
                 .url()
             : urlFor(image)
-                .width(1200 / imageArray.length)
+                .width(1200 / slides.length)
                 .quality(100)
                 .auto("format")
                 .url()}
