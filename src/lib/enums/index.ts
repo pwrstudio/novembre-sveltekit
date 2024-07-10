@@ -2,6 +2,7 @@ export enum ListingType {
     Landing,
     Magazine,
     Bureau,
+    Shop,
     MagazineCategory,
     BureauCategory,
     Tag,

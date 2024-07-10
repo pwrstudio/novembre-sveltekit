@@ -38,6 +38,7 @@
 		"imagesloaded": "^5.0.0",
 		"js-cookie": "^3.0.5",
 		"lodash-es": "^4.17.21",
+		"node-mailjet": "^6.0.5",
 		"svelte-media-query": "^1.1.2"
 	}
 }

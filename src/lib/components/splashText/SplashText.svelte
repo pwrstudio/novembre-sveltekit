@@ -8,7 +8,7 @@
   export let globalConfig: Meta
 
   let backgroundColor = ""
-  let content = []
+  let content: any[] = []
 
   switch (listingType) {
     case ListingType.Landing:
@@ -22,6 +22,10 @@
     case ListingType.Bureau:
       backgroundColor = globalConfig?.bureauColor?.hex ?? ""
       content = globalConfig?.bureau?.content ?? []
+      break
+    case ListingType.Shop:
+      backgroundColor = globalConfig?.shopColor?.hex ?? ""
+      content = globalConfig?.shop?.content ?? []
       break
   }
 </script>

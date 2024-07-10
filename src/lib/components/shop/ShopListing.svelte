@@ -1,11 +1,26 @@
 <script lang="ts">
-  import type { Product } from "$lib/types/sanity.types"
+  import type { Meta, Product } from "$lib/types/sanity.types"
+  import { ListingType } from "$lib/enums"
+  import SplashText from "../splashText/SplashText.svelte"
+  import ShopListingItem from "./ShopListingItem.svelte"
 
   export let posts: Product[]
+  export let globalConfig: Meta
 </script>
 
-SHOP LISTING
+<SplashText listingType={ListingType.Shop} {globalConfig} />
 
-{#each posts as post}
-  {post.title}
-{/each}
+<div class="shop-listing">
+  {#each posts as post}
+    <ShopListingItem {post} />
+  {/each}
+</div>
+
+<style lang="scss">
+  @import "../../styles/variables.scss";
+
+  .shop-listing {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>

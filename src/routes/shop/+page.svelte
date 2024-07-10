@@ -1,15 +1,16 @@
 <script lang="ts">
-  import type { Product } from "$lib/types/sanity.types"
+  import type { Product, Meta } from "$lib/types/sanity.types"
   import MetaData from "$lib/components/metadata/MetaData.svelte"
   import ShopListing from "$lib/components/shop/ShopListing.svelte"
   import Footer from "$lib/components/footer/Footer.svelte"
 
   export let data: {
     posts: Product[]
+    globalConfig: Meta
   }
-  const { posts } = data
+  const { posts, globalConfig } = data
 </script>
 
 <MetaData post={{ title: "Shop" }} />
-<ShopListing {posts} />
+<ShopListing {posts} {globalConfig} />
 <Footer active />

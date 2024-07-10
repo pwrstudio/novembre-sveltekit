@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Banner } from "$lib/types/sanity.types"
-
+  import { page } from "$app/stores"
   import { isEmpty } from "lodash-es"
   import { urlFor } from "$lib/modules/sanity"
   import { menuItems } from "$lib/constants"
@@ -11,8 +11,16 @@
 
   export let menuBanners: Banner[]
 
+  // Show cart when in shop or when cart is not empty
+  const shopRoutes = ["/shop", "/shop/[slug]"]
+  $: cartActive = shopRoutes.includes($page.route?.id ?? "")
+
   const toggleMenu = () => {
     menuActive.set(!$menuActive)
+  }
+
+  const toggleCart = () => {
+    alert("Cart is not implemented yet")
   }
 </script>
 
@@ -22,9 +30,15 @@
   class:navigation--expanded={$menuActive}
 >
   <div class="navigation__bar">
+    <!-- LOGO -->
     <button class="navigation__logo" on:click={toggleMenu}>
       <Logo black={$menuActive} />
     </button>
+    <!-- CART -->
+    {#if cartActive}
+      <button class="navigation__cart" on:click={toggleCart}> CART </button>
+    {/if}
+    <!-- TOGGLE -->
     <button class="navigation__toggle" on:click={toggleMenu}>
       {$menuActive ? "CLOSE" : "MENU"}
     </button>
@@ -136,6 +150,33 @@
       margin-top: -2px;
       z-index: 10001;
       cursor: pointer;
+
+      svg {
+        height: 100px;
+
+        @include screen-size("small") {
+          height: unset;
+        }
+      }
+
+      @include screen-size("small") {
+        width: 100%;
+      }
+    }
+
+    &__cart {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100px;
+      margin-top: -2px;
+      z-index: 10001;
+      cursor: pointer;
+      color: $white;
+      font-family: $sans-stack;
+      font-size: $large;
+      font-weight: 300;
 
       svg {
         height: 100px;

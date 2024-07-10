@@ -8,26 +8,70 @@
   let emailLastName = ""
   let emailCompany = ""
   let success = false
+  let error = ""
 
-  const submit = () => {
-    const url =
-      "https://novembre.global/.netlify/functions/signup?email=" +
-      encodeURIComponent(emailAddress) +
-      "&firstname=" +
-      encodeURIComponent(emailFirstName) +
-      "&lastname=" +
-      encodeURIComponent(emailLastName) +
-      "&company=" +
-      encodeURIComponent(emailCompany)
+  function validateEmail(email: string): boolean {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
+  }
 
-    fetch(url)
-      .then(function (response) {
-        console.log(response)
-        success = true
+  function validateName(name: string): boolean {
+    return name.trim().length > 0
+  }
+
+  const submit = async () => {
+    // Reset error and success
+    error = ""
+    success = false
+
+    // Validate email
+    if (!validateEmail(emailAddress)) {
+      error = "Please enter a valid email address."
+      return
+    }
+
+    // Validate first name
+    if (!validateName(emailFirstName)) {
+      error = "Please enter your first name."
+      return
+    }
+
+    // Validate last name
+    if (!validateName(emailLastName)) {
+      error = "Please enter your last name."
+      return
+    }
+
+    // Company is optional, so we don't validate it
+
+    const url = "/api/signup"
+
+    const formData = new URLSearchParams()
+    formData.append("email", emailAddress)
+    formData.append("firstname", emailFirstName)
+    formData.append("lastname", emailLastName)
+    formData.append("company", emailCompany)
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
       })
-      .catch(err => {
-        console.error(err)
-      })
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+
+      await response.json()
+      success = true
+    } catch (err) {
+      console.error(err)
+      error = "An error occurred. Please try again."
+    }
   }
 </script>
 
@@ -40,6 +84,9 @@
       shortly.
     </span>
   {:else}
+    {#if error}
+      <p class="error">{error}</p>
+    {/if}
     <form class="newsletter-signup" class:compact>
       {#if compact}
         <div class="form-section">Subscribe to NOVEMBRE DIGEST now!</div>
@@ -85,7 +132,7 @@
       </div>
 
       <div class="form-section submit-button">
-        <div class="submit" on:click={submit}>Sign up</div>
+        <button class="submit" on:click={submit}>Sign up</button>
       </div>
     </form>
   {/if}
@@ -115,6 +162,7 @@
       outline: none;
       color: currentColor;
       font-size: $large;
+      font-family: $sans-stack;
 
       height: 1em;
       width: 95%;
@@ -140,6 +188,7 @@
       line-height: 1em;
       color: currentColor;
       font-size: $large;
+      font-family: $sans-stack;
 
       @include screen-size("small") {
         font-size: $mobile-large;
@@ -205,5 +254,9 @@
   ::placeholder {
     color: rgba(0, 0, 0, 0.6);
     font-family: $sans-stack;
+  }
+
+  .error {
+    color: red;
   }
 </style>

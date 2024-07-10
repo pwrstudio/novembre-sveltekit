@@ -12,9 +12,6 @@
   export let isHeader = false
   export let isFirst = false
 
-  console.log("post", post)
-  console.log("isHeader", isHeader)
-
   let active = true
   let loaded = true
 
