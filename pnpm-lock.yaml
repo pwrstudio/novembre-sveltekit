@@ -14,6 +14,9 @@ dependencies:
   '@sanity/image-url':
     specifier: ^1.0.2
     version: 1.0.2
+  '@shopify/storefront-api-client':
+    specifier: ^1.0.0
+    version: 1.0.0
   embla-carousel-auto-scroll:
     specifier: ^8.1.6
     version: 8.1.6(embla-carousel@8.1.6)
@@ -516,6 +519,16 @@ packages:
   /@sanity/image-url@1.0.2:
     resolution: {integrity: sha512-C4+jb2ny3ZbMgEkLd7Z3C75DsxcTEoE+axXQJsQ75ou0AKWGdVsP351hqK6mJUUxn5HCSlu3vznoh7Yljye4cQ==}
     engines: {node: '>=10.0.0'}
+    dev: false
+
+  /@shopify/graphql-client@1.0.0:
+    resolution: {integrity: sha512-K3F13BK6dB17yJASRE9Oyn7Etpj58R3cOwzFHB06yCLhWLGcI7JllK+HxZQTgtA3wbLonG3yxt5ns6XNKitphw==}
+    dev: false
+
+  /@shopify/storefront-api-client@1.0.0:
+    resolution: {integrity: sha512-TAyCsD+d/Fiwek3YM1/60pXpQTUUX99DM3HpcIed09By5/rAQbQhYWwf9rZDBIJnGXqS/fl3VO4Tqp+173tocw==}
+    dependencies:
+      '@shopify/graphql-client': 1.0.0
     dev: false
 
   /@sveltejs/adapter-auto@3.2.2(@sveltejs/kit@2.5.18):

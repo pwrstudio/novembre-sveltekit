@@ -3,7 +3,6 @@
   import { ListingType } from "$lib/enums"
   import { renderBlockText } from "$lib/modules/sanity"
 
-  export let section = "landing"
   export let listingType: ListingType
   export let globalConfig: Meta
 
@@ -30,7 +29,7 @@
   }
 </script>
 
-<div class="splash-text {section}" style="background: {backgroundColor};">
+<div class="splash-text {listingType}" style="background: {backgroundColor};">
   <div>
     {@html renderBlockText(content)}
   </div>
