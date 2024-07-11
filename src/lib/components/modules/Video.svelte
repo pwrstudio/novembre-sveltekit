@@ -1,11 +1,11 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
-  import { urlFor } from "$lib/modules/sanity"
 
   export let url = ""
   export let posterImage = {}
   export let caption = false
-  export let backgroundColor = false
+  export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let maxHeight = false
   export let autoplay = false

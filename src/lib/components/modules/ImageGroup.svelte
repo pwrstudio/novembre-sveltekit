@@ -1,12 +1,13 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import MediaQuery from "svelte-media-query"
   import { urlFor } from "$lib/modules/sanity"
 
-  export let slides = []
+  export let slides: any[] = []
   export let caption = false
   export let isListing = false
   export let isHeader = false
-  export let backgroundColor = false
+  export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let fullwidth = false
   export let maxHeight = false

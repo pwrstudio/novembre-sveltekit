@@ -1,13 +1,13 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import { urlFor } from "$lib/modules/sanity"
   import { fade } from "svelte/transition"
 
-  // *** PROPS
-  export let slides = []
-  export let backgroundColor = false
+  export let slides: any[] = []
+  export let backgroundColor: Color | undefined = undefined
+
   export let fullwidth = false
 
-  // *** VARIABLES
   let activeImage = false
 
   const customStyles = backgroundColor
@@ -23,11 +23,10 @@
 
 <div class="thumbnail-group" style={customStyles}>
   {#each slides as image}
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <img
       alt=""
       class:loaded
+      role="presentation"
       src={urlFor(image).width(300).quality(100).auto("format").url()}
       on:load={e => (loaded = true)}
       on:click={e => {
@@ -38,10 +37,9 @@
 </div>
 
 {#if activeImage}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="image-popup"
+    role="presentation"
     in:fade
     on:click={e => {
       activeImage = false

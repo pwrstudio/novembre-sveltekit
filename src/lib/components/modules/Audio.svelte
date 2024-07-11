@@ -1,18 +1,19 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import { urlFor } from "$lib/modules/sanity"
 
   export let url = ""
   export let title = ""
   export let link = ""
-  export let size = true
-  export let backgroundColor = false
+  export let size: boolean | "proportional" | "fullWidth" = true
+  export let backgroundColor: Color | undefined = undefined
   export let posterImage = false
   export let autoplay = false
   export let hidden = false
+
   let time = 0
   let duration = 0
   let paused = true
-
   let audioEl: HTMLAudioElement
 
   const handleMousemove = (e: MouseEvent) => {

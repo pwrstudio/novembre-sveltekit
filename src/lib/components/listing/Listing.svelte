@@ -98,12 +98,6 @@
     padding-top: 0;
   }
 
-  .query-bar {
-    padding-left: $small-margin;
-    position: relative;
-    top: 2px;
-  }
-
   .no-results {
     padding-left: $small-margin;
     font-size: $large;

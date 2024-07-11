@@ -1,16 +1,17 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import getVideoId from "get-video-id"
 
   export let url = ""
   export let caption = ""
-  export let backgroundColor = false
+  export let backgroundColor: Color | undefined = undefined
   export let size = "medium"
   export let noBottomMargin = false
 </script>
 
 <div
   class="embed {size}"
-  style="background-color: {backgroundColor.hex}"
+  style="background-color: {backgroundColor?.hex ?? ''}"
   class:fullscreen={backgroundColor}
   class:nbm={noBottomMargin}
 >

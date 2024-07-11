@@ -1,11 +1,12 @@
 <script lang="ts">
+  import type { Color } from "$lib/types/sanity.types"
   import MediaQuery from "svelte-media-query"
   import { urlFor } from "$lib/modules/sanity"
 
   // *** PROPS
   export let imageObject = {}
   export let caption
-  export let backgroundColor = false
+  export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let maxHeight = false
   export let fullwidth = false
