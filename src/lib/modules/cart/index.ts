@@ -58,10 +58,10 @@ export const cartSubtotal = derived(cart, $cart => 0
 );
 
 // Remove sanity specific properties
-export const exportStripeItems = (cartItems: MergedProduct[]) => {
+export const exportShopifyItems = (cartItems: MergedProduct[]) => {
     return cartItems.map(item => {
         return {
-            ...item.stripe,
+            ...item.shopify,
             quantity: item.quantity
         }
     });

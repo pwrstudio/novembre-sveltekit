@@ -1,17 +1,21 @@
 <script lang="ts">
   import { urlFor } from "$lib/modules/sanity"
-  import type { Product } from "$lib/types/sanity.types"
+  import type { MergedProduct } from "$lib/types"
+  import { getProductPrice } from "$lib/modules/utils"
 
-  export let post: Product
+  export let post: MergedProduct
 
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
     : ""
+
+  const price = getProductPrice(post)
 </script>
 
 <a href={`/shop/${post.slug?.current ?? ""}`} class="shop-listing-item" {style}>
   <div class="title">
     {post.title}
+    {#if price}- €{price}{/if}
   </div>
   <img
     src={urlFor(post.mainImage).width(800).quality(100).auto("format").url()}

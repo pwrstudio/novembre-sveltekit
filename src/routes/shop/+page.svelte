@@ -9,6 +9,8 @@
     globalConfig: Meta
   }
   const { posts, globalConfig } = data
+
+  console.log(posts)
 </script>
 
 <MetaData post={{ title: "Shop" }} />

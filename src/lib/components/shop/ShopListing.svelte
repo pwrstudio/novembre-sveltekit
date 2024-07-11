@@ -1,10 +1,11 @@
 <script lang="ts">
-  import type { Meta, Product } from "$lib/types/sanity.types"
+  import type { Meta } from "$lib/types/sanity.types"
   import { ListingType } from "$lib/enums"
   import SplashText from "../splashText/SplashText.svelte"
   import ShopListingItem from "./ShopListingItem.svelte"
+  import type { MergedProduct } from "$lib/types"
 
-  export let posts: Product[]
+  export let posts: MergedProduct[]
   export let globalConfig: Meta
 </script>
 

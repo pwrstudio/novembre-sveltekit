@@ -1,22 +1,17 @@
 <script lang="ts">
-  import { PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN } from "$env/static/public"
-  import type { Product } from "$lib/types/sanity.types"
+  import type { MergedProduct } from "$lib/types"
   import { renderBlockText } from "$lib/modules/sanity"
-  import { createStorefrontApiClient } from "@shopify/storefront-api-client"
   import Slideshow from "$lib/components/modules/Slideshow.svelte"
   import { addToCart } from "$lib/modules/cart"
+  import { getProductPrice } from "$lib/modules/utils"
 
-  const shopifyClient = createStorefrontApiClient({
-    storeDomain: "http://your-shop-name.myshopify.com",
-    apiVersion: "2024-07",
-    publicAccessToken: PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-  })
-
-  export let post: Product
+  export let post: MergedProduct
 
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
     : ""
+
+  const price = getProductPrice(post)
 
   const handleAddToCart = () => {
     addToCart(post)
@@ -40,11 +35,15 @@
       </div>
     {/if}
     <!-- PRICE -->
-    <div class="price">€20</div>
+    {#if price}
+      <div class="price">€{price}</div>
+    {/if}
     <!-- ADD TO CART BUTTON -->
-    <div class="add-to-cart">
-      <button on:click={handleAddToCart}>Add to cart</button>
-    </div>
+    {#if post.shopify}
+      <div class="add-to-cart">
+        <button on:click={handleAddToCart}>Add to cart</button>
+      </div>
+    {/if}
   </div>
 </div>
 

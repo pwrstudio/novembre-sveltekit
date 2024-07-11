@@ -1,4 +1,6 @@
 export const SANITY_ID = 'gj963qwj'
+export const SHOPIFY_DOMAIN = "b40e75-f3.myshopify.com"
+export const SHOPIFY_API_VERSION = "2021-04"
 export const BATCH_SIZE = 8
 
 export const menuItems = [

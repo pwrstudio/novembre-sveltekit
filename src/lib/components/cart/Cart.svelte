@@ -1,33 +1,31 @@
 <script lang="ts">
   import { cartActive } from "$lib/modules/stores/"
   import { cart, cartCount, cartSubtotal } from "$lib/modules/cart"
-  //   import { loadStripe } from "@stripe/stripe-js"
-  //   import { PUBLIC_TEST_STRIPE_TOKEN } from "$env/static/public"
   import { fade } from "svelte/transition"
+  import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION } from "$lib/constants"
+  import { PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN } from "$env/static/public"
+  import Client from "shopify-buy"
 
   import CartItem from "./CartItem.svelte"
 
   let checkoutInProgress = false
 
-  //   const stripePromise = loadStripe(PUBLIC_TEST_STRIPE_TOKEN)
+  const shopifyClient = Client.buildClient({
+    domain: SHOPIFY_DOMAIN,
+    apiVersion: SHOPIFY_API_VERSION,
+    storefrontAccessToken: PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+  })
 
   const closeCart = () => {
     cartActive.set(false)
   }
 
   async function handleCheckout() {
-    // checkoutInProgress = true
-    // const stripe = await stripePromise
-    // const items = exportStripeItems($cart)
-    // const res = await fetch("/api/create-checkout-session", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ items }),
-    // })
-    // const { id } = await res.json()
-    // await stripe?.redirectToCheckout({ sessionId: id })
+    checkoutInProgress = true
+    const checkout = await shopifyClient.checkout.create()
+    if (checkout?.webUrl) {
+      window.location.href = checkout.webUrl
+    }
   }
 </script>
 
