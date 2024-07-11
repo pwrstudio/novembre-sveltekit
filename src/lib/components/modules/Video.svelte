@@ -20,10 +20,8 @@
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
     (backgroundColor ? "background:" + backgroundColor.hex + ";" : "")
 
-  // *** DOM REFERENCES
-  let videoEl = {}
+  let videoEl: HTMLVideoElement
 
-  // *** CONSTANTS
   const VIDEO_ROOT = "https://res.cloudinary.com/pwr/video/upload/"
   const REMOTE_FOLDER = "novembre"
 
@@ -32,7 +30,7 @@
   let duration = 0
   let paused = true
   let showControls = true
-  let showControlsTimeout
+  let showControlsTimeout: number
   let controlsTimeoutDuration = 2500
   let post = {}
   let videoUrl = ""
@@ -56,7 +54,7 @@
     time = (duration * (e.clientX - left)) / (right - left)
   }
 
-  function handleMousedown(e) {
+  function handleMousedown(e: MouseEvent) {
     function handleMouseup() {
       if (paused) {
         e.target.play()
@@ -75,7 +73,7 @@
     setTimeout(cancel, 200)
   }
 
-  function format(seconds) {
+  function format(seconds: number) {
     if (isNaN(seconds)) return "..."
 
     const minutes = Math.floor(seconds / 60)

@@ -8,8 +8,6 @@ import { BATCH_SIZE } from "$lib/constants"
 export async function load() {
 
     const params = {
-        start: 0,
-        end: BATCH_SIZE,
         currentTime: getCurrentTimeInUTC()
     }
 

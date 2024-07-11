@@ -11,8 +11,6 @@
     publicAccessToken: PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
   })
 
-  console.log(shopifyClient)
-
   export let post: Product
 
   const style = post.backgroundColor?.hex

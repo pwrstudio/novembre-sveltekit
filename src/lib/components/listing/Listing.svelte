@@ -1,109 +1,73 @@
 <script lang="ts">
   import type { Article, Meta, Banner } from "$lib/types/sanity.types"
-  import { isArray, isEmpty } from "lodash-es"
+  import { onMount } from "svelte"
+  import { isEmpty } from "lodash-es"
   import { ListingType } from "$lib/enums"
-  import { urlFor } from "$lib/modules/sanity"
+  import { BATCH_SIZE } from "$lib/constants"
 
   import Preview from "$lib/components/preview/Preview.svelte"
   import SplashText from "$lib/components/splashText/SplashText.svelte"
-  import Ellipse from "$lib/components/ellipse/Ellipse.svelte"
+  import FeedBanner from "$lib/components/listing/FeedBanner.svelte"
 
   export let listingType: ListingType
-  export let posts: Article[]
+  export let posts: Article[] = []
+  export let text: string = ""
   export let globalConfig: Meta
   export let feedBanners: Banner[] | undefined = undefined
 
-  export let title = ""
-  export let query = ""
+  let lazyPosts: Article[] = []
+  let sentinel: HTMLDivElement
+  let observer: IntersectionObserver
+  let lazyLoadIndex = 1
 
-  $: console.log("posts", posts)
+  $: lazyPosts = posts.slice(0, lazyLoadIndex * BATCH_SIZE)
+  $: allPostsLoaded = lazyPosts.length === posts.length
 
-  let sentinel = {}
-  let postsContainerEl: HTMLDivElement
-  let loadingCompleted = false
+  onMount(() => {
+    observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            lazyLoadIndex++
+          }
+        })
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.5,
+      },
+    )
 
-  // const observer = new IntersectionObserver(
-  //   entries => {
-  //     entries.forEach(entry => {
-  //       if (entry.intersectionRatio > 0) {
-  //         console.log("SENTINEL HIT")
-  //         index += 1
-  //         doLoad()
-  //       }
-  //     })
-  //   },
-  //   { threshold: 0.5 },
-  // )
-
-  // const repositionSentinel = () => {
-  //   if (postsContainerEl && sentinel) {
-  //     let fourthElementFromEnd = postsContainerEl.querySelector(
-  //       ".preview:nth-last-child(4)",
-  //     )
-  //     if (fourthElementFromEnd)
-  //       postsContainerEl.insertBefore(sentinel, fourthElementFromEnd)
-  //   }
-  // }
+    if (sentinel) {
+      observer.observe(sentinel)
+    }
+  })
 </script>
 
-{#if isArray(posts)}
-  <div class="listing" class:landing={title === "Landing"}>
-    <div class="listing__posts" bind:this={postsContainerEl}>
-      {#if query && posts.length === 0}
-        <div class="no-results">No results for “{query}”</div>
+<div class="listing" class:landing={listingType === ListingType.Landing}>
+  <div class="listing__posts">
+    {#if text && posts.length === 0}
+      <div class="no-results">No results for “{text}”</div>
+    {/if}
+
+    {#each lazyPosts as post, i (post._id)}
+      {#if i === 0 && (listingType === ListingType.Magazine || listingType === ListingType.Bureau || listingType === ListingType.Landing)}
+        <SplashText {listingType} {globalConfig} />
       {/if}
 
-      {#each posts as post, i (post._id)}
-        {#if i === 0 && (listingType === ListingType.Magazine || listingType === ListingType.Bureau || listingType === ListingType.Landing)}
-          <SplashText {listingType} {globalConfig} />
-        {/if}
+      <Preview {post} isFirst={i === 0} />
 
-        <Preview {post} isFirst={i === 0} />
-
-        {#if feedBanners && !isEmpty(feedBanners) && feedBanners.find(b => b.positionInFeed == i)}
-          <a
-            href={feedBanners.find(b => b.positionInFeed == i).link}
-            target="_blank"
-            rel="noreferrer"
-            class="feed-banner"
-          >
-            {#if feedBanners.find(b => b.positionInFeed == i)[0] && feedBanners.find(b => b.positionInFeed == i)[0].video && feedBanners.find(b => b.positionInFeed == i)[0].video.asset && feedBanners.find(b => b.positionInFeed == i)[0].video.asset._ref}
-              <video
-                playsinline
-                src={"https://cdn.sanity.io/files/gj963qwj/production/" +
-                  feedBanners
-                    .find(b => b.positionInFeed == i)
-                    .video.asset._ref.replace("file-", "")
-                    .replace("-mp4", ".mp4")}
-                autoplay
-                muted
-                loop
-              />
-            {/if}
-
-            {#if feedBanners.find(b => b.positionInFeed == i).image}
-              <img
-                alt="novembre.global"
-                src={urlFor(feedBanners.find(b => b.positionInFeed == i).image)
-                  .width(1400)
-                  .quality(100)
-                  .auto("format")
-                  .url()}
-              />
-            {/if}
-          </a>
-        {/if}
-      {/each}
-    </div>
-
-    {#if !loadingCompleted}
-      <div class="sentinel" bind:this={sentinel}>
-        LOADING
-        <Ellipse />
-      </div>
-    {/if}
+      {#if feedBanners && !isEmpty(feedBanners) && feedBanners.find(b => b.positionInFeed == i)}
+        <FeedBanner banner={feedBanners.find(b => b.positionInFeed == i)} />
+      {/if}
+    {/each}
   </div>
-{/if}
+
+  {#if !allPostsLoaded}
+    <div class="sentinel" bind:this={sentinel} />
+  {/if}
+</div>
 
 <style lang="scss">
   @import "../../styles/variables.scss";
@@ -154,19 +118,6 @@
     @include screen-size("small") {
       padding-top: 160px;
       font-size: $mobile_large;
-    }
-  }
-
-  .feed-banner {
-    display: block;
-    width: 100vw;
-    margin: 0;
-    line-height: 0;
-
-    img,
-    video {
-      width: 100%;
-      height: auto;
     }
   }
 </style>

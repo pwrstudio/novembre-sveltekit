@@ -1,5 +1,5 @@
 export const SANITY_ID = 'gj963qwj'
-export const BATCH_SIZE = 10
+export const BATCH_SIZE = 8
 
 export const menuItems = [
     { title: "FEED", target: "/" },

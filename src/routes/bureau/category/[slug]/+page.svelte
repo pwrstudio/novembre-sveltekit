@@ -17,11 +17,14 @@
   // Reactive, to reload on page navigation
   $: posts = data.posts
   $: activeItem = data.activeItem
-
-  $: console.log("activeItem", activeItem)
 </script>
 
 <ScrollList tagArray={bureauTags} category="bureau" {activeItem} />
 <MetaData />
-<Listing listingType={ListingType.BureauCategory} {posts} {globalConfig} />
+<Listing
+  listingType={ListingType.BureauCategory}
+  {posts}
+  {globalConfig}
+  text={activeItem}
+/>
 <Footer active />

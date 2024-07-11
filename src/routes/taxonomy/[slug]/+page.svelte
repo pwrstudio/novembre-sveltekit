@@ -19,5 +19,5 @@
 
 <MetaData />
 <TagBar {text} />
-<Listing listingType={ListingType.Tag} {posts} {globalConfig} />
+<Listing listingType={ListingType.Tag} {posts} {globalConfig} {text} />
 <Footer active />

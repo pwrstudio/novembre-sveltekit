@@ -19,6 +19,5 @@
 
 <MetaData />
 <TagBar {text} />
-
-<Listing listingType={ListingType.Search} {posts} {globalConfig} />
+<Listing listingType={ListingType.Search} {posts} {globalConfig} {text} />
 <Footer active />

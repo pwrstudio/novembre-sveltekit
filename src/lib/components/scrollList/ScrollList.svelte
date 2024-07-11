@@ -10,8 +10,6 @@
   export let category: "magazine" | "bureau"
   export let activeItem: string = ""
 
-  $: console.log("activeItem", activeItem)
-
   let scrollListEl: HTMLElement
   let loaded = true
   let emblaApi: EmblaCarouselType | undefined = undefined

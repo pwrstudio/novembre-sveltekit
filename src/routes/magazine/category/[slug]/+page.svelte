@@ -21,5 +21,10 @@
 
 <MetaData />
 <ScrollList tagArray={magazineTags} category="magazine" {activeItem} />
-<Listing listingType={ListingType.MagazineCategory} {posts} {globalConfig} />
+<Listing
+  listingType={ListingType.MagazineCategory}
+  {posts}
+  {globalConfig}
+  text={activeItem}
+/>
 <Footer active />

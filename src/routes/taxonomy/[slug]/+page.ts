@@ -10,8 +10,6 @@ export async function load({ params }) {
 
     const sanityParams = {
         tag: params.slug,
-        start: 0,
-        end: BATCH_SIZE,
         currentTime: getCurrentTimeInUTC()
     }
 

@@ -15,8 +15,6 @@
   let active = true
   let loaded = true
 
-  $: console.log(post)
-
   const backgroundColor = post.previewColors?.backgroundColor
     ? "background-color:" + post.previewColors.backgroundColor.hex + ";"
     : ""

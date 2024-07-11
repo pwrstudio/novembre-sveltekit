@@ -18,8 +18,6 @@
   export let isProduct = false
   export let autoplay = false
 
-  console.log("slides", slides)
-
   let slideShowEl: HTMLDivElement
 
   let emblaApi: EmblaCarouselType | undefined = undefined

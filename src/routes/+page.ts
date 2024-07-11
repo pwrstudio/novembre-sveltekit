@@ -8,8 +8,6 @@ import type { Article, Meta, Banner } from "$lib/types/sanity.types"
 export async function load() {
 
     const params = {
-        start: 0,
-        end: BATCH_SIZE,
         currentTime: getCurrentTimeInUTC()
     }
 
