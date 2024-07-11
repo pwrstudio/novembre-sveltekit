@@ -4,6 +4,7 @@
   import { renderBlockText } from "$lib/modules/sanity"
   import { createStorefrontApiClient } from "@shopify/storefront-api-client"
   import Slideshow from "$lib/components/modules/Slideshow.svelte"
+  import { addToCart } from "$lib/modules/cart"
 
   const shopifyClient = createStorefrontApiClient({
     storeDomain: "http://your-shop-name.myshopify.com",
@@ -16,13 +17,17 @@
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
     : ""
+
+  const handleAddToCart = () => {
+    addToCart(post)
+  }
 </script>
 
 <div class="product">
   <div class="column left" {style}>
     <!-- SLIDESHOW -->
     <div class="slideshow">
-      <Slideshow slides={post.Slideshow} />
+      <!-- <Slideshow slides={post.Slideshow} /> -->
     </div>
   </div>
   <div class="column right">
@@ -38,7 +43,7 @@
     <div class="price">€20</div>
     <!-- ADD TO CART BUTTON -->
     <div class="add-to-cart">
-      <button>Add to cart</button>
+      <button on:click={handleAddToCart}>Add to cart</button>
     </div>
   </div>
 </div>

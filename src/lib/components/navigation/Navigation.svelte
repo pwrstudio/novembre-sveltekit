@@ -4,6 +4,8 @@
   import { isEmpty } from "lodash-es"
   import { urlFor } from "$lib/modules/sanity"
   import { menuItems } from "$lib/constants"
+  import { cartCount } from "$lib/modules/cart"
+  import { cartActive } from "$lib/modules/stores"
   import Logo from "$lib/components/graphics/Logo.svelte"
   import SearchBox from "$lib/components/navigation/SearchBox.svelte"
 
@@ -13,14 +15,14 @@
 
   // Show cart when in shop or when cart is not empty
   const shopRoutes = ["/shop", "/shop/[slug]"]
-  $: cartActive = shopRoutes.includes($page.route?.id ?? "")
+  $: showCart = shopRoutes.includes($page.route?.id ?? "") || $cartCount > 0
 
   const toggleMenu = () => {
     menuActive.set(!$menuActive)
   }
 
   const toggleCart = () => {
-    alert("Cart is not implemented yet")
+    cartActive.set(!$cartActive)
   }
 </script>
 
@@ -35,8 +37,10 @@
       <Logo black={$menuActive} />
     </button>
     <!-- CART -->
-    {#if cartActive}
-      <button class="navigation__cart" on:click={toggleCart}> CART </button>
+    {#if showCart}
+      <button class="navigation__cart" on:click={toggleCart}>
+        CART ({$cartCount})
+      </button>
     {/if}
     <!-- TOGGLE -->
     <button class="navigation__toggle" on:click={toggleMenu}>
