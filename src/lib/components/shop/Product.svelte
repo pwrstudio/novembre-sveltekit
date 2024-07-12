@@ -2,8 +2,7 @@
   import type { MergedProduct } from "$lib/types"
   import { renderBlockText } from "$lib/modules/sanity"
   import Slideshow from "$lib/components/modules/Slideshow.svelte"
-  import { addToCart } from "$lib/modules/cart"
-  import { getProductPrice } from "$lib/modules/utils"
+  import { getProductPrice, addToCart } from "$lib/modules/cart"
 
   export let post: MergedProduct
 

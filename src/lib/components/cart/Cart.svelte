@@ -1,6 +1,12 @@
 <script lang="ts">
   import { cartActive } from "$lib/modules/stores/"
-  import { cart, cartCount, cartSubtotal } from "$lib/modules/cart"
+  import {
+    cart,
+    cartCount,
+    cartSubtotal,
+    cartToCheckoutLineItems,
+    clearCart,
+  } from "$lib/modules/cart"
   import { fade } from "svelte/transition"
   import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION } from "$lib/constants"
   import { PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN } from "$env/static/public"
@@ -23,7 +29,19 @@
   async function handleCheckout() {
     checkoutInProgress = true
     const checkout = await shopifyClient.checkout.create()
-    if (checkout?.webUrl) {
+
+    const lineItemsToAdd = cartToCheckoutLineItems($cart)
+
+    // Add an item to the checkout
+    const updatedCheckout = await shopifyClient.checkout.addLineItems(
+      checkout.id,
+      lineItemsToAdd,
+    )
+
+    console.log(updatedCheckout)
+
+    if (updatedCheckout?.webUrl) {
+      clearCart()
       window.location.href = checkout.webUrl
     }
   }

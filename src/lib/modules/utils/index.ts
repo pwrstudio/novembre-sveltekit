@@ -29,13 +29,3 @@ export function setCookie(name: string, value: string, hours: number): void {
     const expires = `expires=${date.toUTCString()}`
     document.cookie = `${name}=${value};${expires};path=/`
 }
-
-export function getProductPrice(product: MergedProduct): number | undefined {
-    if (product?.shopify?.priceRange?.minVariantPrice?.amount) {
-        // Convert the string amount to a number and return it
-        return parseFloat(product.shopify.priceRange.minVariantPrice.amount);
-    }
-    // If no price is found, return 0 or throw an error
-    console.warn(`No price found for product: ${product.title}`);
-    return undefined;
-}

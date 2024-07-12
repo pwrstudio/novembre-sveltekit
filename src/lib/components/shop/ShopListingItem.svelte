@@ -1,7 +1,7 @@
 <script lang="ts">
   import { urlFor } from "$lib/modules/sanity"
   import type { MergedProduct } from "$lib/types"
-  import { getProductPrice } from "$lib/modules/utils"
+  import { getProductPrice } from "$lib/modules/cart"
 
   export let post: MergedProduct
 
