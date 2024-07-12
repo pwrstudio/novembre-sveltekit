@@ -69,7 +69,8 @@
     }
   }
 
-  .landing {
+  .landing,
+  .shop {
     padding-top: 100px;
   }
 </style>

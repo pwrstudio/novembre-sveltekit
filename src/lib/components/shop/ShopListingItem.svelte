@@ -13,9 +13,12 @@
 </script>
 
 <a href={`/shop/${post.slug?.current ?? ""}`} class="shop-listing-item" {style}>
-  <div class="title">
-    {post.title}
-    {#if price}- €{price}{/if}
+  <div class="information">
+    <div class="title">{post.title}</div>
+
+    {#if price}
+      <div class="price">€{price}</div>
+    {/if}
   </div>
   <img
     src={urlFor(post.mainImage).width(800).quality(100).auto("format").url()}
@@ -35,12 +38,20 @@
     justify-content: center;
     align-items: center;
 
-    .title {
+    @include screen-size("small") {
+      width: 100%;
+    }
+
+    .information {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 0;
+      left: 0;
+      padding: 10px;
       font-family: $sans-stack;
       font-size: $body;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
 
     img {

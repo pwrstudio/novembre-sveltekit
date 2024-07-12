@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { MergedProduct } from "$lib/types"
   import { renderBlockText } from "$lib/modules/sanity"
-  import Slideshow from "$lib/components/modules/Slideshow.svelte"
   import { getProductPrice, addToCart } from "$lib/modules/cart"
+  import ShopSlideshow from "./ShopSlideshow.svelte"
 
   export let post: MergedProduct
 
@@ -18,18 +18,12 @@
 </script>
 
 <div class="product">
-  <div class="column left" {style}>
-    <!-- SLIDESHOW -->
-    <div class="slideshow">
-      <!-- <Slideshow slides={post.Slideshow} /> -->
-    </div>
-  </div>
   <div class="column right">
     <!-- TITLE -->
     <h1>{post.title}</h1>
     <!-- CONTENT -->
     {#if post.content?.content}
-      <div class="content">
+      <div class="description">
         {@html renderBlockText(post.content.content)}
       </div>
     {/if}
@@ -44,6 +38,12 @@
       </div>
     {/if}
   </div>
+  <div class="column left" {style}>
+    <!-- SLIDESHOW -->
+    {#if post.Slideshow}
+      <ShopSlideshow slides={post.Slideshow} />
+    {/if}
+  </div>
 </div>
 
 <style lang="scss">
@@ -56,30 +56,51 @@
     flex-wrap: nowrap;
     font-family: $sans-stack;
 
+    @include screen-size("small") {
+      flex-wrap: wrap;
+      height: unset;
+    }
+
     .column {
       width: 50%;
       height: 100%;
+
+      @include screen-size("small") {
+        width: 100%;
+      }
 
       &.right {
         background: $grey;
         padding: 20px;
         padding-top: 120px;
+        order: 2;
 
-        .content {
+        .description {
           width: 100%;
+          font-family: $serif-stack;
+          font-size: var(--body);
+          line-height: 1.2em;
+        }
+
+        .price {
+          font-size: $intro;
         }
 
         .add-to-cart {
           button {
             background: transparent;
             font-family: $sans-stack;
-            font-size: $large;
+            font-size: $intro;
             border: 2px solid $black;
             outline: none;
             cursor: pointer;
             padding: 10px;
             text-transform: uppercase;
             margin-top: 20px;
+
+            &:hover {
+              background: $white;
+            }
           }
         }
       }
@@ -88,16 +109,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        order: 1;
 
-        .slideshow {
-          width: 80%;
-          height: 80%;
+        @include screen-size("small") {
+          height: 800px;
         }
       }
     }
 
     h1 {
       font-weight: 300;
+      font-size: $intro;
     }
   }
 </style>

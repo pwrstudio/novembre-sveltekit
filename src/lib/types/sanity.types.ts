@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+import type { Shop } from "shopify-buy";
+
 // Source: schema.json
 export type SanityImagePaletteSwatch = {
     _type: "sanity.imagePaletteSwatch";
@@ -344,6 +346,28 @@ export type SatelliteSite = {
     slug?: Slug;
 };
 
+export type ShopSlide = {
+    asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "Image";
+    _key: string;
+} | {
+    asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "Video";
+    _key: string;
+};
+
 export type Product = {
     _id: string;
     _type: "product";
@@ -374,27 +398,7 @@ export type Product = {
         };
         _type: "file";
     };
-    Slideshow?: Array<{
-        asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "Image";
-        _key: string;
-    } | {
-        asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-        };
-        _type: "Video";
-        _key: string;
-    }>;
+    Slideshow?: ShopSlide[];
     description?: Array<{
         children?: Array<{
             marks?: Array<string>;
