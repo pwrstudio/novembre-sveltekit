@@ -204,6 +204,7 @@
     width: 100%;
     height: 600px;
     opacity: 0;
+    cursor: grab;
 
     @include screen-size("small") {
       height: 400px;

@@ -83,7 +83,7 @@
       }
 
       &--related {
-        width: 50%;
+        flex: 0 0 50vw;
         height: 600px;
 
         @include screen-size("small") {

@@ -73,11 +73,6 @@
     overflow: hidden;
     z-index: 99;
 
-    .embla__slide {
-      flex: unset;
-      min-width: unset;
-    }
-
     @include screen-size("small") {
       font-size: $mobile_large;
       padding-bottom: $small-margin;
