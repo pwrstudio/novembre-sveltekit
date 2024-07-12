@@ -18,7 +18,7 @@
     ? "background:" + backgroundColor.hex + ";"
     : ""
 
-  let loaded = false
+  let loaded = true
 </script>
 
 <div class="thumbnail-group" style={customStyles}>

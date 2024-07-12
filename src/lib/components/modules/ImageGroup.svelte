@@ -22,7 +22,7 @@
     ? "background:" + backgroundColor.hex + ";"
     : ""
 
-  let loaded = false
+  let loaded = true
 </script>
 
 <MediaQuery query="(min-width: 800px)" let:matches>

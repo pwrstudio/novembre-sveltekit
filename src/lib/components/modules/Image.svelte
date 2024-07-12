@@ -36,7 +36,7 @@
     .auto("format")
     .url()
 
-  let loaded = false
+  let loaded = true
 </script>
 
 {#if linkUrl}
