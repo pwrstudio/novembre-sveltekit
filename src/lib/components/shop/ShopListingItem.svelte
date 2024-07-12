@@ -7,7 +7,7 @@
 
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
-    : ""
+    : "background-color: var(--grey)"
 
   const price = getProductPrice(post)
 </script>

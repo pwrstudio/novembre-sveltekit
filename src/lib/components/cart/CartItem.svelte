@@ -5,6 +5,7 @@
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    getProductPrice,
   } from "$lib/modules/cart"
 
   export let item: MergedProduct
@@ -22,37 +23,46 @@
   function handleRemoveFromCart() {
     removeFromCart(item._id)
   }
+
+  const price = getProductPrice(item)
 </script>
 
 <div class="cart-item">
+  <!-- THUMBNAIL -->
   <img {src} alt={item.title} class="thumbnail" />
   <div class="details">
+    <!-- TITLE -->
     <div class="title">{item.title}</div>
+    <!-- QUANTITY -->
     <div class="quantity-controls">
       <button on:click={handleDecreaseQuantity}>-</button>
       <span class="quantity">{item.quantity}</span>
       <button on:click={handleIncreaseQuantity}>+</button>
     </div>
-    <div class="price">
-      PRICE
-      <!-- €{(item.stripe.default_price?.unit_amount ?? 0) / 100} -->
-    </div>
+    <!-- PRICE -->
+    <div class="price">€{price}</div>
+    <!-- REMOVE BUTTON -->
     <button on:click={handleRemoveFromCart} class="remove-btn">Remove</button>
   </div>
 </div>
 
 <style lang="scss">
+  @import "../../styles/variables.scss";
+
   .cart-item {
     display: flex;
     flex-wrap: nowrap;
     padding: 20px 0;
     border-bottom: 1px solid #ccc;
+    font-size: $body;
+    font-family: $sans-stack;
 
     .thumbnail {
       width: 80px;
       height: 80px;
       object-fit: cover;
       margin-right: 20px;
+      border: 1px solid #ccc;
     }
 
     .details {
@@ -61,18 +71,12 @@
       align-items: flex-start;
       width: 100%;
 
-      .title {
-        font-weight: bold;
-      }
-
       .quantity-controls {
         display: flex;
         align-items: center;
-        margin: 10px 0;
 
         button {
-          background: #eee;
-          border: 1px solid #ccc;
+          border: 1px solid $black;
           padding: 5px;
           cursor: pointer;
           width: 20px;
@@ -81,21 +85,20 @@
         .quantity {
           margin: 0 10px;
           font-size: 1em;
+          width: 20px;
+          text-align: center;
         }
       }
 
-      .price {
-        font-weight: bold;
-        margin-top: 10px;
-      }
-
       .remove-btn {
-        margin-top: 10px;
-        background: #f44336;
-        color: white;
-        border: none;
+        background: transparent;
+        border: 1px solid #ccc;
         padding: 5px 10px;
         cursor: pointer;
+
+        &:hover {
+          background: $white;
+        }
       }
     }
   }

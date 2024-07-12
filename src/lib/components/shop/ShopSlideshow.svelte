@@ -120,6 +120,7 @@
     background: transparent;
     border: none;
     outline: none;
+    color: black;
   }
 
   .previous {

@@ -5,7 +5,6 @@
   import { urlFor } from "$lib/modules/sanity"
   import { menuItems } from "$lib/constants"
   import { cartCount } from "$lib/modules/cart"
-  import { cartActive } from "$lib/modules/stores"
   import Logo from "$lib/components/graphics/Logo.svelte"
   import SearchBox from "$lib/components/navigation/SearchBox.svelte"
 
@@ -13,16 +12,15 @@
 
   export let menuBanners: Banner[]
 
-  // Show cart when in shop or when cart is not empty
+  // Show cart when in shop
+  // or when cart is not empty and we are not on cart page
   const shopRoutes = ["/shop", "/shop/[slug]"]
-  $: showCart = shopRoutes.includes($page.route?.id ?? "") || $cartCount > 0
+  $: showCart =
+    shopRoutes.includes($page.route?.id ?? "") ||
+    ($cartCount > 0 && $page.route?.id !== "/cart")
 
   const toggleMenu = () => {
     menuActive.set(!$menuActive)
-  }
-
-  const toggleCart = () => {
-    cartActive.set(!$cartActive)
   }
 </script>
 
@@ -38,9 +36,9 @@
     </button>
     <!-- CART -->
     {#if showCart}
-      <button class="navigation__cart" on:click={toggleCart}>
+      <a href="/cart" class="navigation__cart">
         CART ({$cartCount})
-      </button>
+      </a>
     {/if}
     <!-- TOGGLE -->
     <button class="navigation__toggle" on:click={toggleMenu}>
@@ -174,7 +172,7 @@
       left: 50%;
       transform: translateX(-50%);
       height: 100px;
-      margin-top: -2px;
+      margin-top: 4px;
       z-index: 10001;
       cursor: pointer;
       color: $white;

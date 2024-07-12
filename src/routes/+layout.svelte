@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Meta, Banner } from "$lib/types/sanity.types"
   import { isEmpty } from "lodash-es"
-  import { cartActive, menuActive } from "$lib/modules/stores"
+  import { menuActive } from "$lib/modules/stores"
   import { getCookie, setCookie } from "$lib/modules/utils"
   import { onMount } from "svelte"
   import {
@@ -12,7 +12,6 @@
   import Navigation from "$lib/components/navigation/Navigation.svelte"
   import MailingListOverlay from "$lib/components/overlays/MailingListOverlay.svelte"
   import BannerOverlay from "$lib/components/overlays/BannerOverlay.svelte"
-  import Cart from "$lib/components/cart/Cart.svelte"
 
   export let data: {
     globalConfig: Meta
@@ -60,11 +59,6 @@
 
 <!-- MENU -->
 <Navigation {menuBanners} />
-
-<!-- CART -->
-{#if $cartActive}
-  <Cart />
-{/if}
 
 <!-- OVERLAY BANNER -->
 {#if !isEmpty(overlayBanners) && overlayActive}
