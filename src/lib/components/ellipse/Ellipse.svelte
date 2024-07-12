@@ -10,7 +10,7 @@
   onMount(async () => {
     timer = setInterval(() => {
       text = text.length < NUMBER_OF_PERIODS ? text + "." : ""
-    }, 500)
+    }, 100)
   })
 
   // *** ON DESTROY

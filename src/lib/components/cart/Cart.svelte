@@ -12,6 +12,7 @@
   import Client from "shopify-buy"
 
   import CartItem from "./CartItem.svelte"
+  import Ellipse from "../ellipse/Ellipse.svelte"
 
   let checkoutInProgress = false
 
@@ -46,7 +47,7 @@
   <div class="cart-content">
     {#if checkoutInProgress}
       <div class="cart-checkout-in-progress">
-        <p>Checkout in progress...</p>
+        Checkout in progress <Ellipse />
       </div>
     {:else if $cartCount === 0}
       <div class="cart-header">Your cart is empty</div>
@@ -86,6 +87,12 @@
     padding: 20px;
     padding-top: 120px;
     font-family: $sans-stack;
+
+    .cart-checkout-in-progress {
+      font-size: $intro;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
 
     .cart-header {
       font-size: $intro;
