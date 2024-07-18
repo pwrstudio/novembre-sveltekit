@@ -6,7 +6,6 @@
     cartToCheckoutLineItems,
     clearCart,
   } from "$lib/modules/cart"
-  import { fade } from "svelte/transition"
   import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION } from "$lib/constants"
   import { PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN } from "$env/static/public"
   import Client from "shopify-buy"
@@ -34,8 +33,6 @@
       lineItemsToAdd,
     )
 
-    console.log(updatedCheckout)
-
     if (updatedCheckout?.webUrl) {
       clearCart()
       window.location.href = checkout.webUrl
@@ -62,14 +59,17 @@
         {/each}
       </div>
 
+      <!-- SUBTOTAL -->
       <div class="cart-subtotal">
         <p>Subtotal: <strong>€{$cartSubtotal}</strong></p>
       </div>
 
+      <!-- TEXT -->
       <div class="cart-text">
         Tax included. Shipping calculated at checkout.
       </div>
 
+      <!-- CHECKOUT -->
       <div class="cart-checkout">
         <button on:click={handleCheckout}>Checkout</button>
       </div>

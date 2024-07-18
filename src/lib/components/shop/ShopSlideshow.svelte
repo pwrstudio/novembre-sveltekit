@@ -13,8 +13,11 @@
 
   let emblaApi: EmblaCarouselType | undefined = undefined
 
+  const isMultiSlide = slides.length > 1
+
   const SharedEmblaOptions: EmblaOptionsType = {
     loop: true,
+    watchDrag: isMultiSlide,
   }
 
   const previousSlide = (e: MouseEvent) => {
@@ -51,19 +54,21 @@
   </div>
 </div>
 
-<!-- PREVIOUS SLIDE -->
-<button
-  class="navigation previous"
-  aria-label="Previous"
-  on:click={previousSlide}
->
-  <ArrowLeft />
-</button>
+{#if isMultiSlide}
+  <!-- PREVIOUS SLIDE -->
+  <button
+    class="navigation previous"
+    aria-label="Previous"
+    on:click={previousSlide}
+  >
+    <ArrowLeft />
+  </button>
 
-<!-- NEXT SLIDE -->
-<button class="navigation next" aria-label="Next" on:click={nextSlide}>
-  <ArrowRight />
-</button>
+  <!-- NEXT SLIDE -->
+  <button class="navigation next" aria-label="Next" on:click={nextSlide}>
+    <ArrowRight />
+  </button>
+{/if}
 
 <style lang="scss">
   @import "../../styles/variables.scss";

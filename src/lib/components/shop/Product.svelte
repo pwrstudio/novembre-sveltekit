@@ -6,11 +6,27 @@
 
   export let post: MergedProduct
 
+  console.log("post", post)
+
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
     : "background-color: var(--grey)"
 
   const price = getProductPrice(post)
+
+  const getSlides = (product: MergedProduct) => {
+    if (product.Slideshow && product.Slideshow.length > 0) {
+      return product.Slideshow
+    }
+
+    if (product.mainImage) {
+      return [product.mainImage]
+    }
+
+    return []
+  }
+
+  const slides = getSlides(post)
 
   const handleAddToCart = () => {
     addToCart(post)
@@ -22,9 +38,9 @@
     <!-- TITLE -->
     <h1>{post.title}</h1>
     <!-- CONTENT -->
-    {#if post.content?.content}
+    {#if post.content}
       <div class="description">
-        {@html renderBlockText(post.content.content)}
+        {@html renderBlockText(post.content)}
       </div>
     {/if}
     <!-- PRICE -->
@@ -40,8 +56,8 @@
   </div>
   <div class="column left" {style}>
     <!-- SLIDESHOW -->
-    {#if post.Slideshow}
-      <ShopSlideshow slides={post.Slideshow} />
+    {#if slides.length > 0}
+      <ShopSlideshow {slides} />
     {/if}
   </div>
 </div>
