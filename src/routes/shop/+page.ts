@@ -1,4 +1,4 @@
-import type { Product, Meta } from "$lib/types/sanity.types";
+import type { Product, ProductList, Meta } from "$lib/types/sanity.types";
 import type { MergedProduct } from "$lib/types";
 import { loadData } from "$lib/modules/sanity"
 import { queries } from "$lib/groq"
@@ -9,8 +9,16 @@ import Client from 'shopify-buy';
 /** @type {import('./$types').PageLoad} */
 export async function load() {
   // Fetch Sanity data
-  const sanityPosts: Product[] = await loadData(queries.shopListing, {})
+  const productList: ProductList = await loadData(queries.productList, {})
   const globalConfig: Meta = await loadData(queries.globalConfig, {})
+  const sanityPosts: Product[] | undefined = productList.products?.map(product => product.product);
+
+  if(!sanityPosts) {
+    return {
+      posts: sanityPosts,
+      globalConfig
+    };
+  }
 
   try {
     const shopifyClient = Client.buildClient({

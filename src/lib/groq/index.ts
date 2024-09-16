@@ -16,6 +16,6 @@ export const queries = {
     bureauCategory: '*[_type == "article" && editorialState == "live" && taxonomy.category == "bureau" && taxonomy.subCategory == $subcat && $currentTime > publicationDate] | order(publicationDate desc){_id, publicationDate, title, "slug": slug.current, taxonomy, "preview": preview[0], "previewVideoUrl": preview[0].video.asset->url, previewColors}',
     article: "*[slug.current == $slug]{..., 'preview': preview[0], 'previewVideoUrl': preview[0].video.asset->url, related[]->{title, 'slug': slug.current, mainImage, relatedSlideshow, 'category': taxonomy.category}}[0]",
     shopSingle: "*[_type == 'product' && slug.current == $slug][0]",
-    shopListing: '*[_type == "product"]',
+    productList: '*[_id == "product-list"][0] {..., products[]{..., product->{...}}}',
     satelliteSite: "*[_type == 'satelliteSite' && slug.current == $slug]{...}[0]"
 }
