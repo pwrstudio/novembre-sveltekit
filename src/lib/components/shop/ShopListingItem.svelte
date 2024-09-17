@@ -12,7 +12,11 @@
   const price = getProductPrice(post)
 </script>
 
-<a href={`/shop/${post.slug?.current ?? ""}`} class="shop-listing-item" {style}>
+<a
+  href={`/shop/${post.slug?.current ?? ""}`}
+  class="shop-listing-item {post.listingSize ?? 'third'}"
+  {style}
+>
   <div class="information">
     <div class="title">{post.title}</div>
 
@@ -30,17 +34,12 @@
   @import "../../styles/variables.scss";
 
   .shop-listing-item {
-    width: 50%;
-    height: 100vh;
+    height: 600px;
     overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @include screen-size("small") {
-      width: 100%;
-    }
 
     .information {
       position: absolute;
@@ -59,6 +58,30 @@
       max-height: 80%;
       overflow: hidden;
       object-fit: cover;
+    }
+
+    &.full {
+      width: 100%;
+
+      @include screen-size("small") {
+        width: 100%;
+      }
+    }
+
+    &.half {
+      width: 50%;
+
+      @include screen-size("small") {
+        width: 100%;
+      }
+    }
+
+    &.third {
+      width: 33.3333%;
+
+      @include screen-size("small") {
+        width: 100%;
+      }
     }
   }
 </style>

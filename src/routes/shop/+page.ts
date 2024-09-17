@@ -11,7 +11,7 @@ export async function load() {
   // Fetch Sanity data
   const productList: ProductList = await loadData(queries.productList, {})
   const globalConfig: Meta = await loadData(queries.globalConfig, {})
-  const sanityPosts: Product[] | undefined = productList.products?.map(product => product.product);
+  const sanityPosts: Product[] | undefined = productList.products?.map(p => ({...p.product, listingSize: p.size,}));
 
   if(!sanityPosts) {
     return {

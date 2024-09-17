@@ -413,6 +413,7 @@ export type Product = {
     Slideshow?: ShopSlide[];
     content?: Content;
     slug?: Slug;
+    listingSize?: "full" | "half" | "third";
 };
 
 export type Meta = {
