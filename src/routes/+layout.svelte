@@ -66,7 +66,12 @@
 
 <!-- OVERLAY BANNER -->
 {#if !isEmpty(overlayBanners) && overlayActive}
-  <BannerOverlay {overlayBanners} />
+  <BannerOverlay
+    {overlayBanners}
+    on:close={() => {
+      overlayActive = false
+    }}
+  />
 {/if}
 
 <!-- MAILING LIST OVERLAY -->

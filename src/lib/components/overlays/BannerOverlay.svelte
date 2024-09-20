@@ -1,9 +1,11 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
+  import { createEventDispatcher } from "svelte"
   import type { Banner } from "$lib/types/sanity.types"
 
-  let overlayActive = true
+  const dispatch = createEventDispatcher()
+
   export let overlayBanners: Banner[]
 </script>
 
@@ -12,7 +14,7 @@
 <div
   class="overlay-banner"
   on:click={e => {
-    overlayActive = false
+    dispatch("close")
   }}
   in:fade
 >
@@ -36,7 +38,7 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <svg
     on:click={e => {
-      overlayActive = false
+      dispatch("close")
     }}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
