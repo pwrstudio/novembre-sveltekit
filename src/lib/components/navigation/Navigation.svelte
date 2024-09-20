@@ -180,6 +180,10 @@
       font-size: $large;
       font-weight: 300;
 
+      @include screen-size("small") {
+        display: none;
+      }
+
       svg {
         height: 100px;
 

@@ -12,6 +12,7 @@
   import Navigation from "$lib/components/navigation/Navigation.svelte"
   import MailingListOverlay from "$lib/components/overlays/MailingListOverlay.svelte"
   import BannerOverlay from "$lib/components/overlays/BannerOverlay.svelte"
+  import MobileCart from "$lib/components/navigation/MobileCart.svelte"
 
   export let data: {
     globalConfig: Meta
@@ -59,6 +60,9 @@
 
 <!-- MENU -->
 <Navigation {menuBanners} />
+
+<!-- MOBILE CART -->
+<MobileCart />
 
 <!-- OVERLAY BANNER -->
 {#if !isEmpty(overlayBanners) && overlayActive}
