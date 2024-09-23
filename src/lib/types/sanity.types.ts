@@ -440,6 +440,17 @@ export type Meta = {
     feedColor?: Color;
     shop?: Content;
     shopColor?: Color;
+    shopPlaceholderImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
     showMailingListOverlay?: boolean;
 };
 
