@@ -5,9 +5,17 @@ import { queries } from "$lib/groq"
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
-    const post: Article = await loadData(queries.article, { slug: params.slug })
+    let post: Article
 
-    return {
-        post
-    };
+    console.log(JSON.stringify(params.slug))
+
+    try {
+        post = await loadData(queries.article, { slug: params.slug })
+        console.log(post)
+        return {
+            post
+        };
+    } catch (error) {
+        console.warn(error)
+    }
 }
