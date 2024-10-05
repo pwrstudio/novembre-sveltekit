@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   '@sanity/client':
-    specifier: ^6.22.0
-    version: 6.22.0
+    specifier: ^6.22.1
+    version: 6.22.1
   '@sanity/image-url':
     specifier: ^1.0.2
     version: 1.0.2
@@ -475,8 +475,8 @@ packages:
       object-assign: 4.1.1
     dev: false
 
-  /@sanity/client@6.22.0:
-    resolution: {integrity: sha512-GlPwg8iG74WkzRb5Im2dpFg0xq5vgvsDfQA5NQCUWmmnELdo3iMa5hicLyuW+TBK+x1SmVe7InuAjIGKq5XcYg==}
+  /@sanity/client@6.22.1:
+    resolution: {integrity: sha512-2F/byHTbA91iS2YuJA/LmuJbmh4prqMYqhMSQ2PGFBPU2z/trBOByuuYrHAQfjmETu95n1N24t5A8XjqzjQZTQ==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.2
