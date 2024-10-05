@@ -1,6 +1,5 @@
 <script lang="ts">
   import { urlFor } from "$lib/modules/sanity"
-  import { onMount } from "svelte"
 
   export let slidesLength: number
   export let fullwidth = false
@@ -9,28 +8,26 @@
   export let header = false
   export let image: any
 
-  let src: string
-  let loaded = false
+  let loaded = true
   let groupSize = `group-size-${slidesLength}`
+  let src = ""
 
-  onMount(() => {
+  function getImageUrl(iO: any) {
     try {
-      src = fullwidth
-        ? urlFor(image)
-            .width(1800)
-            .height(1200)
-            .quality(100)
-            .auto("format")
-            .url()
-        : urlFor(image)
+      return fullwidth
+        ? urlFor(iO).width(1800).height(1200).quality(100).auto("format").url()
+        : urlFor(iO)
             .width(1200 / slidesLength)
             .quality(100)
             .auto("format")
             .url()
     } catch (e) {
       console.warn("Failed to load image:", e)
+      return ""
     }
-  })
+  }
+
+  $: src = getImageUrl(image)
 </script>
 
 {#if src}

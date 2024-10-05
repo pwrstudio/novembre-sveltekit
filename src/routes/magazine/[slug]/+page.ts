@@ -7,11 +7,8 @@ export async function load({ params }) {
 
     let post: Article
 
-    console.log(JSON.stringify(params.slug))
-
     try {
         post = await loadData(queries.article, { slug: params.slug })
-        console.log(post)
         return {
             post
         };

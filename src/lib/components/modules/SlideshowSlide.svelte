@@ -3,6 +3,19 @@
 
   export let slide: any
   export let isRelated: boolean
+
+  function getImageUrl(slide: any) {
+    try {
+      return isRelated
+        ? urlFor(slide.mainImage).height(600).quality(80).auto("format").url()
+        : urlFor(slide).height(600).quality(80).auto("format").url()
+    } catch (e) {
+      console.warn("Failed to load image:", e)
+      return ""
+    }
+  }
+
+  $: src = getImageUrl(slide)
 </script>
 
 {#if isRelated}
@@ -10,11 +23,7 @@
     <a href="/{slide.category}/{slide.slug}">
       <img
         class="slideshow__slide-image slideshow__slide-image--related"
-        src={urlFor(slide.relatedSlideshow?.image ?? slide.mainImage)
-          .height(600)
-          .quality(80)
-          .auto("format")
-          .url()}
+        {src}
         alt={slide.title}
       />
       <div
@@ -27,11 +36,7 @@
   </div>
 {:else}
   <div class="embla__slide slideshow__slide">
-    <img
-      class="slideshow__slide-image"
-      src={urlFor(slide).height(600).quality(80).auto("format").url()}
-      alt={slide.caption}
-    />
+    <img class="slideshow__slide-image" {src} alt={slide.caption} />
     {#if slide.caption}
       <div class="slideshow__slide-caption">{slide.caption}</div>
     {/if}

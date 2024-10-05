@@ -20,23 +20,32 @@
 
   const figureCustomStyles = maxHeight ? "max-height:" + maxHeight + "vh; " : ""
 
-  // *** VARIABLES
-  const src = fullwidth
-    ? urlFor(imageObject)
-        .width(1600)
-        .height(1100)
-        .quality(100)
-        .auto("format")
-        .url()
-    : urlFor(imageObject).width(800).quality(100).auto("format").url()
-
-  const srcPortrait = urlFor(imageObject)
-    .width(800)
-    .quality(100)
-    .auto("format")
-    .url()
-
   let loaded = true
+
+  // *** VARIABLES
+
+  function getImageUrl(iO: any) {
+    try {
+      return fullwidth
+        ? urlFor(iO).width(1600).height(1100).quality(100).auto("format").url()
+        : urlFor(iO).width(800).quality(100).auto("format").url()
+    } catch (e) {
+      console.warn("Failed to load image:", e)
+      return ""
+    }
+  }
+
+  function getPortraitUrl(iO: any) {
+    try {
+      return urlFor(iO).width(800).quality(100).auto("format").url()
+    } catch (e) {
+      console.warn("Failed to load image:", e)
+      return ""
+    }
+  }
+
+  $: src = getImageUrl(imageObject)
+  $: srcPortrait = getPortraitUrl(imageObject)
 </script>
 
 {#if linkUrl}

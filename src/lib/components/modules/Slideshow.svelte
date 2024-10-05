@@ -8,8 +8,6 @@
   import Ellipse from "$lib/components/ellipse/Ellipse.svelte"
   import ArrowRight from "../graphics/ArrowRight.svelte"
   import ArrowLeft from "../graphics/ArrowLeft.svelte"
-  import SlideshowStaticDouble from "./SlideshowStaticDouble.svelte"
-  import SlideshowStaticSingle from "./SlideshowStaticSingle.svelte"
   import SlideshowSlide from "./SlideshowSlide.svelte"
 
   export let slides: any[]
@@ -101,61 +99,56 @@
   })
 </script>
 
-{#if slides.length > 2}
-  <div
-    role="presentation"
-    class="container"
-    on:mouseenter={handleMouseEnter}
-    on:mouseleave={handleMouseLeave}
-  >
-    {#if !loaded}
-      <div class="loading">
-        LOADING
-        <Ellipse />
-      </div>
-    {/if}
+<!-- {#if slides.length > 2} -->
+<div
+  role="presentation"
+  class="container"
+  on:mouseenter={handleMouseEnter}
+  on:mouseleave={handleMouseLeave}
+>
+  {#if !loaded}
+    <div class="loading">
+      LOADING
+      <Ellipse />
+    </div>
+  {/if}
 
-    <!-- MAIN -->
-    <div
-      class="slideshow"
-      class:slideshow--related={isRelated}
-      class:slideshow--preview={isListing}
-      class:loaded
-    >
-      <div class="embla" bind:this={slideShowEl}>
-        <div class="embla__container">
-          {#each slides as slide}
-            <SlideshowSlide {slide} {isRelated} />
-          {/each}
-        </div>
+  <!-- MAIN -->
+  <div
+    class="slideshow"
+    class:slideshow--related={isRelated}
+    class:slideshow--preview={isListing}
+    class:loaded
+  >
+    <div class="embla" bind:this={slideShowEl}>
+      <div class="embla__container">
+        {#each slides as slide}
+          <SlideshowSlide {slide} {isRelated} />
+        {/each}
       </div>
     </div>
-
-    <!-- PREVIOUS SLIDE -->
-    <button
-      class="navigation previous"
-      class:hovered
-      aria-label="Previous"
-      on:click={previousSlide}
-    >
-      <ArrowLeft />
-    </button>
-
-    <!-- NEXT SLIDE -->
-    <button
-      class="navigation next"
-      class:hovered
-      aria-label="Next"
-      on:click={nextSlide}
-    >
-      <ArrowRight />
-    </button>
   </div>
-{:else if slides.length === 2}
-  <SlideshowStaticDouble {slides} {isRelated} />
-{:else if slides.length === 1}
-  <SlideshowStaticSingle {slides} {isRelated} />
-{/if}
+
+  <!-- PREVIOUS SLIDE -->
+  <button
+    class="navigation previous"
+    class:hovered
+    aria-label="Previous"
+    on:click={previousSlide}
+  >
+    <ArrowLeft />
+  </button>
+
+  <!-- NEXT SLIDE -->
+  <button
+    class="navigation next"
+    class:hovered
+    aria-label="Next"
+    on:click={nextSlide}
+  >
+    <ArrowRight />
+  </button>
+</div>
 
 <style lang="scss">
   @import "../../styles/variables.scss";

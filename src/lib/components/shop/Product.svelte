@@ -6,8 +6,6 @@
 
   export let post: MergedProduct
 
-  console.log("post", post)
-
   const style = post.backgroundColor?.hex
     ? `background-color: ${post.backgroundColor.hex};`
     : "background-color: var(--grey)"
