@@ -1,10 +1,11 @@
 <script lang="ts">
   import type { Color } from "$lib/types/sanity.types"
+
+  import ImageItem from "$lib/components/modules/ImageItem.svelte"
   import MediaQuery from "svelte-media-query"
-  import { urlFor } from "$lib/modules/sanity"
 
   export let slides: any[] = []
-  export let caption = false
+  export let caption: string | false = false
   export let isListing = false
   export let isHeader = false
   export let backgroundColor: Color | undefined = undefined
@@ -21,8 +22,6 @@
   const customStylesPhone = backgroundColor
     ? "background:" + backgroundColor.hex + ";"
     : ""
-
-  let loaded = true
 </script>
 
 <MediaQuery query="(min-width: 800px)" let:matches>
@@ -34,30 +33,17 @@
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
-      class:group-size-1={slides.length === 1}
-      class:group-size-2={slides.length === 2}
-      class:group-size-3={slides.length === 3}
-      class:group-size-4={slides.length === 4}
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
     >
       {#each slides as image}
-        <img
-          class:loaded
-          src={fullwidth
-            ? urlFor(image)
-                .width(1800)
-                .height(1200)
-                .quality(100)
-                .auto("format")
-                .url()
-            : urlFor(image)
-                .width(1200 / slides.length)
-                .quality(100)
-                .auto("format")
-                .url()}
-          alt={caption ? caption : "novembre.global"}
-          on:load={e => (loaded = true)}
+        <ImageItem
+          {image}
+          {caption}
+          {fullwidth}
+          listing={isListing}
+          header={isHeader}
+          slidesLength={slides.length}
         />
       {/each}
     </a>
@@ -67,30 +53,17 @@
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
-      class:group-size-1={slides.length === 1}
-      class:group-size-2={slides.length === 2}
-      class:group-size-3={slides.length === 3}
-      class:group-size-4={slides.length === 4}
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
     >
       {#each slides as image}
-        <img
-          class:loaded
-          src={fullwidth
-            ? urlFor(image)
-                .width(1800)
-                .height(1200)
-                .quality(100)
-                .auto("format")
-                .url()
-            : urlFor(image)
-                .width(1200 / slides.length)
-                .quality(100)
-                .auto("format")
-                .url()}
-          alt={caption ? caption : "novembre.global"}
-          on:load={e => (loaded = true)}
+        <ImageItem
+          {image}
+          {caption}
+          {fullwidth}
+          listing={isListing}
+          header={isHeader}
+          slidesLength={slides.length}
         />
       {/each}
     </div>
@@ -116,76 +89,8 @@
       flex-wrap: wrap;
     }
 
-    img {
-      opacity: 0;
-      transition: opacity 0.25s $transition;
-      object-fit: contain;
-      margin-left: $small-margin;
-      // margin-top: $small-margin;
-      height: 100%;
-
-      @include screen-size("small") {
-        max-height: unset;
-        object-fit: unset;
-        height: auto;
-      }
-
-      &.loaded {
-        opacity: 1;
-      }
-    }
-
     &.bottom-space {
       margin-bottom: $large-vertical-margin;
-      img {
-        // margin-top: -$small-margin;
-      }
-    }
-  }
-
-  .group-size-1 {
-    img {
-      height: 100%;
-
-      @include screen-size("small") {
-        max-width: unset;
-        width: 85vw;
-      }
-    }
-  }
-
-  .group-size-2 {
-    img {
-      max-width: 40vw;
-      @include screen-size("small") {
-        max-width: unset;
-        width: 45vw;
-      }
-    }
-  }
-
-  .group-size-3 {
-    img {
-      max-width: 30vw;
-
-      @include screen-size("small") {
-        display: inline-block;
-        max-width: unset;
-        width: 45vw;
-        margin-bottom: 10px;
-      }
-    }
-  }
-
-  .group-size-4 {
-    img {
-      max-width: 23vw;
-      @include screen-size("small") {
-        display: inline-block;
-        max-width: unset;
-        width: 45vw;
-        margin-bottom: 10px;
-      }
     }
   }
 
@@ -221,19 +126,6 @@
     @include screen-size("small") {
       height: auto;
     }
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      max-width: unset;
-      padding: 0;
-      margin: 0;
-
-      @include screen-size("small") {
-        object-fit: contain;
-      }
-    }
   }
 
   .image-group {
@@ -248,17 +140,6 @@
         width: 100vw;
         max-height: unset;
       }
-
-      img {
-        margin-bottom: $small-margin;
-        float: left;
-        object-position: top;
-        max-height: 435px;
-        @include screen-size("small") {
-          float: unset;
-          max-height: unset;
-        }
-      }
     }
   }
 
@@ -272,16 +153,6 @@
       @include screen-size("small") {
         height: auto;
         width: 100vw;
-      }
-
-      img {
-        margin-bottom: $small-margin;
-        float: left;
-        object-position: top;
-        max-height: 535px;
-        @include screen-size("small") {
-          float: unset;
-        }
       }
     }
   }
