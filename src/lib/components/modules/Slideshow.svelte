@@ -155,6 +155,7 @@
 
   .container {
     position: relative;
+    margin-bottom: $large-vertical-margin;
 
     @include screen-size("small") {
       height: 400px;
