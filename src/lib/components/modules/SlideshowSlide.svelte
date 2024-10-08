@@ -7,8 +7,8 @@
   function getImageUrl(slide: any) {
     try {
       return isRelated
-        ? urlFor(slide.mainImage).height(600).quality(80).auto("format").url()
-        : urlFor(slide).height(600).quality(80).auto("format").url()
+        ? urlFor(slide.mainImage).height(800).quality(80).auto("format").url()
+        : urlFor(slide).height(800).quality(80).auto("format").url()
     } catch (e) {
       console.warn("Failed to load image:", e)
       return ""
@@ -80,7 +80,7 @@
 
     &__slide {
       height: 100%;
-      width: 50%;
+      width: auto;
       position: relative;
 
       @include screen-size("small") {

@@ -13,7 +13,6 @@
   export let slides: any[]
   export let isRelated = false
   export let isListing = false
-  export let isProduct = false
   export let autoplay = false
 
   let slideShowEl: HTMLDivElement
@@ -100,6 +99,13 @@
 </script>
 
 <!-- {#if slides.length > 2} -->
+<!-- 
+  container: 80vh => 
+  slideshow: 100% => 
+  embla: 100% 100% => 
+  embla__container: 100% => 
+  embla__slide slideshow__slide: 100%/auto
+-->
 <div
   role="presentation"
   class="container"
@@ -156,10 +162,17 @@
   .container {
     position: relative;
     margin-bottom: $large-vertical-margin;
+    height: 80vh;
+    overflow: hidden;
 
     @include screen-size("small") {
       height: 400px;
     }
+  }
+
+  .embla,
+  .embla__container {
+    height: 100%;
   }
 
   .nav-container {
@@ -196,7 +209,7 @@
 
   .slideshow {
     width: 100%;
-    height: 600px;
+    height: 100%;
     opacity: 0;
     cursor: grab;
 
