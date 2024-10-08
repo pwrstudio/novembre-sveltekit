@@ -16,7 +16,7 @@
   export let muted = true
   export let controls = false
 
-  const customStyles =
+  $: customStyles =
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
     (backgroundColor ? "background:" + backgroundColor.hex + ";" : "")
 
@@ -43,7 +43,7 @@
     clearTimeout(showControlsTimeout)
     showControlsTimeout = setTimeout(
       () => (showControls = false),
-      controlsTimeoutDuration,
+      controlsTimeoutDuration
     )
     showControls = true
 

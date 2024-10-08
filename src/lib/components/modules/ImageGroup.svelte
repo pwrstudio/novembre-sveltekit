@@ -15,11 +15,11 @@
   export let inlineDisplay = false
   export let linkUrl = ""
 
-  const customStyles =
+  $: customStyles =
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
     (backgroundColor ? "background:" + backgroundColor.hex + ";" : "")
 
-  const customStylesPhone = backgroundColor
+  $: customStylesPhone = backgroundColor
     ? "background:" + backgroundColor.hex + ";"
     : ""
 </script>

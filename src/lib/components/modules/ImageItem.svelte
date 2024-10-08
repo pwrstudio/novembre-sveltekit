@@ -17,7 +17,7 @@
       return fullwidth
         ? urlFor(iO).width(1800).height(1200).quality(100).auto("format").url()
         : urlFor(iO)
-            .width(2400 / slidesLength)
+            .width(1800 / slidesLength)
             .quality(100)
             .auto("format")
             .url()
