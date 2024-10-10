@@ -12,8 +12,16 @@
   let groupSize = `group-size-${slidesLength}`
   let src = ""
 
+  function isGif(filename: string | undefined): boolean {
+    if (!filename) return false
+    return filename.toLowerCase().endsWith("gif")
+  }
+
   function getImageUrl(iO: any) {
     try {
+      if (isGif(iO?.asset?._ref)) {
+        return urlFor(iO).url()
+      }
       return fullwidth
         ? urlFor(iO).width(1800).height(1200).quality(100).auto("format").url()
         : urlFor(iO)
@@ -36,6 +44,7 @@
     class:loaded
     class:listing
     class:header
+    class:fullwidth
     {src}
     alt={caption ? caption : "novembre.global"}
     on:load={_ => (loaded = true)}
