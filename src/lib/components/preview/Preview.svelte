@@ -225,6 +225,7 @@
     }
 
     &.header {
+      pointer-events: none;
       a {
         cursor: default;
       }

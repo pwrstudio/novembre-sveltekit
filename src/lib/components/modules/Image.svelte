@@ -5,7 +5,7 @@
 
   // *** PROPS
   export let imageObject = {}
-  export let caption
+  export let caption = ""
   export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let maxHeight = false
