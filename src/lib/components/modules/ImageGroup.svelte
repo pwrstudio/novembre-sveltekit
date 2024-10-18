@@ -10,10 +10,13 @@
   export let isHeader = false
   export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
+  export let verticalAlignment = "vertical-center"
   export let fullwidth = false
   export let maxHeight = false
   export let inlineDisplay = false
   export let linkUrl = ""
+
+  console.log("verticalAlignment", verticalAlignment)
 
   $: customStyles =
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
@@ -29,7 +32,7 @@
     <a
       href={linkUrl}
       target="_blank"
-      class="image-group {alignment}"
+      class="image-group {alignment} {verticalAlignment || 'vertical-center'}"
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
@@ -49,7 +52,7 @@
     </a>
   {:else}
     <div
-      class="image-group {alignment}"
+      class="image-group {alignment} {verticalAlignment || 'vertical-center'}"
       class:listing={isListing}
       class:header={isHeader}
       class:fullwidth
@@ -80,9 +83,20 @@
     width: 100%;
     height: 100vh;
     display: inline-flex;
-    // padding-bottom: 2 * $small-margin;
     align-items: flex-start;
     border-bottom: none;
+
+    &.vertical-top {
+      align-items: flex-start;
+    }
+
+    &.vertical-center {
+      align-items: center;
+    }
+
+    &.vertical-bottom {
+      align-items: flex-end;
+    }
 
     @include screen-size("small") {
       height: auto;

@@ -181,6 +181,7 @@ export type ImageGroup = {
     noBottomMargin?: boolean;
     linkUrl?: string;
     alignment?: "left" | "center" | "right";
+    verticalAlignment?: "vertical-center" | "vertical-top" | "vertical-bottom";
     fullwidth?: boolean;
     maxHeight?: number;
     backgroundColor?: Color;

@@ -131,6 +131,7 @@
               maxHeight={get(c, "maxHeight", false)}
               backgroundColor={get(c, "backgroundColor", false)}
               alignment={get(c, "alignment", "")}
+              verticalAlignment={get(c, "verticalAlignment", "")}
               fullwidth={get(c, "fullwidth", "")}
               caption={get(c, "caption", false)}
             />

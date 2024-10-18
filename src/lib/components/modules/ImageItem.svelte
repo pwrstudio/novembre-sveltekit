@@ -59,7 +59,7 @@
     transition: opacity 0.25s $transition;
     object-fit: contain;
     margin-left: $small-margin;
-    height: 100%;
+    max-height: 100%;
 
     @include screen-size("small") {
       max-height: unset;

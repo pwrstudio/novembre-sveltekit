@@ -41,6 +41,7 @@
           maxHeight={get(c, "maxHeight", false)}
           backgroundColor={get(c, "backgroundColor", false)}
           alignment={get(c, "alignment", "")}
+          verticalAlignment={get(c, "verticalAlignment", "")}
           fullwidth={get(c, "fullwidth", "")}
           caption={get(c, "caption", false)}
         />
@@ -64,19 +65,19 @@
   <div class="about-credits">
     <div class="about-credits-column">
       {@html renderBlockText(
-        get(globalConfig, "credits.columnOne.content", []),
+        get(globalConfig, "credits.columnOne.content", [])
       )}
     </div>
 
     <div class="about-credits-column">
       {@html renderBlockText(
-        get(globalConfig, "credits.columnTwo.content", []),
+        get(globalConfig, "credits.columnTwo.content", [])
       )}
     </div>
 
     <div class="about-credits-column">
       {@html renderBlockText(
-        get(globalConfig, "credits.columnThree.content", []),
+        get(globalConfig, "credits.columnThree.content", [])
       )}
     </div>
   </div>
