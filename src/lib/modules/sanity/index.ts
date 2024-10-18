@@ -3,12 +3,13 @@ import blocksToHtml from '@sanity/block-content-to-html'
 import imageUrlBuilder from '@sanity/image-url'
 import type { BlockContent } from "$lib/types/sanity.types";
 import { SANITY_ID } from "$lib/constants";
+import { PUBLIC_ENVIRONMENT } from "$env/static/public"
 
 export const client = createClient({
     projectId: SANITY_ID,
     dataset: 'production',
     token: '', // or leave blank to be anonymous user
-    useCdn: true, // `false` if you want to ensure fresh data
+    useCdn: PUBLIC_ENVIRONMENT ===  "preview" ? false : true, // Don't use the CDN for preview
     apiVersion: '2024-06-06',
 })
 
