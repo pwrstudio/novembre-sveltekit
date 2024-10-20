@@ -49,7 +49,7 @@
   {/if}
 
   {#if get(post, "preview._type", "") === "singleImage"}
-    <a href="/{post.taxonomy.category}/{post.slug}">
+    <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <Image
         fullwidth={true}
         isListing={true}
@@ -59,13 +59,13 @@
   {/if}
 
   {#if get(post, "preview._type", "") === "imageGroup"}
-    <a href="/{post.taxonomy.category}/{post.slug}">
+    <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <ImageGroup isListing={true} {isHeader} slides={post.preview.images} />
     </a>
   {/if}
 
   {#if get(post, "preview._type", "") === "slideshow"}
-    <a href="/{post.taxonomy.category}/{post.slug}">
+    <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <Slideshow
         autoplay={post.preview.autoplay}
         isListing={true}
@@ -75,7 +75,7 @@
   {/if}
 
   {#if get(post, "preview._type", "") === "videoLoop"}
-    <a href="/{post.taxonomy.category}/{post.slug}">
+    <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <VideoLoop
         isListing={true}
         fullwidth={true}
@@ -86,7 +86,7 @@
   {/if}
 
   {#if !isHeader}
-    <a href="/{post.taxonomy.category}/{post.slug}">
+    <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <div
         class="preview__title preview__title--free"
         class:preview__title--free={get(post, "preview._type", "") ==
