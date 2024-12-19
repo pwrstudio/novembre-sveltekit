@@ -4,7 +4,7 @@
 
   export let url = ""
   export let posterImage = {}
-  export let caption = false
+  export let caption: string | boolean = false
   export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let maxHeight = false
@@ -97,14 +97,11 @@
 </script>
 
 <div
-  class="video"
+  class="video {alignment}"
   class:listing={isListing}
   class:video--full={fullwidth || isListing}
   style={customStyles}
 >
-  <!-- poster={posterImage
-  ? urlFor(posterImage).width(1200).quality(100).auto("format").url()
-  : ""} -->
   <video
     class="video-player {alignment}"
     preload="metadata"
@@ -118,7 +115,7 @@
     bind:duration
     bind:paused
     bind:this={videoEl}
-  />
+  ></video>
   {#if !autoplay && !isListing}
     <div class="controls" style="opacity: {duration && showControls ? 1 : 0}">
       <!-- <progress value={time / duration || 0} /> -->
@@ -157,6 +154,10 @@
   {/if}
 </div>
 
+{#if caption}
+  <div class="caption {alignment}">{caption}</div>
+{/if}
+
 <style lang="scss">
   @import "../../styles/variables.scss";
 
@@ -172,6 +173,18 @@
     position: relative;
     display: flex;
     justify-content: center;
+
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    &.center {
+      justify-content: center;
+    }
 
     margin-bottom: $large-vertical-margin;
 
@@ -273,6 +286,31 @@
 
     &::-webkit-progress-bar {
       background-color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  .caption {
+    font-family: $sans-stack;
+    font-size: $xsmall;
+    font-weight: 300;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: $large-vertical-margin;
+    letter-spacing: 0.1em;
+    color: black;
+
+    &.left {
+      text-align: left;
+    }
+
+    &.right {
+      text-align: right;
+    }
+
+    &.center {
+      text-align: center;
     }
   }
 </style>
