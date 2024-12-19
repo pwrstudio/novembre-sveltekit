@@ -72,7 +72,7 @@
     </div>
   {/if}
   {#if caption}
-    <div class="caption">{caption}</div>
+    <div class="caption {alignment}">{caption}</div>
   {/if}
 </MediaQuery>
 
@@ -118,6 +118,18 @@
     text-align: center;
     margin-bottom: $large-vertical-margin;
     letter-spacing: 0.1em;
+
+    &.left {
+      text-align: left;
+    }
+
+    &.right {
+      text-align: right;
+    }
+
+    &.center {
+      text-align: center;
+    }
   }
 
   .left {
