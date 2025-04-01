@@ -20,7 +20,7 @@
   <MediaQuery query="(min-width: 800px)" let:matches>
     {#if matches}
       <a
-        href="https://www.instagram.com/novembremagazine/"
+        href="https://www.instagram.com/novembreglobal/"
         rel="noreferrer"
         class="footer__link footer__link--left"
         target="_blank"
