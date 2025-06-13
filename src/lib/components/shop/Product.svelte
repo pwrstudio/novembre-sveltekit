@@ -35,12 +35,6 @@
   <div class="column right">
     <!-- TITLE -->
     <h1>{post.title}</h1>
-    <!-- CONTENT -->
-    {#if post.content}
-      <div class="description">
-        {@html renderBlockText(post.content)}
-      </div>
-    {/if}
     <!-- PRICE -->
     {#if price}
       <div class="price">€{price}</div>
@@ -51,12 +45,20 @@
         <button on:click={handleAddToCart}>Add to cart</button>
       </div>
     {/if}
+    <!-- CONTENT -->
+    {#if post.content}
+      <div class="description">
+        {@html renderBlockText(post.content)}
+      </div>
+    {/if}
   </div>
   <div class="column left" {style}>
-    <!-- SLIDESHOW -->
-    {#if slides.length > 0}
-      <ShopSlideshow {slides} />
-    {/if}
+    <div class="shop-slideshow-container">
+      <!-- SLIDESHOW -->
+      {#if slides.length > 0}
+        <ShopSlideshow {slides} />
+      {/if}
+    </div>
   </div>
 </div>
 
@@ -64,23 +66,40 @@
   @import "../../styles/variables.scss";
 
   .product {
-    height: 100vh;
-    min-height: 800px;
     display: flex;
     flex-wrap: nowrap;
     font-family: $sans-stack;
 
     @include screen-size("small") {
       flex-wrap: wrap;
-      height: unset;
     }
 
     .column {
       width: 50%;
-      height: 100%;
 
       @include screen-size("small") {
         width: 100%;
+      }
+
+      &.left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        order: 1;
+        min-height: 100vh;
+
+        @include screen-size("small") {
+          min-height: 100vh;
+        }
+
+        .shop-slideshow-container {
+          height: 100vh;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
       }
 
       &.right {
@@ -88,6 +107,7 @@
         padding: 20px;
         padding-top: 120px;
         order: 2;
+        height: auto;
 
         .description {
           width: 100%;
@@ -116,18 +136,6 @@
               background: $white;
             }
           }
-        }
-      }
-
-      &.left {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        order: 1;
-
-        @include screen-size("small") {
-          height: 800px;
         }
       }
     }
