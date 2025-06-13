@@ -14,6 +14,7 @@
   import Ellipse from "../ellipse/Ellipse.svelte"
 
   let checkoutInProgress = false
+  let currentCart = $cart
 
   const shopifyClient = Client.buildClient({
     domain: SHOPIFY_DOMAIN,
@@ -23,19 +24,26 @@
 
   async function handleCheckout() {
     checkoutInProgress = true
-    const checkout = await shopifyClient.checkout.create()
+    try {
+      // Create a checkout
+      const checkout = await shopifyClient.checkout.create()
 
-    const lineItemsToAdd = cartToCheckoutLineItems($cart)
+      // Add items to the checkout
+      const lineItems = cartToCheckoutLineItems(currentCart)
+      const updatedCheckout = await shopifyClient.checkout.addLineItems(
+        checkout.id,
+        lineItems
+      )
 
-    // Add an item to the checkout
-    const updatedCheckout = await shopifyClient.checkout.addLineItems(
-      checkout.id,
-      lineItemsToAdd,
-    )
-
-    if (updatedCheckout?.webUrl) {
-      clearCart()
-      window.location.href = checkout.webUrl
+      if (updatedCheckout?.webUrl) {
+        clearCart()
+        window.location.href = updatedCheckout.webUrl
+      } else {
+        throw new Error("No checkout URL found")
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error)
+      checkoutInProgress = false
     }
   }
 </script>
