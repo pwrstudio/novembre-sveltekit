@@ -46,6 +46,7 @@
       top: 0;
       left: 0;
       padding: 10px;
+      padding-inline: 20px;
       font-family: $sans-stack;
       font-size: $body;
       width: 100%;
@@ -81,6 +82,13 @@
 
       @include screen-size("small") {
         width: 100%;
+      }
+    }
+
+    &:hover {
+      img,
+      .information {
+        opacity: 0.7;
       }
     }
   }

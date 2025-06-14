@@ -91,6 +91,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include screen-size("small") {
+      padding-top: 40px;
+      width: 95%;
+      height: 100%;
+    }
   }
 
   .embla__container {

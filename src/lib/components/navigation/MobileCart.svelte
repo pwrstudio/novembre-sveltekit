@@ -35,7 +35,7 @@
     align-items: center;
     mix-blend-mode: difference;
 
-    @include screen-size("small") {
+    @include screen-size("medium") {
       display: flex;
     }
 

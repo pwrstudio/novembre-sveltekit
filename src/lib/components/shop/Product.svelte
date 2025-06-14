@@ -69,6 +69,7 @@
     display: flex;
     flex-wrap: nowrap;
     font-family: $sans-stack;
+    overflow-x: hidden;
 
     @include screen-size("small") {
       flex-wrap: wrap;
@@ -90,7 +91,7 @@
         min-height: 100vh;
 
         @include screen-size("small") {
-          min-height: 100vh;
+          min-height: 70dvh;
         }
 
         .shop-slideshow-container {
@@ -99,6 +100,10 @@
           position: absolute;
           top: 0;
           left: 0;
+
+          @include screen-size("small") {
+            height: 100%;
+          }
         }
       }
 
@@ -108,6 +113,11 @@
         padding-top: 120px;
         order: 2;
         height: auto;
+
+        @include screen-size("small") {
+          padding-top: 0;
+          min-height: 50dvh;
+        }
 
         .description {
           width: 100%;

@@ -84,7 +84,7 @@
             autoplay
             muted
             loop
-          />
+          ></video>
         {/if}
         {#if menuBanners[0].image}
           <img
@@ -180,7 +180,7 @@
       font-size: $large;
       font-weight: 300;
 
-      @include screen-size("small") {
+      @include screen-size("medium") {
         display: none;
       }
 
