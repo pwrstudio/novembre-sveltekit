@@ -21,15 +21,7 @@ export const renderBlockText = (blocks: PortableTextBlock[]) => {
                     return `<a href="${value.href}" target="_blank" rel="noreferrer">${children}</a>`
                 }
             },
-            block: {
-                normal: ({ children, value }) => {
-                    const style = value.style || 'normal'
-                    return style === 'blockquote' 
-                        ? `<blockquote>${children}</blockquote>`
-                        : `<p class="${style}">${children}</p>`
-                },
-                blockquote: ({ children }) => `<blockquote>${children}</blockquote>`,
-            },
+            unknownBlockStyle: ({ children, value }) => `<p class="${value.style || 'normal'}">${children}</p>`,
             types: {
                 imageGroup: ({ value }) => `<p>${value}</p>`,
                 slideshow: ({ value }) => `<p>${value}</p>`,
