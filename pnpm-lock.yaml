@@ -36,8 +36,8 @@ importers:
         specifier: ^6.0.8
         version: 6.0.8
       shopify-buy:
-        specifier: ^3.0.4
-        version: 3.0.4
+        specifier: ^3.0.6
+        version: 3.0.6
       svelte-media-query:
         specifier: ^1.1.2
         version: 1.1.2
@@ -47,13 +47,13 @@ importers:
         version: 2.0.13
       '@sveltejs/adapter-auto':
         specifier: ^6.0.1
-        version: 6.0.1(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))
+        version: 6.0.1(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))
       '@sveltejs/kit':
         specifier: ^2.21.5
-        version: 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+        version: 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^5.1.0
-        version: 5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+        version: 5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -64,11 +64,11 @@ importers:
         specifier: ^1.89.0
         version: 1.89.1
       svelte:
-        specifier: ^5.34.3
-        version: 5.34.3
+        specifier: ^5.34.7
+        version: 5.34.7
       svelte-check:
-        specifier: ^4.2.1
-        version: 4.2.1(picomatch@4.0.2)(svelte@5.34.3)(typescript@5.8.3)
+        specifier: ^4.2.2
+        version: 4.2.2(picomatch@4.0.2)(svelte@5.34.7)(typescript@5.8.3)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -622,14 +622,6 @@ packages:
     resolution: {integrity: sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==}
     engines: {node: '>=12.0.0'}
 
-  fdir@6.3.0:
-    resolution: {integrity: sha512-QOnuT+BOtivR77wYvCWHfGt9s4Pz1VIMbD463vegT5MLqNXy8rYFT/lPVEqf/bhYeT6qmqrNHhsX+rWwe3rOCQ==}
-    peerDependencies:
-      picomatch: ^3 || ^4
-    peerDependenciesMeta:
-      picomatch:
-        optional: true
-
   fdir@6.4.5:
     resolution: {integrity: sha512-4BG7puHpVsIYxZUbiUE3RqGloLaSSwzYie5jvasC4LWuBWzZawynvYouhjbQKw2JuIGYdm0DzIxl8iVidKlUEw==}
     peerDependencies:
@@ -812,8 +804,8 @@ packages:
   set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
 
-  shopify-buy@3.0.4:
-    resolution: {integrity: sha512-lDdX/43rAAs/3bQFbqTNrS4d50WDpqY60KvEEVTKyJXrQ+ZXX45ok3vC0iOisEyDAWN2/2HYXc3Iu45Rxkd4+w==}
+  shopify-buy@3.0.6:
+    resolution: {integrity: sha512-WI1yTQLA7vpTkDE35GWeIYjfvJzIhmlEoaei7TvM1BDkbW7R6FJ1A5UvIL8W0NvZZOtKjqSYNtBrig5Y2jUG6w==}
 
   sirv@3.0.0:
     resolution: {integrity: sha512-BPwJGUeDaDCHihkORDchNyyTvWFhcusy1XMmhEVTQTwGeybFbp8YEmB+njbPnth1FibULBSBVwCQni25XlCUDg==}
@@ -826,8 +818,8 @@ packages:
   string_decoder@1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
 
-  svelte-check@4.2.1:
-    resolution: {integrity: sha512-e49SU1RStvQhoipkQ/aonDhHnG3qxHSBtNfBRb9pxVXoa+N7qybAo32KgA9wEb2PCYFNaDg7bZCdhLD1vHpdYA==}
+  svelte-check@4.2.2:
+    resolution: {integrity: sha512-1+31EOYZ7NKN0YDMKusav2hhEoA51GD9Ws6o//0SphMT0ve9mBTsTUEX7OmDMadUP3KjNHsSKtJrqdSaD8CrGQ==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -837,8 +829,8 @@ packages:
   svelte-media-query@1.1.2:
     resolution: {integrity: sha512-wprqLjnTDhHsoCwCobMp06laiBb9sz8FeKQixEm9teS0tbPb2nmlzy3vlbDX5MPwNRyNML1/1SHmshQQnQ77+w==}
 
-  svelte@5.34.3:
-    resolution: {integrity: sha512-Y0QKP2rfWD+ARKe91c4JgZgc/nXa2BfOnVBUjYUMB819m7VyPszihkjdzXPIV0qlGRZYEukpgNq7hgbzTbopJw==}
+  svelte@5.34.7:
+    resolution: {integrity: sha512-5PEg+QQKce4t1qiOtVUhUS3AQRTtxJyGBTpxLcNWnr0Ve8q4r06bMo0Gv8uhtCPWlztZHoi3Ye7elLhu+PCTMg==}
     engines: {node: '>=18'}
 
   through2@4.0.2:
@@ -1182,14 +1174,14 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  '@sveltejs/adapter-auto@6.0.1(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))':
+  '@sveltejs/adapter-auto@6.0.1(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))':
     dependencies:
-      '@sveltejs/kit': 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+      '@sveltejs/kit': 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
 
-  '@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
+  '@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
     dependencies:
       '@sveltejs/acorn-typescript': 1.0.5(acorn@8.14.1)
-      '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+      '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
       '@types/cookie': 0.6.0
       acorn: 8.14.1
       cookie: 0.6.0
@@ -1201,27 +1193,27 @@ snapshots:
       sade: 1.8.1
       set-cookie-parser: 2.6.0
       sirv: 3.0.0
-      svelte: 5.34.3
+      svelte: 5.34.7
       vite: 6.3.5(@types/node@22.5.0)(sass@1.89.1)
       vitefu: 1.0.6(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
 
-  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+      '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
       debug: 4.4.1
-      svelte: 5.34.3
+      svelte: 5.34.7
       vite: 6.3.5(@types/node@22.5.0)(sass@1.89.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
+  '@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.3)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
       debug: 4.4.1
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.17
-      svelte: 5.34.3
+      svelte: 5.34.7
       vite: 6.3.5(@types/node@22.5.0)(sass@1.89.1)
       vitefu: 1.0.6(vite@6.3.5(@types/node@22.5.0)(sass@1.89.1))
     transitivePeerDependencies:
@@ -1350,10 +1342,6 @@ snapshots:
   event-source-polyfill@1.0.31: {}
 
   eventsource@2.0.2: {}
-
-  fdir@6.3.0(picomatch@4.0.2):
-    optionalDependencies:
-      picomatch: 4.0.2
 
   fdir@6.4.5(picomatch@4.0.2):
     optionalDependencies:
@@ -1533,7 +1521,7 @@ snapshots:
 
   set-cookie-parser@2.6.0: {}
 
-  shopify-buy@3.0.4: {}
+  shopify-buy@3.0.6: {}
 
   sirv@3.0.0:
     dependencies:
@@ -1547,21 +1535,21 @@ snapshots:
     dependencies:
       safe-buffer: 5.1.2
 
-  svelte-check@4.2.1(picomatch@4.0.2)(svelte@5.34.3)(typescript@5.8.3):
+  svelte-check@4.2.2(picomatch@4.0.2)(svelte@5.34.7)(typescript@5.8.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 4.0.1
-      fdir: 6.3.0(picomatch@4.0.2)
+      fdir: 6.4.5(picomatch@4.0.2)
       picocolors: 1.1.1
       sade: 1.8.1
-      svelte: 5.34.3
+      svelte: 5.34.7
       typescript: 5.8.3
     transitivePeerDependencies:
       - picomatch
 
   svelte-media-query@1.1.2: {}
 
-  svelte@5.34.3:
+  svelte@5.34.7:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0

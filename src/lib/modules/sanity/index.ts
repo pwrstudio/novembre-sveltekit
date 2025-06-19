@@ -22,7 +22,12 @@ export const renderBlockText = (blocks: PortableTextBlock[]) => {
                 }
             },
             block: {
-                normal: ({ children }) => `<p>${children}</p>`,
+                normal: ({ children, value }) => {
+                    const style = value.style || 'normal'
+                    return style === 'blockquote' 
+                        ? `<blockquote>${children}</blockquote>`
+                        : `<p class="${style}">${children}</p>`
+                },
                 blockquote: ({ children }) => `<blockquote>${children}</blockquote>`,
             },
             types: {
