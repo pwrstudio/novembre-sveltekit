@@ -389,6 +389,26 @@ export type Product = {
     _rev: string;
     editorialState?: "preview" | "live";
     title?: string;
+    subtitle?: string;
+    preOrderItem?: boolean;
+    preOrderText?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     shopifyId?: string;
     backgroundColor?: Color;
     mainImage?: {
