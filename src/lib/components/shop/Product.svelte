@@ -34,15 +34,33 @@
 <div class="product">
   <div class="column right">
     <!-- TITLE -->
-    <h1>{post.title}</h1>
+    <div class="title">
+      <h1>{post.title}</h1>
+      {#if post.subtitle}
+        <h2>{post.subtitle}</h2>
+      {/if}
+    </div>
     <!-- PRICE -->
     {#if price}
       <div class="price">€{price}</div>
     {/if}
-    <!-- ADD TO CART BUTTON -->
+    <!-- TOP: ADD TO CART BUTTON -->
     {#if post.shopify}
       <div class="add-to-cart">
-        <button on:click={handleAddToCart}>Add to cart</button>
+        <button on:click={handleAddToCart}>
+          <div class="button-text">
+            {#if post.preOrderItem}
+              Pre-order
+            {:else}
+              Add to cart
+            {/if}
+          </div>
+        </button>
+        {#if post.preOrderItem && post.preOrderText}
+          <div class="pre-order-text">
+            {@html renderBlockText(post.preOrderText)}
+          </div>
+        {/if}
       </div>
     {/if}
     <!-- CONTENT -->
@@ -119,6 +137,23 @@
           min-height: 50dvh;
         }
 
+        .title {
+          line-height: 1em;
+          font-size: $intro;
+          margin-bottom: 20px;
+
+          h1 {
+            font-weight: 300;
+            margin-bottom: 0;
+          }
+
+          h2 {
+            margin-top: 0;
+            font-weight: 300;
+            font-size: $body;
+          }
+        }
+
         .description {
           width: 100%;
           font-family: $serif-stack;
@@ -144,6 +179,11 @@
 
             &:hover {
               background: $white;
+            }
+
+            .button-text {
+              position: relative;
+              top: 2px;
             }
           }
         }

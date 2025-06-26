@@ -10,7 +10,7 @@
 
   export let item: MergedProduct
 
-  const src = urlFor(item.mainImage).width(80).height(80).url()
+  const src = urlFor(item.mainImage).width(200).url()
 
   function handleIncreaseQuantity() {
     increaseQuantity(item._id)
@@ -29,7 +29,9 @@
 
 <div class="cart-item">
   <!-- THUMBNAIL -->
-  <img {src} alt={item.title} class="thumbnail" />
+  <a href={`/shop/${item.slug?.current ?? ""}`}>
+    <img {src} alt={item.title} class="thumbnail" />
+  </a>
   <div class="details">
     <!-- TITLE -->
     <div class="title">{item.title}</div>
@@ -62,7 +64,8 @@
       height: 80px;
       object-fit: cover;
       margin-right: 20px;
-      border: 1px solid #ccc;
+      // border: 1px solid #ccc;
+      object-fit: contain;
     }
 
     .details {

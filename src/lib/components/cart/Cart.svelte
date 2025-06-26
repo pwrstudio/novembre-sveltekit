@@ -79,7 +79,9 @@
 
       <!-- CHECKOUT -->
       <div class="cart-checkout">
-        <button on:click={handleCheckout}>Checkout</button>
+        <button on:click={handleCheckout}>
+          <div class="button-text">Checkout</div>
+        </button>
       </div>
     {/if}
   </div>
@@ -142,6 +144,11 @@
 
         &:hover {
           background: $white;
+        }
+
+        .button-text {
+          position: relative;
+          top: 2px;
         }
       }
     }
