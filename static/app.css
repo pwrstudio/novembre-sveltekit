@@ -41,6 +41,7 @@
     --large-vertical-margin: 32px;
     --full-height: 100vh;
     --height: 80px;
+    --standard-letter-spacing: 0.1em;
   }
   
   html {
@@ -184,7 +185,7 @@
   .content p.small {
     font-family: var(--sans-stack);
     font-size: var(--small);
-    letter-spacing: 0.1em;
+    letter-spacing: var(--standard-letter-spacing);
   }
   
   .content p.small a {

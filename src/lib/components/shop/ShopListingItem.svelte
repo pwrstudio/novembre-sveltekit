@@ -18,12 +18,16 @@
   {style}
 >
   <div class="information">
-    <div class="title">{post.title}</div>
-
-    {#if price}
-      <div class="price">€{price}</div>
-    {/if}
+    <div class="title-section">
+      <div class="title">{post.title}</div>
+      {#if post.subtitle}
+        <div class="subtitle">{post.subtitle}</div>
+      {/if}
+    </div>
   </div>
+  {#if price}
+    <div class="price">€{price}</div>
+  {/if}
   <img
     src={urlFor(post.mainImage).width(800).quality(100).auto("format").url()}
     alt={post.title}
@@ -40,6 +44,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #ccc;
+    position: relative;
 
     .information {
       position: absolute;
@@ -52,11 +58,37 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+
+      .title-section {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          font-size: $body;
+        }
+
+        .subtitle {
+          font-size: $small;
+        }
+      }
+    }
+
+    .price {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-family: $sans-stack;
+      font-size: $intro;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
     }
 
     img {
-      max-width: 80%;
-      max-height: 80%;
+      max-width: 65%;
+      max-height: 65%;
       overflow: hidden;
       object-fit: cover;
     }
@@ -88,6 +120,9 @@
     &:hover {
       img,
       .information {
+        opacity: 0.7;
+      }
+      .price {
         opacity: 0.7;
       }
     }

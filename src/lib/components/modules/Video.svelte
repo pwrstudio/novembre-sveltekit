@@ -298,7 +298,7 @@
     margin-right: auto;
     text-align: center;
     margin-bottom: $large-vertical-margin;
-    letter-spacing: 0.1em;
+    letter-spacing: var(--standard-letter-spacing);
     color: black;
 
     &.left {

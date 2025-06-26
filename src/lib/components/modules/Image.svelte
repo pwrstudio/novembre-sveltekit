@@ -149,7 +149,7 @@
     font-weight: 300;
     width: 100%;
     text-align: center;
-    letter-spacing: 0.1em;
+    letter-spacing: var(--standard-letter-spacing);
   }
 
   .center {

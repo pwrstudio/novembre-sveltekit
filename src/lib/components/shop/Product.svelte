@@ -195,4 +195,8 @@
       font-size: $intro;
     }
   }
+
+  .pre-order-text {
+    border-bottom: 1px solid #ccc;
+  }
 </style>
