@@ -33,6 +33,9 @@
 
 <div class="product">
   <div class="column right">
+    <div class="back-button">
+      <a href="/shop"><span class="arrow">←</span> Back to shop</a>
+    </div>
     <!-- TITLE -->
     <div class="title">
       <h1>{post.title}</h1>
@@ -118,9 +121,11 @@
           position: absolute;
           top: 0;
           left: 0;
+          padding-top: 30px;
 
           @include screen-size("small") {
-            height: 100%;
+            padding-top: 50px;
+            height: 90%;
           }
         }
       }
@@ -198,5 +203,32 @@
 
   .pre-order-text {
     border-bottom: 1px solid #ccc;
+  }
+
+  .back-button {
+    @include screen-size("small") {
+      margin-top: 10px;
+    }
+
+    a {
+      padding: 5px;
+      margin-bottom: 20px;
+      border: 1px solid $black;
+      text-transform: uppercase;
+      font-size: $small;
+      font-family: $sans-stack;
+      text-decoration: none;
+      color: $black;
+      font-weight: 300;
+
+      .arrow {
+        position: relative;
+        top: -1px;
+      }
+
+      &:hover {
+        background: $white;
+      }
+    }
   }
 </style>
