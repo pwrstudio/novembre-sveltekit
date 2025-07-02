@@ -203,6 +203,10 @@
 
   .pre-order-text {
     border-bottom: 1px solid #ccc;
+
+    &:empty {
+      display: none;
+    }
   }
 
   .back-button {
