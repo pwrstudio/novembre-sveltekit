@@ -148,6 +148,7 @@
       border: none;
       cursor: pointer;
       padding: 0;
+      color: var(--black);
 
       @include screen-size("small") {
         font-size: 45px;
