@@ -64,7 +64,6 @@
       height: 80px;
       object-fit: cover;
       margin-right: 20px;
-      // border: 1px solid #ccc;
       object-fit: contain;
     }
 
@@ -76,11 +75,13 @@
 
       @include screen-size("small") {
         flex-wrap: wrap;
+        font-size: $mobile_small;
       }
 
       .title {
         @include screen-size("small") {
           width: 100%;
+          font-size: $mobile_small;
         }
       }
 

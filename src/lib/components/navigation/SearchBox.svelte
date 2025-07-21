@@ -178,6 +178,7 @@
       font-size: $large;
       border: none;
       cursor: pointer;
+      color: var(--black);
 
       @include screen-size("small") {
         font-size: 45px;

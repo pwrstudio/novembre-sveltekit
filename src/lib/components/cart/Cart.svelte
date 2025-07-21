@@ -141,6 +141,7 @@
         padding: 10px;
         text-transform: uppercase;
         margin-top: 20px;
+        color: var(--black);
 
         &:hover {
           background: $white;
