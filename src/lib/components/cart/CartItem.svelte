@@ -74,15 +74,43 @@
       align-items: flex-start;
       width: 100%;
 
+      @include screen-size("small") {
+        flex-wrap: wrap;
+      }
+
+      .title {
+        @include screen-size("small") {
+          width: 100%;
+        }
+      }
+
+      .price {
+        @include screen-size("small") {
+          order: 1;
+          line-height: 40px;
+          height: 40px;
+        }
+      }
+
       .quantity-controls {
         display: flex;
         align-items: center;
+
+        @include screen-size("small") {
+          order: 2;
+        }
 
         button {
           border: 1px solid $black;
           padding: 5px;
           cursor: pointer;
           width: 20px;
+          color: var(--black);
+
+          @include screen-size("small") {
+            height: 40px;
+            width: 40px;
+          }
         }
 
         .quantity {
@@ -98,9 +126,15 @@
         border: 1px solid #ccc;
         padding: 5px 10px;
         cursor: pointer;
+        color: var(--black);
 
         &:hover {
           background: $white;
+        }
+
+        @include screen-size("small") {
+          order: 3;
+          height: 40px;
         }
       }
     }

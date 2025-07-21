@@ -181,6 +181,7 @@
       &.submit-button {
         position: relative;
         height: 1em;
+        color: var(--black);
       }
     }
 
