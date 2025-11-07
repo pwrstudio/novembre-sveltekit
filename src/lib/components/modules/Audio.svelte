@@ -39,12 +39,18 @@
     setTimeout(cancel, 200)
   }
 
-  const format = seconds => {
+  const format = (seconds: number) => {
     if (isNaN(seconds)) return "..."
+
     const minutes = Math.floor(seconds / 60)
-    seconds = Math.floor(seconds % 60)
-    if (seconds < 10) seconds = "0" + seconds
-    return `${minutes}:${seconds}`
+
+    let secondsString = Math.floor(seconds % 60).toString()
+
+    if (seconds < 10) {
+      secondsString = "0" + secondsString
+    }
+
+    return `${minutes}:${secondsString}`
   }
 </script>
 
@@ -68,7 +74,7 @@
     bind:duration
     bind:paused
     bind:this={audioEl}
-  />
+  ></audio>
 
   <div class="controls">
     {#if posterImage}
@@ -93,7 +99,7 @@
       {/if}
     </div>
 
-    <progress value={time / duration || 0} />
+    <progress value={time / duration || 0}></progress>
   </div>
 </div>
 

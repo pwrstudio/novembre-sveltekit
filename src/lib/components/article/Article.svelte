@@ -136,11 +136,15 @@
           url={"https://cdn.sanity.io/files/gj963qwj/production/" +
             get(c, "audio.asset._ref", "")
               .replace("file-", "")
-              .replace("-mp3", ".mp3")}
+              .replace("-mp3", ".mp3")
+              .replace("-wav", ".wav")
+              .replace("-ogg", ".ogg")
+              .replace("-m4a", ".m4a")}
           title={get(c, "title", "")}
           link={get(c, "link", false)}
           posterImage={get(c, "image", false)}
           backgroundColor={get(c, "backgroundColor.hex", false)}
+          autoplay={get(c, "autoplay", false)}
         />
       {/if}
       {#if c._type == "arbitraryEmbed"}

@@ -71,7 +71,7 @@
   }
 
   onMount(async () => {
-    if (slides.length > 2) {
+    if (Array.isArray(slides) && slides.length > 2) {
       if (autoplay && !isRelated) {
         let options: EmblaOptionsType = { ...SharedEmblaOptions }
         emblaApi = EmblaCarousel(slideShowEl, options, [
