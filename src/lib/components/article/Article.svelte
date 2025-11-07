@@ -28,7 +28,7 @@
   })
 </script>
 
-{#if post.banner && bannerActive}
+{#if post?.banner && bannerActive}
   <a
     href={post.banner.link}
     in:fade
