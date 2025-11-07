@@ -210,9 +210,13 @@
       opacity: 1;
 
       @include screen-size("small") {
-        font-size: $mobile_xlarge;
+        font-size: $mobile_large;
         margin-bottom: $large-vertical-margin;
-        overflow: hidden;
+        max-width: 95%;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
 
       transition: opacity $transition;
