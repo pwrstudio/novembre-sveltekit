@@ -175,17 +175,6 @@
     height: 100%;
   }
 
-  .nav-container {
-    height: 140px;
-    width: 100%;
-    margin-top: $small-vertical-margin;
-    margin-bottom: $large-vertical-margin;
-
-    @include screen-size("small") {
-      height: 120px;
-    }
-  }
-
   .loading {
     position: absolute;
     top: 0;
@@ -225,21 +214,9 @@
       cursor: pointer;
     }
 
-    &__slideshow {
-      height: 100%;
-    }
-
-    &.first {
-      max-height: unset;
-    }
-
     &.loaded {
       opacity: 1;
     }
-  }
-
-  .hidden {
-    opacity: 0;
   }
 
   .navigation {
@@ -278,10 +255,6 @@
   .next {
     height: 100px;
     right: 10px;
-  }
-
-  .arrow {
-    height: 100px;
   }
 
   // THUMBNAILS

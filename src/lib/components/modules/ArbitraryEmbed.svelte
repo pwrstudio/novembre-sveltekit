@@ -25,10 +25,6 @@
 
     width: 100vw;
 
-    &.fullscreen {
-      height: 100vh;
-    }
-
     .inner {
       width: 720px;
 
@@ -36,7 +32,7 @@
         width: 480px;
       }
 
-      iframe {
+      :global(iframe) {
         width: 100%;
       }
     }

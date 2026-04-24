@@ -12,7 +12,7 @@
       autoplay
       muted
       loop
-    />
+    ></video>
   {/if}
 
   {#if banner?.image}

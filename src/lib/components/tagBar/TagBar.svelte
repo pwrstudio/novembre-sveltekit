@@ -51,11 +51,6 @@
     overflow: visible;
     padding-top: 3px;
 
-    span {
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-    }
-
     @include screen-size("small") {
       margin-right: 20px;
     }

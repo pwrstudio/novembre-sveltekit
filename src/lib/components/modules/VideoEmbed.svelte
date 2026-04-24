@@ -26,7 +26,7 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope;
         picture-in-picture"
         allowfullscreen
-      />
+      ></iframe>
     {/if}
     {#if url.includes("vimeo")}
       <iframe
@@ -38,7 +38,7 @@
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen
-      />
+      ></iframe>
     {/if}
   </div>
 </div>

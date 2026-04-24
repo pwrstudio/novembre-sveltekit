@@ -65,7 +65,7 @@
   </div>
 
   {#if !allPostsLoaded}
-    <div class="sentinel" bind:this={sentinel} />
+    <div class="sentinel" bind:this={sentinel}></div>
   {/if}
 </div>
 

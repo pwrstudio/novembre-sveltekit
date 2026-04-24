@@ -47,10 +47,6 @@
   @import "../../styles/variables.scss";
 
   .slideshow {
-    &__slideshow {
-      height: 100%;
-    }
-
     &__slide-image {
       height: 100%;
 
@@ -105,10 +101,6 @@
       }
     }
 
-    &__slide-video {
-      height: 100%;
-    }
-
     &__title {
       font-family: $sans-stack;
       font-size: $large;
@@ -122,19 +114,13 @@
       max-width: 95%;
       color: $white;
 
-      em {
+      :global(em) {
         font-family: $serif-stack;
         font-style: italic;
       }
 
       @include screen-size("small") {
         font-size: $mobile_large;
-      }
-
-      &.double {
-        @include screen-size("small") {
-          font-size: $mobile_intro;
-        }
       }
     }
   }

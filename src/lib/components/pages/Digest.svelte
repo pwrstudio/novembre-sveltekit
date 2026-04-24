@@ -86,16 +86,15 @@
         margin-bottom: 0;
       }
 
-      a {
+      :global(a) {
         color: currentColor;
         text-decoration: none;
         border-bottom: 3px solid transparent;
+        transition: border 0.3s $transition;
 
         @include screen-size("small") {
           border-bottom: 2px solid transparent;
         }
-
-        transition: border 0.3s $transition;
 
         &:hover {
           border-bottom: 3px solid $black;

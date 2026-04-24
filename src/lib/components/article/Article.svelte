@@ -156,7 +156,7 @@
     <div class="related-header">RELATED ARTICLES</div>
     <Slideshow slides={post.related} isRelated={true} />
   {:else}
-    <div class="bottom-space" />
+    <div class="bottom-space"></div>
   {/if}
 </article>
 
@@ -168,28 +168,16 @@
     width: 100%;
     overflow: hidden;
 
-    &.top-padded {
-      padding-top: 100px;
-    }
-
-    &.bureau {
-      background: $grey;
-    }
-
     &__header {
-      img,
-      video {
+      :global(img),
+      :global(video) {
         height: $full-height;
         width: 100%;
         object-fit: cover;
       }
-
-      @include screen-size("small") {
-        // height: 70vh;
-      }
     }
 
-    em {
+    :global(em) {
       font-family: inherit;
       font-style: italic;
     }
@@ -242,10 +230,6 @@
     @include screen-size("small") {
       font-size: $mobile_large;
     }
-  }
-
-  .bureau {
-    font-family: $sans-stack;
   }
 
   a {

@@ -102,7 +102,7 @@
       font-size: $mobile_intro;
     }
 
-    p {
+    :global(p) {
       padding: $small-margin;
       margin-left: $small-margin;
     }
@@ -126,15 +126,6 @@
         width: 100%;
         float: unset;
       }
-    }
-
-    .about-credits-header {
-      text-transform: uppercase;
-    }
-
-    .about-credits-item {
-      margin-bottom: 2 * $small-vertical-margin;
-      break-inside: avoid;
     }
   }
 </style>

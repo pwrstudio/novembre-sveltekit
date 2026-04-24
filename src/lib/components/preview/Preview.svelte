@@ -171,39 +171,18 @@
         }
       }
 
-      p {
+      :global(p) {
         margin: 0;
 
-        em {
+        :global(em) {
           font-family: inherit;
           font-style: italic;
         }
       }
 
-      em {
+      :global(em) {
         font-family: inherit;
         font-style: italic;
-      }
-    }
-
-    &__quote {
-      font-size: $xlarge;
-      font-weight: 300;
-      line-height: 0.85em;
-      text-transform: uppercase;
-      height: 400px;
-
-      p {
-        margin: 0;
-      }
-
-      em {
-        font-family: inherit;
-        font-style: italic;
-      }
-
-      @include screen-size("small") {
-        font-size: $mobile_large;
       }
     }
 

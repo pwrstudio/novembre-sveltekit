@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Color } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
+  import { urlFor } from "$lib/modules/sanity"
 
   export let url = ""
-  export let posterImage = {}
+  export let posterImage: unknown = undefined
   export let caption: string | boolean = false
   export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
@@ -13,8 +14,11 @@
   export let inlineDisplay = false
   export let isListing = false
   export let loop = true
-  export let muted = true
-  export let controls = false
+
+  $: poster =
+    posterImage && (posterImage as { asset?: unknown }).asset
+      ? urlFor(posterImage).width(1200).auto("format").url()
+      : undefined
 
   $: customStyles =
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
@@ -103,6 +107,7 @@
   class="video {alignment}"
   class:listing={isListing}
   class:video--full={fullwidth || isListing}
+  class:bottom-space={inlineDisplay}
   style={customStyles}
 >
   <video
@@ -110,6 +115,7 @@
     preload="metadata"
     playsinline
     {loop}
+    {poster}
     muted={autoplay || isListing}
     src={url}
     on:mousemove={handleMousemove}
@@ -269,27 +275,6 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-  }
-
-  progress {
-    position: absolute;
-    bottom: 0px;
-    left: -2px;
-    display: block;
-    width: 100%;
-    height: 7px;
-    -webkit-appearance: none;
-    appearance: none;
-
-    pointer-events: none;
-
-    &::-webkit-progress-value {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-    &::-webkit-progress-bar {
-      background-color: rgba(0, 0, 0, 1);
-    }
   }
 
   .caption {

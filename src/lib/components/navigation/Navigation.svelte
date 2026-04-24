@@ -154,7 +154,7 @@
       z-index: 10001;
       cursor: pointer;
 
-      svg {
+      :global(svg) {
         height: 100px;
 
         @include screen-size("small") {
@@ -183,14 +183,6 @@
 
       @include screen-size("medium") {
         display: none;
-      }
-
-      svg {
-        height: 100px;
-
-        @include screen-size("small") {
-          height: unset;
-        }
       }
 
       @include screen-size("small") {
@@ -228,17 +220,6 @@
       background: $white;
       top: 0;
       padding-top: $height;
-
-      span {
-        display: inline;
-        position: relative;
-        line-height: 1em;
-        cursor: pointer;
-
-        @include screen-size("small") {
-          font-size: $mobile_large;
-        }
-      }
     }
 
     &__menu-item {
@@ -306,7 +287,7 @@
       mix-blend-mode: normal;
 
       #{$block}__logo {
-        svg {
+        :global(svg) {
           fill: $white;
         }
       }
@@ -324,17 +305,6 @@
       #{$block}__toggle {
         color: $black;
       }
-    }
-
-    .bg-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: $height;
-      background: $white;
-      transition: opacity 0.3s $transition;
-      display: none;
     }
   }
 

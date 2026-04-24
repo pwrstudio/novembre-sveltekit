@@ -356,41 +356,7 @@
             padding-left: 6px;
             word-spacing: 6px;
             display: flex;
-
-            img {
-              padding-left: 6px;
-            }
           }
-        }
-      }
-
-      .external-logo {
-        height: 100px;
-        float: left;
-        margin-right: 20px;
-
-        img {
-          height: 100%;
-        }
-
-        @include screen-size("small") {
-          height: 50px;
-          float: right;
-          line-height: 0;
-          padding: 0;
-          margin-right: 0;
-        }
-      }
-
-      .title {
-        float: left;
-        font-size: $intro;
-
-        @include screen-size("small") {
-          font-size: $body;
-          line-height: $body;
-          width: 100%;
-          margin-top: 5px;
         }
       }
     }

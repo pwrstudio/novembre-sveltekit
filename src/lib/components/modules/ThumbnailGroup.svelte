@@ -21,7 +21,7 @@
   let loaded = true
 </script>
 
-<div class="thumbnail-group" style={customStyles}>
+<div class="thumbnail-group" class:fullwidth style={customStyles}>
   {#each slides as image}
     <img
       alt=""
@@ -90,25 +90,6 @@
         opacity: 0.8;
       }
     }
-
-    &.bottom-space {
-      margin-bottom: $large-vertical-margin;
-      img {
-        margin-top: -$small-margin;
-      }
-    }
-  }
-
-  .left {
-    justify-content: flex-start;
-  }
-
-  .right {
-    justify-content: flex-end;
-  }
-
-  .center {
-    justify-content: center;
   }
 
   .fullwidth {
