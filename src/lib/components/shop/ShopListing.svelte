@@ -2,7 +2,6 @@
   import type { Meta } from "$lib/types/sanity.types"
   import { ListingType } from "$lib/enums"
   import type { MergedProduct } from "$lib/types"
-  import { PUBLIC_ENVIRONMENT } from "$env/static/public"
 
   import SplashText from "../splashText/SplashText.svelte"
   import ShopListingItem from "./ShopListingItem.svelte"
@@ -14,7 +13,7 @@
   const shopIsEmpty = (posts ?? []).length === 0
 </script>
 
-{#if shopIsEmpty || PUBLIC_ENVIRONMENT === "live"}
+{#if shopIsEmpty}
   <ShopPlaceholder {globalConfig} />
 {:else}
   <SplashText listingType={ListingType.Shop} {globalConfig} />
