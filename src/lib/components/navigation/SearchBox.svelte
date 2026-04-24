@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import MediaQuery from "svelte-media-query"
+  import MediaQuery from "$lib/components/MediaQuery.svelte"
   import { goto } from "$app/navigation"
   import { menuActive, searchActive } from "$lib/modules/stores"
 

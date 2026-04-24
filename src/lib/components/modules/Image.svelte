@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Color } from "$lib/types/sanity.types"
-  import MediaQuery from "svelte-media-query"
+  import MediaQuery from "$lib/components/MediaQuery.svelte"
   import { urlFor } from "$lib/modules/sanity"
 
   // *** PROPS

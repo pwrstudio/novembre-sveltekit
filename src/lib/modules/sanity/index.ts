@@ -2,6 +2,9 @@ import { createClient } from "@sanity/client"
 import { toHTML } from '@portabletext/to-html'
 import imageUrlBuilder from '@sanity/image-url'
 import type { PortableTextBlock } from '@portabletext/types'
+
+type BlockLike = PortableTextBlock | { _type: string; _key?: string; [key: string]: unknown }
+type BlocksInput = BlockLike | BlockLike[] | undefined | null
 import { SANITY_ID } from "$lib/constants";
 import { PUBLIC_ENVIRONMENT } from "$env/static/public"
 
@@ -13,8 +16,10 @@ export const client = createClient({
     apiVersion: '2025-06-01',
 })
 
-export const renderBlockText = (blocks: PortableTextBlock[]) => {
-    return toHTML(blocks, {
+export const renderBlockText = (blocks: BlocksInput) => {
+    if (!blocks) return ''
+    const input = Array.isArray(blocks) ? blocks : [blocks]
+    return toHTML(input as PortableTextBlock[], {
         components: {
             marks: {
                 link: ({ children, value }) => {
@@ -33,13 +38,15 @@ export const renderBlockText = (blocks: PortableTextBlock[]) => {
     })
 }
 
-export const toPlainText = (blocks: PortableTextBlock[]) => {
-    return blocks
+export const toPlainText = (blocks: BlocksInput) => {
+    if (!blocks) return ''
+    const input = (Array.isArray(blocks) ? blocks : [blocks]) as PortableTextBlock[]
+    return input
         .map(block => {
             if (block._type !== 'block' || !block.children) {
                 return ''
             }
-            return block.children.map(child => child.text).join('')
+            return block.children.map(child => (child as { text?: string }).text ?? '').join('')
         })
         .join('\n\n')
 }

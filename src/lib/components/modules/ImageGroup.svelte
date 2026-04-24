@@ -2,7 +2,7 @@
   import type { Color } from "$lib/types/sanity.types"
 
   import ImageItem from "$lib/components/modules/ImageItem.svelte"
-  import MediaQuery from "svelte-media-query"
+  import MediaQuery from "$lib/components/MediaQuery.svelte"
 
   export let slides: any[] = []
   export let caption: string | false = false

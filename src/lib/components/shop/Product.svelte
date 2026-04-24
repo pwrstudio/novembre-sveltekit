@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { MergedProduct } from "$lib/types"
+  import type { ShopSlide } from "$lib/types/sanity.types"
   import { renderBlockText } from "$lib/modules/sanity"
   import { getProductPrice, addToCart } from "$lib/modules/cart"
   import ShopSlideshow from "./ShopSlideshow.svelte"
@@ -12,13 +13,13 @@
 
   const price = getProductPrice(post)
 
-  const getSlides = (product: MergedProduct) => {
+  const getSlides = (product: MergedProduct): ShopSlide[] => {
     if (product.Slideshow && product.Slideshow.length > 0) {
       return product.Slideshow
     }
 
     if (product.mainImage) {
-      return [product.mainImage]
+      return [product.mainImage as unknown as ShopSlide]
     }
 
     return []

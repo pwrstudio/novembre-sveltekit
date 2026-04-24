@@ -76,7 +76,7 @@
 
 <!-- MAILING LIST OVERLAY -->
 {#if globalConfig.showMailingListOverlay && mailingListOverlayActive}
-  <MailingListOverlay />
+  <MailingListOverlay on:close={() => (mailingListOverlayActive = false)} />
 {/if}
 
 <!-- MAIN CONTENT SLOT -->

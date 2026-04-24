@@ -2,7 +2,6 @@
   import type { Meta } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
-  import { get } from "lodash-es"
 
   import Image from "$lib/components/modules/Image.svelte"
   import ImageGroup from "$lib/components/modules/ImageGroup.svelte"
@@ -19,7 +18,8 @@
 
 <article class="about">
   <div class="about-text">
-    {#each globalConfig.about?.content ?? [] as c}
+    {#each globalConfig.about?.content ?? [] as item}
+      {@const c = item as any}
       {#if c._type == "block"}
         {@html renderBlockText(c)}
       {/if}
@@ -27,58 +27,52 @@
         <Image
           imageObject={c.image}
           inlineDisplay={true}
-          maxHeight={get(c, "maxHeight", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          caption={get(c, "caption", false)}
-          alignment={get(c, "alignment", "")}
-          fullwidth={get(c, "fullwidth", "")}
+          maxHeight={c.maxHeight ?? false}
+          backgroundColor={c.backgroundColor}
+          caption={c.caption ?? ""}
+          alignment={c.alignment ?? ""}
+          fullwidth={c.fullwidth ?? false}
         />
       {/if}
       {#if c._type == "imageGroup"}
         <ImageGroup
-          slides={c.images}
+          slides={c.images ?? []}
           inlineDisplay={true}
-          maxHeight={get(c, "maxHeight", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          alignment={get(c, "alignment", "")}
-          verticalAlignment={get(c, "verticalAlignment", "")}
-          fullwidth={get(c, "fullwidth", "")}
-          caption={get(c, "caption", false)}
+          maxHeight={c.maxHeight ?? false}
+          backgroundColor={c.backgroundColor}
+          alignment={c.alignment ?? ""}
+          verticalAlignment={c.verticalAlignment ?? ""}
+          fullwidth={c.fullwidth ?? false}
+          caption={c.caption ?? ""}
         />
       {/if}
       {#if c._type == "video"}
         <VideoEmbed
           url={c.video}
-          backgroundColor={get(c, "backgroundColor", false)}
-          caption={get(c, "caption", false)}
+          backgroundColor={c.backgroundColor}
+          caption={c.caption ?? ""}
         />
       {/if}
       {#if c._type == "slideshow"}
-        <Slideshow slides={c.images} />
+        <Slideshow slides={c.images ?? []} />
       {/if}
       {#if c._type == "arbitraryEmbed"}
-        <ArbitraryEmbed code={c.arbitraryEmbed} />
+        <ArbitraryEmbed code={c.arbitraryEmbed ?? c.embedCode ?? ""} />
       {/if}
     {/each}
   </div>
 
   <div class="about-credits">
     <div class="about-credits-column">
-      {@html renderBlockText(
-        get(globalConfig, "credits.columnOne.content", [])
-      )}
+      {@html renderBlockText(globalConfig.credits?.columnOne?.content)}
     </div>
 
     <div class="about-credits-column">
-      {@html renderBlockText(
-        get(globalConfig, "credits.columnTwo.content", [])
-      )}
+      {@html renderBlockText(globalConfig.credits?.columnTwo?.content)}
     </div>
 
     <div class="about-credits-column">
-      {@html renderBlockText(
-        get(globalConfig, "credits.columnThree.content", [])
-      )}
+      {@html renderBlockText(globalConfig.credits?.columnThree?.content)}
     </div>
   </div>
 </article>

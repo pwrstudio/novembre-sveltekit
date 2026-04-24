@@ -2,7 +2,6 @@
   import type { Meta } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
-  import { get, has } from "lodash-es"
 
   import NewsletterSignUp from "$lib/components/newsletter/NewsletterSignUp.svelte"
   import Image from "$lib/components/modules/Image.svelte"
@@ -21,30 +20,31 @@
 <article class="digest">
   <!-- DIGEST TEXT -->
   <div class="digest-section">
-    {#if has(globalConfig, "digest.content") && Array.isArray(globalConfig.digest.content)}
-      {#each globalConfig.digest.content as c}
+    {#if Array.isArray(globalConfig.digest?.content)}
+      {#each globalConfig.digest.content as item}
+        {@const c = item as any}
         {#if c._type == "block"}
           {@html renderBlockText(c)}
         {/if}
         {#if c._type == "singleImage"}
           <Image
             imageObject={c.image}
-            caption={get(c, "caption", false)}
-            alignment={get(c, "alignment", "")}
-            fullwidth={get(c, "fullwidth", "")}
+            caption={c.caption ?? ""}
+            alignment={c.alignment ?? ""}
+            fullwidth={c.fullwidth ?? false}
           />
         {/if}
         {#if c._type == "imageGroup"}
-          <ImageGroup slides={c.images} caption={get(c, "caption", false)} />
+          <ImageGroup slides={c.images ?? []} caption={c.caption ?? ""} />
         {/if}
         {#if c._type == "video"}
-          <VideoEmbed url={c.video} caption={get(c, "caption", false)} />
+          <VideoEmbed url={c.video} caption={c.caption ?? ""} />
         {/if}
         {#if c._type == "slideshow"}
-          <Slideshow slides={c.images} />
+          <Slideshow slides={c.images ?? []} />
         {/if}
         {#if c._type == "arbitraryEmbed"}
-          <ArbitraryEmbed code={c.arbitraryEmbed} />
+          <ArbitraryEmbed code={c.arbitraryEmbed ?? c.embedCode ?? ""} />
         {/if}
       {/each}
     {/if}

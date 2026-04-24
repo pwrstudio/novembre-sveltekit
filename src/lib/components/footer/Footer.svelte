@@ -1,6 +1,6 @@
 <script lang="ts">
   import Logo from "$lib/components/graphics/Logo.svelte"
-  import MediaQuery from "svelte-media-query"
+  import MediaQuery from "$lib/components/MediaQuery.svelte"
 
   export let active = false
 

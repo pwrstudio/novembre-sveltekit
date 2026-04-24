@@ -46,9 +46,10 @@ export const actions = {
             };
 
         } catch (err) {
+            const message = err instanceof Error ? err.message : String(err);
             return {
                 statusCode: 400,
-                body: JSON.stringify({ result: err.message }),
+                body: JSON.stringify({ result: message }),
             };
         }
     }

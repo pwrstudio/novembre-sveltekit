@@ -2,7 +2,7 @@
   import type { Article } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
-  import { get, isEmpty } from "lodash-es"
+  import { isEmpty } from "lodash-es"
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
 
   import TaxList from "$lib/components/taxList/TaxList.svelte"
@@ -28,9 +28,10 @@
   })
 </script>
 
-{#if post?.banner && bannerActive}
+{#if (post as any)?.banner && bannerActive}
+  {@const banner = (post as any).banner}
   <a
-    href={post.banner.link}
+    href={banner.link}
     in:fade
     target="_blank"
     rel="noreferrer"
@@ -38,7 +39,7 @@
   >
     <img
       alt="novembre.global"
-      src={urlFor(post.banner.image)
+      src={urlFor(banner.image)
         .width(500)
         .quality(100)
         .auto("format")
@@ -75,80 +76,81 @@
 
   <!-- MAIN CONTENT -->
   <div class="content">
-    {#each post.content ?? [] as c}
+    {#each post.content ?? [] as item}
+      {@const c = item as any}
       {#if c._type == "block"}
         {@html renderBlockText(c)}
       {/if}
       {#if c._type == "singleImage"}
         <Image
           imageObject={c.image}
-          linkUrl={c.linkUrl}
+          linkUrl={c.linkUrl ?? ""}
           inlineDisplay={c.noBottomMargin ? false : true}
-          maxHeight={get(c, "maxHeight", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          caption={get(c, "caption", false)}
-          alignment={get(c, "alignment", "")}
-          fullwidth={get(c, "fullwidth", "")}
+          maxHeight={c.maxHeight ?? false}
+          backgroundColor={c.backgroundColor}
+          caption={c.caption ?? ""}
+          alignment={c.alignment ?? ""}
+          fullwidth={c.fullwidth ?? false}
         />
       {/if}
       {#if c._type == "imageGroup"}
         <ImageGroup
-          slides={c.images}
-          linkUrl={c.linkUrl}
+          slides={c.images ?? []}
+          linkUrl={c.linkUrl ?? ""}
           inlineDisplay={c.noBottomMargin ? false : true}
-          maxHeight={get(c, "maxHeight", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          alignment={get(c, "alignment", "")}
-          verticalAlignment={get(c, "verticalAlignment", "")}
-          fullwidth={get(c, "fullwidth", "")}
-          caption={get(c, "caption", false)}
+          maxHeight={c.maxHeight ?? false}
+          backgroundColor={c.backgroundColor}
+          alignment={c.alignment ?? ""}
+          verticalAlignment={c.verticalAlignment ?? ""}
+          fullwidth={c.fullwidth ?? false}
+          caption={c.caption ?? ""}
         />
       {/if}
       {#if c._type == "videoLoop"}
         <VideoLoop
           url={"https://cdn.sanity.io/files/gj963qwj/production/" +
-            get(c, "video.asset._ref", "")
+            (c.video?.asset?._ref ?? "")
               .replace("file-", "")
               .replace("-mp4", ".mp4")}
           inlineDisplay={c.noBottomMargin ? false : true}
-          posterImage={get(c, "preview.posterImage", "")}
-          autoplay={get(c, "autoplay", false)}
-          maxHeight={get(c, "maxHeight", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          caption={get(c, "caption", false)}
-          alignment={get(c, "alignment", "")}
-          fullwidth={get(c, "fullwidth", "")}
+          posterImage={c.preview?.posterImage ?? {}}
+          autoplay={c.autoplay ?? false}
+          maxHeight={c.maxHeight ?? false}
+          backgroundColor={c.backgroundColor}
+          caption={c.caption ?? ""}
+          alignment={c.alignment ?? ""}
+          fullwidth={c.fullwidth ?? false}
         />
       {/if}
       {#if c._type == "video"}
         <VideoEmbed
           url={c.video}
-          size={get(c, "size", false)}
-          backgroundColor={get(c, "backgroundColor", false)}
-          caption={get(c, "caption", false)}
+          size={c.size ?? "medium"}
+          backgroundColor={c.backgroundColor}
+          caption={c.caption ?? ""}
         />
       {/if}
       {#if c._type == "slideshow"}
-        <Slideshow autoplay={c.autoplay} slides={c.images} />
+        <Slideshow autoplay={c.autoplay ?? false} slides={c.images ?? []} />
       {/if}
       {#if c._type == "audio"}
         <Audio
           url={"https://cdn.sanity.io/files/gj963qwj/production/" +
-            get(c, "audio.asset._ref", "")
+            (c.audio?.asset?._ref ?? "")
               .replace("file-", "")
               .replace("-mp3", ".mp3")
               .replace("-wav", ".wav")
               .replace("-ogg", ".ogg")
               .replace("-m4a", ".m4a")}
-          title={get(c, "title", "")}
-          link={get(c, "link", false)}
-          posterImage={get(c, "image", false)}
-          backgroundColor={get(c, "backgroundColor.hex", false)}
-          autoplay={get(c, "autoplay", false)}
+          title={c.title ?? ""}
+          link={c.link ?? ""}
+          posterImage={c.image ?? false}
+          backgroundColor={c.backgroundColor}
+          autoplay={c.autoplay ?? false}
         />
       {/if}
       {#if c._type == "arbitraryEmbed"}
-        <ArbitraryEmbed code={c.embedCode} />
+        <ArbitraryEmbed code={c.embedCode ?? ""} />
       {/if}
     {/each}
   </div>

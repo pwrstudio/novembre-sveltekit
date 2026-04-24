@@ -16,14 +16,17 @@
   let paused = true
   let audioEl: HTMLAudioElement
 
-  const handleMousemove = (e: MouseEvent) => {
+  function handleMousemove(this: HTMLElement, e: MouseEvent) {
     if (e.which !== 1) return // mouse not down
     if (!duration) return // audio not loaded yet
     const { left, right } = this.getBoundingClientRect()
     time = (duration * (e.clientX - left)) / (right - left)
   }
 
-  const handleMousedown = e => {
+  const handleMousedown = (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null
+    if (!target) return
+
     const handleMouseup = () => {
       if (paused) audioEl.play()
       else audioEl.pause()
@@ -31,10 +34,10 @@
     }
 
     const cancel = () => {
-      e.target.removeEventListener("mouseup", handleMouseup)
+      target.removeEventListener("mouseup", handleMouseup)
     }
 
-    e.target.addEventListener("mouseup", handleMouseup)
+    target.addEventListener("mouseup", handleMouseup)
 
     setTimeout(cancel, 200)
   }

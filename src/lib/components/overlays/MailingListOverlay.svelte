@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte"
   import { fade } from "svelte/transition"
   import NewsletterSignUp from "$lib/components/newsletter/NewsletterSignUp.svelte"
+
+  const dispatch = createEventDispatcher<{ close: void }>()
 </script>
 
 <div
@@ -8,8 +11,8 @@
   id="mailing-list-overlay"
   class="overlay-banner mailing-list"
   on:click={e => {
-    if (e?.target?.id === "mailing-list-overlay")
-      mailingListOverlayActive = false
+    if ((e.target as HTMLElement | null)?.id === "mailing-list-overlay")
+      dispatch("close")
   }}
   in:fade
 >
@@ -19,9 +22,7 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <svg
-    on:click={e => {
-      mailingListOverlayActive = false
-    }}
+    on:click={() => dispatch("close")}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"

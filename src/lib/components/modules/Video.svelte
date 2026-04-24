@@ -37,7 +37,7 @@
   let videoSrc = ""
 
   // --- Video controls
-  function handleMousemove(e: MouseEvent) {
+  function handleMousemove(this: HTMLVideoElement, e: MouseEvent) {
     // Make the controls visible, but fade out after
     // 2.5 seconds of inactivity
     clearTimeout(showControlsTimeout)
@@ -55,20 +55,23 @@
   }
 
   function handleMousedown(e: MouseEvent) {
+    const target = e.target as HTMLVideoElement | null
+    if (!target) return
+
     function handleMouseup() {
       if (paused) {
-        e.target.play()
+        target!.play()
       } else {
-        e.target.pause()
+        target!.pause()
       }
       cancel()
     }
 
     function cancel() {
-      e.target.removeEventListener("mouseup", handleMouseup)
+      target!.removeEventListener("mouseup", handleMouseup)
     }
 
-    e.target.addEventListener("mouseup", handleMouseup)
+    target.addEventListener("mouseup", handleMouseup)
 
     setTimeout(cancel, 200)
   }
@@ -77,10 +80,10 @@
     if (isNaN(seconds)) return "..."
 
     const minutes = Math.floor(seconds / 60)
-    seconds = Math.floor(seconds % 60)
-    if (seconds < 10) seconds = "0" + seconds
+    const wholeSeconds = Math.floor(seconds % 60)
+    const pad = wholeSeconds < 10 ? "0" + wholeSeconds : String(wholeSeconds)
 
-    return `${minutes}:${seconds}`
+    return `${minutes}:${pad}`
   }
 
   // *** ON MOUNT

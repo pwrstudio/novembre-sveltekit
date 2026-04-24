@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { get, kebabCase } from "lodash-es"
+  import { kebabCase } from "lodash-es"
   import type { Article } from "$lib/types/sanity.types"
 
   import TaxList from "$lib/components/taxList/TaxList.svelte"
@@ -12,8 +12,12 @@
   export let isHeader = false
   export let isFirst = false
 
-  let active = true
   let loaded = true
+
+  // The groq query resolves `preview: preview[0]`, so at runtime this is a
+  // single item rather than the array the generated Article type describes.
+  $: preview = (post as any).preview as any
+  $: previewVideoUrl = (post as any).previewVideoUrl as string | undefined
 
   const backgroundColor = post.previewColors?.backgroundColor
     ? "background-color:" + post.previewColors.backgroundColor.hex + ";"
@@ -27,10 +31,10 @@
 </script>
 
 <div
-  class="preview {kebabCase(get(post, 'preview._type', ''))}"
+  class="preview {kebabCase(preview?._type ?? '')}"
   class:loaded
   class:first={isFirst}
-  class:white={get(post, "previewColors.textColor", "black") == "white"}
+  class:white={(post.previewColors?.textColor ?? 'black') == 'white'}
   class:header={isHeader}
   style={elementStyles}
 >
@@ -38,49 +42,49 @@
   {#if !isHeader}
     <div
       class="preview__tags"
-      class:bottom-tags={get(post, "preview._type", "") == "imageGroup"}
+      class:bottom-tags={preview?._type === "imageGroup"}
     >
       <TaxList
         taxonomy={post.taxonomy}
         date={post.publicationDate}
-        white={get(post, "previewColors.textColor", "black") === "white"}
+        white={(post.previewColors?.textColor ?? 'black') === 'white'}
       />
     </div>
   {/if}
 
-  {#if get(post, "preview._type", "") === "singleImage"}
+  {#if preview?._type === "singleImage"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <Image
         fullwidth={true}
         isListing={true}
-        imageObject={post.preview.image}
+        imageObject={preview.image}
       />
     </a>
   {/if}
 
-  {#if get(post, "preview._type", "") === "imageGroup"}
+  {#if preview?._type === "imageGroup"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
-      <ImageGroup isListing={true} {isHeader} slides={post.preview.images} />
+      <ImageGroup isListing={true} {isHeader} slides={preview.images ?? []} />
     </a>
   {/if}
 
-  {#if get(post, "preview._type", "") === "slideshow"}
+  {#if preview?._type === "slideshow"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <Slideshow
-        autoplay={post.preview.autoplay}
+        autoplay={preview.autoplay ?? false}
         isListing={true}
-        slides={post.preview.images}
+        slides={preview.images ?? []}
       />
     </a>
   {/if}
 
-  {#if get(post, "preview._type", "") === "videoLoop"}
+  {#if preview?._type === "videoLoop"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <VideoLoop
         isListing={true}
         fullwidth={true}
-        url={post.previewVideoUrl}
-        posterImage={get(post, "preview.posterImage", post.mainImage)}
+        url={previewVideoUrl ?? ''}
+        posterImage={preview.posterImage ?? post.mainImage}
       />
     </a>
   {/if}
@@ -89,8 +93,7 @@
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
       <div
         class="preview__title preview__title--free"
-        class:preview__title--free={get(post, "preview._type", "") ==
-          "imageGroup"}
+        class:preview__title--free={preview?._type === "imageGroup"}
       >
         {@html post.title}
       </div>

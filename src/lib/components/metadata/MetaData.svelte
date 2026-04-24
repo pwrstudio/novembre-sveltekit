@@ -1,10 +1,15 @@
 <script lang="ts">
-  import type { Article, Product, SatelliteSite } from "$lib/types/sanity.types"
   import { isArray, isEmpty, truncate } from "lodash-es"
   import { toPlainText, urlFor } from "$lib/modules/sanity"
   import { stripHtml } from "$lib/modules/utils"
 
-  export let post: Article | Product | SatelliteSite | undefined = undefined
+  type MetaSource = {
+    title?: string
+    content?: unknown
+    mainImage?: unknown
+  }
+
+  export let post: MetaSource | undefined = undefined
 
   const defaultDescription =
     "Novembre Global is a platform for expression, guiding individuals and professionals in search of inspiration, new styles and emergent cultural trends."
@@ -16,7 +21,7 @@
 
   $: description =
     post?.content && isArray(post.content) && !isEmpty(post.content)
-      ? truncate(toPlainText(post.content), {
+      ? truncate(toPlainText(post.content as Parameters<typeof toPlainText>[0]), {
           length: 160,
           separator: /.? +/,
         })
