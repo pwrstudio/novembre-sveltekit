@@ -2,7 +2,7 @@
   import type { Article } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
-  import { isEmpty } from "lodash-es"
+  import { isEmpty } from "$lib/modules/utils"
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
 
   import TaxList from "$lib/components/taxList/TaxList.svelte"

@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { Meta, Banner } from "$lib/types/sanity.types"
-  import { isEmpty } from "lodash-es"
   import { menuActive } from "$lib/modules/stores"
-  import { getCookie, setCookie } from "$lib/modules/utils"
+  import { getCookie, setCookie, isEmpty } from "$lib/modules/utils"
   import { onMount } from "svelte"
   import {
     cart,

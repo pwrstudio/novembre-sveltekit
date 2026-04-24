@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { kebabCase } from "lodash-es"
+  import { kebabCase } from "$lib/modules/utils"
   import type { Article } from "$lib/types/sanity.types"
 
   import TaxList from "$lib/components/taxList/TaxList.svelte"

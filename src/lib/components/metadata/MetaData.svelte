@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { isArray, isEmpty, truncate } from "lodash-es"
   import { toPlainText, urlFor } from "$lib/modules/sanity"
-  import { stripHtml } from "$lib/modules/utils"
+  import { isEmpty, stripHtml, truncate } from "$lib/modules/utils"
 
   type MetaSource = {
     title?: string
@@ -20,7 +19,7 @@
     (post?.title ? stripHtml(post.title) + " / " : "") + "NOVEMBRE GLOBAL"
 
   $: description =
-    post?.content && isArray(post.content) && !isEmpty(post.content)
+    post?.content && Array.isArray(post.content) && !isEmpty(post.content)
       ? truncate(toPlainText(post.content as Parameters<typeof toPlainText>[0]), {
           length: 160,
           separator: /.? +/,

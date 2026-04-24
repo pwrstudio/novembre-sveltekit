@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Article, Meta, Banner } from "$lib/types/sanity.types"
   import { onMount } from "svelte"
-  import { isEmpty } from "lodash-es"
+  import { isEmpty } from "$lib/modules/utils"
   import { ListingType } from "$lib/enums"
   import { BATCH_SIZE } from "$lib/constants"
 

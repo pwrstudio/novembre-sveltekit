@@ -29,9 +29,6 @@ importers:
       get-video-id:
         specifier: ^4.2.0
         version: 4.2.0
-      lodash-es:
-        specifier: ^4.18.1
-        version: 4.18.1
       node-mailjet:
         specifier: ^6.0.11
         version: 6.0.11
@@ -51,9 +48,6 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^7.0.0
         version: 7.0.0(svelte@5.55.5)(vite@8.0.10(sass@1.99.0))
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
       '@types/shopify-buy':
         specifier: ^3.0.0
         version: 3.0.0
@@ -375,12 +369,6 @@ packages:
   '@types/eventsource@1.1.15':
     resolution: {integrity: sha512-XQmGcbnxUNa06HR3VBVkc9+A2Vpi9ZyLJcdS5dwaQQ/4ZMWFO+5c90FnMUpbtMZwB/FChoYHwuVg8TvkECacTA==}
 
-  '@types/lodash-es@4.17.12':
-    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
-
-  '@types/lodash@4.17.6':
-    resolution: {integrity: sha512-OpXEVoCKSS3lQqjx9GGGOapBeuW5eUboYHRlHP9urXPX25IKZ6AnP5ZRxtVf63iieUbsHxLn8NQ5Nlftc6yzAA==}
-
   '@types/shopify-buy@3.0.0':
     resolution: {integrity: sha512-AoTGG9/cqNpnnXYsYK1Sb8iAmQ9DqJ4gqLGXnx8PdiuOdCuKSNY8lqk8j+qe73jMsvdLhgRYRJP/OxR4+6Or6A==}
 
@@ -678,9 +666,6 @@ packages:
 
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
-
-  lodash-es@4.18.1:
-    resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
@@ -1146,12 +1131,6 @@ snapshots:
 
   '@types/eventsource@1.1.15': {}
 
-  '@types/lodash-es@4.17.12':
-    dependencies:
-      '@types/lodash': 4.17.6
-
-  '@types/lodash@4.17.6': {}
-
   '@types/shopify-buy@3.0.0': {}
 
   '@types/trusted-types@2.0.7': {}
@@ -1392,8 +1371,6 @@ snapshots:
       lightningcss-win32-x64-msvc: 1.32.0
 
   locate-character@3.0.0: {}
-
-  lodash-es@4.18.1: {}
 
   magic-string@0.30.17:
     dependencies:

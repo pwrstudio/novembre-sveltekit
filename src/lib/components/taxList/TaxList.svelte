@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Taxonomy } from "$lib/types/sanity.types"
-  import { sortBy } from "lodash-es"
-  import { formatDate } from "$lib/modules/utils"
+  import { sortBy, formatDate } from "$lib/modules/utils"
 
   export let taxonomy: Taxonomy | undefined
   export let isArticle = false

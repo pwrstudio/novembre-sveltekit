@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Banner } from "$lib/types/sanity.types"
   import { page } from "$app/stores"
-  import { isEmpty } from "lodash-es"
+  import { isEmpty } from "$lib/modules/utils"
   import { urlFor } from "$lib/modules/sanity"
   import { menuItems } from "$lib/constants"
   import { cartCount } from "$lib/modules/cart"
