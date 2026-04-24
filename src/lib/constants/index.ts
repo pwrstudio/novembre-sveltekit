@@ -7,7 +7,11 @@ export const menuItems = [
   { title: "FEED", target: "/" },
   { title: "BUREAU", target: "/bureau" },
   { title: "MAGAZINE", target: "/magazine" },
-  { title: "SHOP", target: "/shop" },
+  {
+    title: "SHOP",
+    target: "https://novembreshop.myshopify.com/",
+    external: true,
+  },
   { title: "ABOUT", target: "/about" },
   { title: "DIGEST", target: "/digest" },
   { title: "CONTACT", target: "/contact" },

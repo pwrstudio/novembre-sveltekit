@@ -50,7 +50,12 @@
     {#if $menuActive}
       {#each menuItems as item}
         <menuitem class="navigation__menu-item">
-          <a href={item.target} class="navigation__link">
+          <a
+            href={item.target}
+            class="navigation__link"
+            target={"external" in item && item.external ? "_blank" : undefined}
+            rel={"external" in item && item.external ? "noreferrer" : undefined}
+          >
             <div class="navigation__link--normal">
               {@html item.title}
             </div>
