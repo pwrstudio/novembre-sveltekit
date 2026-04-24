@@ -43,7 +43,7 @@
     clearTimeout(showControlsTimeout)
     showControlsTimeout = setTimeout(
       () => (showControls = false),
-      controlsTimeoutDuration
+      controlsTimeoutDuration,
     )
     showControls = true
 
@@ -91,7 +91,7 @@
     if (autoplay || isListing) {
       let promise = videoEl.play()
       if (promise !== undefined) {
-        promise.catch(err => {
+        promise.catch((err) => {
           console.log(err)
         })
       }

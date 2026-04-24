@@ -4,13 +4,13 @@ import { queries } from "$lib/groq"
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-    const globalConfig: Meta = await loadData(queries.globalConfig, {})
-    const menuBanners: Banner[] = await loadData(queries.menuBanners, {})
-    const overlayBanners: Banner[] = await loadData(queries.overlayBanners, {})
+  const globalConfig: Meta = await loadData(queries.globalConfig, {})
+  const menuBanners: Banner[] = await loadData(queries.menuBanners, {})
+  const overlayBanners: Banner[] = await loadData(queries.overlayBanners, {})
 
-    return {
-        globalConfig,
-        menuBanners,
-        overlayBanners
-    };
+  return {
+    globalConfig,
+    menuBanners,
+    overlayBanners,
+  }
 }

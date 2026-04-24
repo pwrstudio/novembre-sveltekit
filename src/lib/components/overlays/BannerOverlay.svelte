@@ -13,7 +13,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="overlay-banner"
-  on:click={e => {
+  on:click={(e) => {
     dispatch("close")
   }}
   in:fade
@@ -37,7 +37,7 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <svg
-    on:click={e => {
+    on:click={(e) => {
       dispatch("close")
     }}
     version="1.1"

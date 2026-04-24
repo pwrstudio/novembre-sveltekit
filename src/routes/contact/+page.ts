@@ -4,9 +4,9 @@ import { queries } from "$lib/groq"
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-    const globalConfig: Meta = await loadData(queries.globalConfig, {})
+  const globalConfig: Meta = await loadData(queries.globalConfig, {})
 
-    return {
-        globalConfig
-    };
+  return {
+    globalConfig,
+  }
 }

@@ -32,7 +32,7 @@
       const lineItems = cartToCheckoutLineItems(currentCart)
       const updatedCheckout = await shopifyClient.checkout.addLineItems(
         checkout.id,
-        lineItems
+        lineItems,
       )
 
       if (updatedCheckout?.webUrl) {

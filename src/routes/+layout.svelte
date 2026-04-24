@@ -42,12 +42,12 @@
     cart.set(loadCartFromLocalStorage())
 
     // Write to local storage whenever the cart changes
-    cart.subscribe(value => {
+    cart.subscribe((value) => {
       saveCartToLocalStorage(value)
     })
 
     // Prevent scrolling when the menu is active
-    menuActive.subscribe(value => {
+    menuActive.subscribe((value) => {
       if (value) {
         document.querySelector("body")?.classList.add("no-scroll")
       } else {

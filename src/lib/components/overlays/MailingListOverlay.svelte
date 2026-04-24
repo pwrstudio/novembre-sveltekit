@@ -10,7 +10,7 @@
   role="presentation"
   id="mailing-list-overlay"
   class="overlay-banner mailing-list"
-  on:click={e => {
+  on:click={(e) => {
     if ((e.target as HTMLElement | null)?.id === "mailing-list-overlay")
       dispatch("close")
   }}

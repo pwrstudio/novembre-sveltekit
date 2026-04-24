@@ -1,0 +1,8 @@
+node_modules
+.svelte-kit
+build
+dist
+.pnpm-store
+pnpm-lock.yaml
+static
+src/lib/types/sanity.types.ts

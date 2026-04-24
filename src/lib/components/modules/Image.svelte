@@ -65,7 +65,7 @@
           style={figureCustomStyles}
           src={matches ? src : srcPortrait}
           alt={caption ? caption : "novembre.global"}
-          on:load={e => (loaded = true)}
+          on:load={(e) => (loaded = true)}
         />
         {#if caption}
           <figcaption>{caption}</figcaption>
@@ -88,7 +88,7 @@
           style={figureCustomStyles}
           src={matches ? src : srcPortrait}
           alt={caption ? caption : "novembre.global"}
-          on:load={e => (loaded = true)}
+          on:load={(e) => (loaded = true)}
         />
         {#if caption}
           <figcaption>{caption}</figcaption>

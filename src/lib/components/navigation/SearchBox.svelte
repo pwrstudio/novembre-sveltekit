@@ -65,7 +65,7 @@
       class:search__input--active={$searchActive}
       bind:value={searchQuery}
       bind:this={searchField}
-      on:click={e => {
+      on:click={(e) => {
         e.preventDefault()
         e.stopPropagation()
       }}

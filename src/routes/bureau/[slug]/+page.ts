@@ -4,10 +4,9 @@ import { queries } from "$lib/groq"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
+  const post: Article = await loadData(queries.article, { slug: params.slug })
 
-    const post: Article = await loadData(queries.article, { slug: params.slug })
-
-    return {
-        post
-    };
+  return {
+    post,
+  }
 }

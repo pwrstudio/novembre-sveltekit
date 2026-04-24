@@ -33,7 +33,8 @@
         width="720"
         height="480"
         title={caption}
-        src="https://player.vimeo.com/video/{getVideoId(url).id}?byline=0&color=ffffff"
+        src="https://player.vimeo.com/video/{getVideoId(url)
+          .id}?byline=0&color=ffffff"
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen

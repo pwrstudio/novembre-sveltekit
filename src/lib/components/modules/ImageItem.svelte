@@ -47,7 +47,7 @@
     class:fullwidth
     {src}
     alt={caption ? caption : "novembre.global"}
-    on:load={_ => (loaded = true)}
+    on:load={(_) => (loaded = true)}
   />
 {/if}
 

@@ -1,54 +1,61 @@
 import { createClient } from "@sanity/client"
-import { toHTML } from '@portabletext/to-html'
-import imageUrlBuilder from '@sanity/image-url'
-import type { PortableTextBlock } from '@portabletext/types'
+import { toHTML } from "@portabletext/to-html"
+import imageUrlBuilder from "@sanity/image-url"
+import type { PortableTextBlock } from "@portabletext/types"
 
-type BlockLike = PortableTextBlock | { _type: string; _key?: string; [key: string]: unknown }
+type BlockLike =
+  | PortableTextBlock
+  | { _type: string; _key?: string; [key: string]: unknown }
 type BlocksInput = BlockLike | BlockLike[] | undefined | null
-import { SANITY_ID } from "$lib/constants";
+import { SANITY_ID } from "$lib/constants"
 import { PUBLIC_ENVIRONMENT } from "$env/static/public"
 
 export const client = createClient({
-    projectId: SANITY_ID,
-    dataset: 'production',
-    token: '', // or leave blank to be anonymous user
-    useCdn: PUBLIC_ENVIRONMENT ===  "preview" ? false : true, // Don't use the CDN for preview
-    apiVersion: '2025-06-01',
+  projectId: SANITY_ID,
+  dataset: "production",
+  token: "", // or leave blank to be anonymous user
+  useCdn: PUBLIC_ENVIRONMENT === "preview" ? false : true, // Don't use the CDN for preview
+  apiVersion: "2025-06-01",
 })
 
 export const renderBlockText = (blocks: BlocksInput) => {
-    if (!blocks) return ''
-    const input = Array.isArray(blocks) ? blocks : [blocks]
-    return toHTML(input as PortableTextBlock[], {
-        components: {
-            marks: {
-                link: ({ children, value }) => {
-                    return `<a href="${value.href}" target="_blank" rel="noreferrer">${children}</a>`
-                }
-            },
-            unknownBlockStyle: ({ children, value }) => `<p class="${value.style || 'normal'}">${children}</p>`,
-            types: {
-                imageGroup: ({ value }) => `<p>${value}</p>`,
-                slideshow: ({ value }) => `<p>${value}</p>`,
-                video: ({ value }) => `<p>${value}</p>`,
-                audio: ({ value }) => `<p>${value}</p>`,
-                arbitraryEmbed: ({ value }) => `<p>${value}</p>`
-            }
-        }
-    })
+  if (!blocks) return ""
+  const input = Array.isArray(blocks) ? blocks : [blocks]
+  return toHTML(input as PortableTextBlock[], {
+    components: {
+      marks: {
+        link: ({ children, value }) => {
+          return `<a href="${value.href}" target="_blank" rel="noreferrer">${children}</a>`
+        },
+      },
+      unknownBlockStyle: ({ children, value }) =>
+        `<p class="${value.style || "normal"}">${children}</p>`,
+      types: {
+        imageGroup: ({ value }) => `<p>${value}</p>`,
+        slideshow: ({ value }) => `<p>${value}</p>`,
+        video: ({ value }) => `<p>${value}</p>`,
+        audio: ({ value }) => `<p>${value}</p>`,
+        arbitraryEmbed: ({ value }) => `<p>${value}</p>`,
+      },
+    },
+  })
 }
 
 export const toPlainText = (blocks: BlocksInput) => {
-    if (!blocks) return ''
-    const input = (Array.isArray(blocks) ? blocks : [blocks]) as PortableTextBlock[]
-    return input
-        .map(block => {
-            if (block._type !== 'block' || !block.children) {
-                return ''
-            }
-            return block.children.map(child => (child as { text?: string }).text ?? '').join('')
-        })
-        .join('\n\n')
+  if (!blocks) return ""
+  const input = (
+    Array.isArray(blocks) ? blocks : [blocks]
+  ) as PortableTextBlock[]
+  return input
+    .map((block) => {
+      if (block._type !== "block" || !block.children) {
+        return ""
+      }
+      return block.children
+        .map((child) => (child as { text?: string }).text ?? "")
+        .join("")
+    })
+    .join("\n\n")
 }
 
 const builder = imageUrlBuilder(client)
@@ -56,13 +63,13 @@ const builder = imageUrlBuilder(client)
 export const urlFor = (source: any) => builder.image(source)
 
 export const loadData = async (query: string, params: any) => {
-    try {
-        const res = await client.fetch(query, params)
-        if (res === null) {
-            return Promise.reject(new Error("404"));
-        }
-        return res
-    } catch (err) {
-        return Promise.reject(new Error("404"));
+  try {
+    const res = await client.fetch(query, params)
+    if (res === null) {
+      return Promise.reject(new Error("404"))
     }
+    return res
+  } catch (err) {
+    return Promise.reject(new Error("404"))
+  }
 }

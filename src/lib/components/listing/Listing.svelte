@@ -25,8 +25,8 @@
 
   onMount(() => {
     observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             lazyLoadIndex++
           }
@@ -36,7 +36,7 @@
         root: null,
         rootMargin: "0px",
         threshold: 0.5,
-      }
+      },
     )
 
     if (sentinel) {
@@ -58,8 +58,8 @@
 
       <Preview {post} isFirst={i === 0} />
 
-      {#if feedBanners && !isEmpty(feedBanners) && feedBanners.find(b => b.positionInFeed == i)}
-        <FeedBanner banner={feedBanners.find(b => b.positionInFeed == i)} />
+      {#if feedBanners && !isEmpty(feedBanners) && feedBanners.find((b) => b.positionInFeed == i)}
+        <FeedBanner banner={feedBanners.find((b) => b.positionInFeed == i)} />
       {/if}
     {/each}
   </div>

@@ -6,18 +6,17 @@ import type { Article, Meta, Banner } from "$lib/types/sanity.types"
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
+  const params = {
+    currentTime: getCurrentTimeInUTC(),
+  }
 
-    const params = {
-        currentTime: getCurrentTimeInUTC()
-    }
+  const posts: Article[] = await loadData(queries.landing, params)
+  const globalConfig: Meta = await loadData(queries.globalConfig, {})
+  const feedBanners: Banner[] = await loadData(queries.feedBanners, {})
 
-    const posts: Article[] = await loadData(queries.landing, params)
-    const globalConfig: Meta = await loadData(queries.globalConfig, {})
-    const feedBanners: Banner[] = await loadData(queries.feedBanners, {})
-
-    return {
-        posts,
-        globalConfig,
-        feedBanners
-    };
+  return {
+    posts,
+    globalConfig,
+    feedBanners,
+  }
 }

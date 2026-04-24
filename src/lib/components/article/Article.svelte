@@ -39,11 +39,7 @@
   >
     <img
       alt="novembre.global"
-      src={urlFor(banner.image)
-        .width(500)
-        .quality(100)
-        .auto("format")
-        .url()}
+      src={urlFor(banner.image).width(500).quality(100).auto("format").url()}
     />
   </a>
 {/if}

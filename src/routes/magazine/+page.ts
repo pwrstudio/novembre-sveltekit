@@ -6,16 +6,15 @@ import { BATCH_SIZE } from "$lib/constants"
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
+  const params = {
+    currentTime: getCurrentTimeInUTC(),
+  }
 
-    const params = {
-        currentTime: getCurrentTimeInUTC()
-    }
+  const posts: Article[] = await loadData(queries.magazine, params)
+  const globalConfig: Meta = await loadData(queries.globalConfig, {})
 
-    const posts: Article[] = await loadData(queries.magazine, params)
-    const globalConfig: Meta = await loadData(queries.globalConfig, {})
-
-    return {
-        posts,
-        globalConfig
-    };
+  return {
+    posts,
+    globalConfig,
+  }
 }

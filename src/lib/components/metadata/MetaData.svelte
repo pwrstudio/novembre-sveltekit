@@ -20,10 +20,13 @@
 
   $: description =
     post?.content && Array.isArray(post.content) && !isEmpty(post.content)
-      ? truncate(toPlainText(post.content as Parameters<typeof toPlainText>[0]), {
-          length: 160,
-          separator: /.? +/,
-        })
+      ? truncate(
+          toPlainText(post.content as Parameters<typeof toPlainText>[0]),
+          {
+            length: 160,
+            separator: /.? +/,
+          },
+        )
       : defaultDescription
 
   $: image = post?.mainImage

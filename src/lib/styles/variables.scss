@@ -1,5 +1,5 @@
-$serif-stack: 'Adobe Caslon Pro', 'Caslon', 'Times new roman', Times, serif;
-$sans-stack: 'Haas Grot Disp 45', Helvetica, Arial, sans-serif;
+$serif-stack: "Adobe Caslon Pro", "Caslon", "Times new roman", Times, serif;
+$sans-stack: "Haas Grot Disp 45", Helvetica, Arial, sans-serif;
 $height: 80px;
 
 $factor: 0.9;
@@ -34,18 +34,18 @@ $small-vertical-margin: 5px;
 $large-vertical-margin: 32px;
 
 $breakpoints: (
-  'small': (
-    max-width: 800px
+  "small": (
+    max-width: 800px,
   ),
-  'medium': (
-    max-width: 1000px
+  "medium": (
+    max-width: 1000px,
   ),
-  'large': (
-    max-width: 1600px
+  "large": (
+    max-width: 1600px,
   ),
-  'short': (
-    max-height: 700px
-  )
+  "short": (
+    max-height: 700px,
+  ),
 );
 
 /// Responsive manager.
@@ -56,7 +56,7 @@ $breakpoints: (
   $raw-query: map-get($breakpoints, $breakpoint);
   @if $raw-query {
     $query: if(
-      type-of($raw-query) == 'string',
+      type-of($raw-query) == "string",
       unquote($raw-query),
       inspect($raw-query)
     );

@@ -34,7 +34,7 @@
   class="preview {kebabCase(preview?._type ?? '')}"
   class:loaded
   class:first={isFirst}
-  class:white={(post.previewColors?.textColor ?? 'black') == 'white'}
+  class:white={(post.previewColors?.textColor ?? "black") == "white"}
   class:header={isHeader}
   style={elementStyles}
 >
@@ -47,18 +47,14 @@
       <TaxList
         taxonomy={post.taxonomy}
         date={post.publicationDate}
-        white={(post.previewColors?.textColor ?? 'black') === 'white'}
+        white={(post.previewColors?.textColor ?? "black") === "white"}
       />
     </div>
   {/if}
 
   {#if preview?._type === "singleImage"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
-      <Image
-        fullwidth={true}
-        isListing={true}
-        imageObject={preview.image}
-      />
+      <Image fullwidth={true} isListing={true} imageObject={preview.image} />
     </a>
   {/if}
 
@@ -83,7 +79,7 @@
       <VideoLoop
         isListing={true}
         fullwidth={true}
-        url={previewVideoUrl ?? ''}
+        url={previewVideoUrl ?? ""}
         posterImage={preview.posterImage ?? post.mainImage}
       />
     </a>

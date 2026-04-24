@@ -28,8 +28,8 @@
       class:loaded
       role="presentation"
       src={urlFor(image).width(300).quality(100).auto("format").url()}
-      on:load={e => (loaded = true)}
-      on:click={e => {
+      on:load={(e) => (loaded = true)}
+      on:click={(e) => {
         activeImage = image
       }}
     />
@@ -41,7 +41,7 @@
     class="image-popup"
     role="presentation"
     in:fade
-    on:click={e => {
+    on:click={(e) => {
       activeImage = false
     }}
   >
