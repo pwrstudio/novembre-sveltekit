@@ -85,7 +85,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .product {
     display: flex;

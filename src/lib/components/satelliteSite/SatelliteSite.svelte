@@ -211,7 +211,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   @font-face {
     font-family: "knif";

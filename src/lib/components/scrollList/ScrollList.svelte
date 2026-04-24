@@ -55,7 +55,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .taxonomy-scroller {
     height: 96px;

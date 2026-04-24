@@ -44,7 +44,7 @@
 {/if}
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .slideshow {
     &__slide-image {

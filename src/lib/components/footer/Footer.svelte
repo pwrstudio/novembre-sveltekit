@@ -45,7 +45,7 @@
 </footer>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .footer {
     user-select: none;

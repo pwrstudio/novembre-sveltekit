@@ -77,7 +77,7 @@
 </MediaQuery>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .image-group {
     width: 100%;

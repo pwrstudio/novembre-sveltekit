@@ -35,7 +35,7 @@
 </a>
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .shop-listing-item {
     height: 600px;

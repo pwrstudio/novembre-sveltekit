@@ -20,7 +20,7 @@
 <Footer active />
 
 <style lang="scss">
-  @import "../../styles/variables.scss";
+  @use "../../styles/variables.scss" as *;
 
   .placeholder {
     margin-top: 160px;
