@@ -16,8 +16,6 @@
   export let inlineDisplay = false
   export let linkUrl = ""
 
-  console.log("verticalAlignment", verticalAlignment)
-
   $: customStyles =
     (maxHeight ? "height:" + maxHeight + "vh; " : "") +
     (backgroundColor ? "background:" + backgroundColor.hex + ";" : "")

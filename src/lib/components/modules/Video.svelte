@@ -34,7 +34,7 @@
   let duration = 0
   let paused = true
   let showControls = true
-  let showControlsTimeout: number
+  let showControlsTimeout: ReturnType<typeof setTimeout>
   let controlsTimeoutDuration = 2500
   let post = {}
   let videoUrl = ""

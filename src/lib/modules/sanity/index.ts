@@ -1,6 +1,6 @@
 import { createClient } from "@sanity/client"
 import { toHTML } from "@portabletext/to-html"
-import imageUrlBuilder from "@sanity/image-url"
+import { createImageUrlBuilder } from "@sanity/image-url"
 import type { PortableTextBlock } from "@portabletext/types"
 
 type BlockLike =
@@ -27,6 +27,9 @@ export const renderBlockText = (blocks: BlocksInput) => {
         link: ({ children, value }) => {
           return `<a href="${value.href}" target="_blank" rel="noreferrer">${children}</a>`
         },
+      },
+      block: {
+        small: ({ children }) => `<p class="small">${children}</p>`,
       },
       unknownBlockStyle: ({ children, value }) =>
         `<p class="${value.style || "normal"}">${children}</p>`,
@@ -58,7 +61,7 @@ export const toPlainText = (blocks: BlocksInput) => {
     .join("\n\n")
 }
 
-const builder = imageUrlBuilder(client)
+const builder = createImageUrlBuilder(client)
 
 export const urlFor = (source: any) => builder.image(source)
 

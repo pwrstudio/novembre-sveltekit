@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte"
 
   let text = ""
-  let timer: number
+  let timer: ReturnType<typeof setInterval>
 
   const NUMBER_OF_PERIODS = 5
 
