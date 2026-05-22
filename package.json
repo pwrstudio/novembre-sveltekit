@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@portabletext/types": "^4.0.2",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/kit": "^2.60.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@types/node": "^25.9.1",
