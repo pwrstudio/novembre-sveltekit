@@ -1,5 +1,5 @@
 allowBuilds:
-  '@parcel/watcher': false
+  "@parcel/watcher": false
 minimumReleaseAgeExclude:
   - prettier-plugin-svelte@4.0.1
   - sass@1.100.0
