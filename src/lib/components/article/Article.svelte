@@ -175,6 +175,15 @@
         width: 100%;
         object-fit: cover;
       }
+
+      @include screen-size("small") {
+        height: 70vh;
+
+        :global(img),
+        :global(video) {
+          height: 70vh;
+        }
+      }
     }
 
     :global(em) {
