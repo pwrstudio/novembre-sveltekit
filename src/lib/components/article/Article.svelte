@@ -20,6 +20,10 @@
 
   let bannerActive = false
 
+  $: headerPreview = (post as any)?.preview
+  $: noCropPhoneHeader =
+    headerPreview?._type === "singleImage" && !!headerPreview?.noCropOnPhone
+
   onMount(async () => {
     window.scrollTo(0, 0)
     setTimeout(() => {
@@ -46,7 +50,7 @@
 
 <article class="article">
   <!-- HEADER MEDIA -->
-  <div class="article__header">
+  <div class="article__header" class:no-crop-phone={noCropPhoneHeader}>
     <Preview {post} isHeader={true} />
   </div>
 
@@ -182,6 +186,17 @@
         :global(img),
         :global(video) {
           height: 70vh;
+        }
+      }
+
+      &.no-crop-phone {
+        @include screen-size("small") {
+          height: auto;
+
+          :global(img) {
+            height: auto;
+            object-fit: contain;
+          }
         }
       }
     }
