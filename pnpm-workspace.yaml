@@ -4,3 +4,5 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - prettier-plugin-svelte@4.0.1
   - sass@1.100.0
+  - "@sanity/client@7.22.1"
+  - svelte@5.55.10

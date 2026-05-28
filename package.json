@@ -21,7 +21,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-svelte": "^4.0.1",
     "sass": "^1.100.0",
-    "svelte": "^5.55.9",
+    "svelte": "^5.55.10",
     "svelte-check": "^4.4.8",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
@@ -30,7 +30,7 @@
   "type": "module",
   "dependencies": {
     "@portabletext/to-html": "^5.0.2",
-    "@sanity/client": "^7.22.0",
+    "@sanity/client": "^7.22.1",
     "@sanity/image-url": "^2.1.1",
     "embla-carousel": "^8.6.0",
     "embla-carousel-auto-scroll": "^8.6.0",
