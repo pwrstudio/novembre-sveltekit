@@ -6,6 +6,7 @@
   export let caption: string | false = ""
   export let listing = false
   export let header = false
+  export let noCropPhone = false
   export let image: any
 
   let loaded = true
@@ -44,6 +45,7 @@
     class:loaded
     class:listing
     class:header
+    class:crop-phone={header && !noCropPhone}
     class:fullwidth
     {src}
     alt={caption ? caption : "novembre.global"}
@@ -140,6 +142,25 @@
       max-height: 535px;
       @include screen-size("small") {
         float: unset;
+      }
+    }
+
+    // Header group on phone, crop mode: equal-width tiles filling the
+    // landscape strip (see .image-group.header in ImageGroup.svelte).
+    // Keep after the group-size rules so it wins the tie on specificity.
+    &.crop-phone {
+      @include screen-size("small") {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        margin: 0 0 0 $small-margin;
+
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
   }

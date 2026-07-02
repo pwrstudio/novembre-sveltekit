@@ -60,7 +60,12 @@
 
   {#if preview?._type === "imageGroup"}
     <a href="/{post.taxonomy?.category ?? ''}/{post.slug}">
-      <ImageGroup isListing={true} {isHeader} slides={preview.images ?? []} />
+      <ImageGroup
+        isListing={true}
+        {isHeader}
+        noCropPhone={!!preview.noCropOnPhone}
+        slides={preview.images ?? []}
+      />
     </a>
   {/if}
 

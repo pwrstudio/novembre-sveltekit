@@ -21,8 +21,10 @@
   let bannerActive = false
 
   $: headerPreview = (post as any)?.preview
+  $: isImageGroupHeader = headerPreview?._type === "imageGroup"
   $: noCropPhoneHeader =
-    headerPreview?._type === "singleImage" && !!headerPreview?.noCropOnPhone
+    (headerPreview?._type === "singleImage" || isImageGroupHeader) &&
+    !!headerPreview?.noCropOnPhone
 
   onMount(async () => {
     window.scrollTo(0, 0)
@@ -50,7 +52,11 @@
 
 <article class="article">
   <!-- HEADER MEDIA -->
-  <div class="article__header" class:no-crop-phone={noCropPhoneHeader}>
+  <div
+    class="article__header"
+    class:image-group-header={isImageGroupHeader}
+    class:no-crop-phone={noCropPhoneHeader}
+  >
     <Preview {post} isHeader={true} />
   </div>
 
@@ -173,19 +179,24 @@
     overflow: hidden;
 
     &__header {
-      :global(img),
-      :global(video) {
-        height: $full-height;
-        width: 100%;
-        object-fit: cover;
-      }
-
-      @include screen-size("small") {
-        height: 70vh;
-
+      // Full-bleed cover treatment for single-media headers only. Image
+      // groups keep each image's natural aspect (styled in ImageGroup /
+      // ImageItem) — forcing cover here crops every image in the group.
+      &:not(.image-group-header) {
         :global(img),
         :global(video) {
+          height: $full-height;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        @include screen-size("small") {
           height: 70vh;
+
+          :global(img),
+          :global(video) {
+            height: 70vh;
+          }
         }
       }
 

@@ -8,6 +8,7 @@
   export let caption: string | false = false
   export let isListing = false
   export let isHeader = false
+  export let noCropPhone = false
   export let backgroundColor: Color | undefined = undefined
   export let alignment = ""
   export let verticalAlignment = "vertical-center"
@@ -33,6 +34,7 @@
       class="image-group {alignment} {verticalAlignment || 'vertical-center'}"
       class:listing={isListing}
       class:header={isHeader}
+      class:no-crop-phone={noCropPhone}
       class:fullwidth
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
@@ -42,6 +44,7 @@
           {image}
           {caption}
           {fullwidth}
+          {noCropPhone}
           listing={isListing}
           header={isHeader}
           slidesLength={slides.length}
@@ -53,6 +56,7 @@
       class="image-group {alignment} {verticalAlignment || 'vertical-center'}"
       class:listing={isListing}
       class:header={isHeader}
+      class:no-crop-phone={noCropPhone}
       class:fullwidth
       class:bottom-space={inlineDisplay}
       style={matches ? customStyles : customStylesPhone}
@@ -62,6 +66,7 @@
           {image}
           {caption}
           {fullwidth}
+          {noCropPhone}
           listing={isListing}
           header={isHeader}
           slidesLength={slides.length}
@@ -177,6 +182,30 @@
       @include screen-size("small") {
         height: auto;
         width: 100vw;
+      }
+
+      // On phones, crop the group into a single landscape strip (images
+      // side by side) unless the "no crop on phone" option is set — then
+      // fall back to whole images at natural height (see ImageItem).
+      &:not(.no-crop-phone) {
+        @include screen-size("small") {
+          display: flex;
+          flex-wrap: nowrap;
+          height: 40vh;
+          max-height: unset;
+        }
+      }
+
+      // No-crop mode: whole images at natural height, wrapping. The imgs
+      // have no whitespace between them, so inline-block cannot wrap here.
+      &.no-crop-phone {
+        @include screen-size("small") {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          height: auto;
+          max-height: unset;
+        }
       }
     }
   }
